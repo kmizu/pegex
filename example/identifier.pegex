@@ -1,0 +1,3 @@
+L=#(IdentStart)#(IdentRest)*$;
+IdentStart=[a-zA-Z_];
+IdentRest=#(IdentStart)|[0-9];
