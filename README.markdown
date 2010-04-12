@@ -9,6 +9,11 @@ notations as inputs and parses strings.
 + scala 2.8.0 or later
 + jdk 1.5.0 or later
 
+## Build Requirment
++ scala 2.8.0 or later
++ jdk 1.5.0 or later
+- Apache Ant 1.6 or later
+
 ## Build Instructions
 1. Move to project's root directory.
 2. Type "ant" in shell.
