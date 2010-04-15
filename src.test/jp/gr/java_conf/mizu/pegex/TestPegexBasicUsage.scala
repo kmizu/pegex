@@ -17,6 +17,8 @@ object TestPegexBasicUsage {
     println(ident.matches("10Hoge"))
     val nothing = """L=a*a;""".e(likeRegex = false)
     println(nothing.matches("aaa")) // It should be None
+    val a1OrMore = """L=a*a;""".e(likeRegex = true)
+    println(a1OrMore.matches("aaa")) // It should be Some(aaa)
     val comment = """L=#(C)$; C=/\*(#(C)|!(\*/).)*\*/;""".e
     println(comment.matches("/* comment */"))
     println(comment.matches("/* nested /* comment */ ok */"))
