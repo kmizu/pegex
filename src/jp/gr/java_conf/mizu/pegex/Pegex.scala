@@ -22,6 +22,7 @@ class Pegex(pattern: String, likeRegex: Boolean = true) {
 object Pegex {
   class RichString(pattern: String) {
     def e: Pegex = new Pegex(pattern)
+    def e(likeRegex: Boolean = true) = new Pegex(pattern, likeRegex)
   }  
   implicit def toPeg(pattern: String): RichString = new RichString(pattern)
   def apply(pattern: String): Pegex = new Pegex(pattern)
