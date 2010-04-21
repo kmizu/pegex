@@ -95,18 +95,8 @@ class PegAstInterpreter(grammar: Ast.Grammar) extends Parser {
           cursor = start
           _eval(e2)
         }
-      case Ast.Ident(_, name, backref) =>
-        backref match {
-          case Some(ref) =>
-            val start = cursor       
-            val successful = eval(bindings(name), new HashMap)
-            if(successful) {
-              bindingsForBackref(ref) = (start, cursor)
-            }
-            successful
-          case None =>
-            eval(bindings(name), new HashMap)
-        }
+      case Ast.Ident(_, name) =>
+        eval(bindings(name), new HashMap)
       case Ast.Binder(_, name, exp) =>
         val start = cursor
         val successful = _eval(exp)

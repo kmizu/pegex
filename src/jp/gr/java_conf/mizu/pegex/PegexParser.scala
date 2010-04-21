@@ -55,9 +55,10 @@ object PegexParser {
     | Primary
     )
     lazy val Primary: Parser[Exp] = (
-      (chr('#') ~> chr('(')) ~> opt(Identifier <~ COLON) ~ Identifier <~ chr(')') ^^ { 
-        case Some(ref) ~ ident => ident.copy(backref = Some(ref.name))
-        case None ~ ident => ident
+      (chr('#') ~> chr('(')) ~> Identifier ~ 
+      opt(chr(':') ~> chr(':') ~> Expression | chr(':') ~> Identifier) <~ chr(')') ^^ { 
+        case ident ~ Some(exp) => Binder(ident.pos, ident.name, exp)
+        case ident ~ None => ident
       }
     | OPEN ~> Expression <~ CLOSE
     | (chr('#') ~> chr('#') ~> chr('(')) ~> Identifier <~ chr(')') ^^ {ident => Backref(ident.pos, ident.name)}

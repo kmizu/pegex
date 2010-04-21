@@ -110,20 +110,8 @@ class RegexLikeAstInterpreter(grammar: Ast.Grammar) extends Parser {
           () => { if(onSucc()) true else onFailAlt() },
           onFailAlt
         )
-      case Ast.Ident(_, name, backref) =>
-        backref match {
-          case Some(ref) =>
-            val start = cursor       
-            eval(bindings(name), new HashMap, 
-              () => {
-                bindingsForBackref(ref) = (start, cursor)
-                onSucc()
-              },
-              onFail
-            )
-          case None =>
-            eval(bindings(name), new HashMap, onSucc, onFail)
-        }
+      case Ast.Ident(_, name) =>
+        eval(bindings(name), new HashMap, onSucc, onFail)
       case Ast.Binder(_, name, exp) =>
         val start = cursor
         _eval(exp,

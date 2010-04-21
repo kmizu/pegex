@@ -77,9 +77,8 @@ object Ast {
   /** This class represents an AST of identifier.
     * An identifier is used as reference of nonterminal.
     * @param pos position in source file
-    * @param name the name of identifier
-    * @param backref a symbol for back reference */
-  case class Ident(pos: Pos, name: Symbol, backref: Option[Symbol] = None) extends Exp
+    * @param name the name of identifier */
+  case class Ident(pos: Pos, name: Symbol) extends Exp
   /** This class represents an AST of backward-reference.
     * @param pos position in source file
     * @param name the name of backward-reference */

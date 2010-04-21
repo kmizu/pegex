@@ -52,14 +52,10 @@ object PegParser {
     | Primary
     )
     lazy val Primary: Parser[Exp] = (
-      opt(Identifier <~ COLON) ~ Identifier ^^ { 
-        case Some(ref) ~ ident => 
-          if(ident.name == Symbol("_")) Wildcard(ident.pos) 
-          else ident.copy(backref = Some(ref.name))
-        case None ~ ident =>
-          if(ident.name == Symbol("_")) Wildcard(ident.pos) 
-          else ident
+      (Identifier <~ COLON) ~ Expression ^^ { case ident ~ exp => 
+        Binder(ident.pos, ident.name, exp)
       }
+    | Identifier ^^ { case ident => Ident(ident.pos, ident.name) }
     | OPEN ~> Expression <~ CLOSE
     | LT ~> Identifier <~ GT ^^ {ident => Backref(ident.pos, ident.name)}
     | Literal

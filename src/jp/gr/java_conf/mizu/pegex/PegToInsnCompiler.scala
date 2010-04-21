@@ -39,12 +39,8 @@ object PegToInsnCompiler {
         )::Nil
       }
     case Ast.Wildcard(p) => List(Insns.OpAny(p.line))
-    case Ast.Ident(p, name, ref) =>
-      List(Insns.OpCallLabel(p.line, name)) :::
-      (ref match { 
-        case None => Nil
-        case Some(refname) => List(Insns.OpSetResult(p.line, refname))
-      })
+    case Ast.Ident(p, name) =>
+      List(Insns.OpCallLabel(p.line, name))
     case Ast.Binder(p, name, exp) =>
       List(Insns.OpSetStart(p.line)) :::
       translate(exp) :::
