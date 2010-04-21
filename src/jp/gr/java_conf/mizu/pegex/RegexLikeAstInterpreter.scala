@@ -5,7 +5,7 @@ import scala.collection.mutable.{Map => MutableMap, HashMap}
   * This class represents interpreters by traversal of ASTs.
   * @author Kota Mizushima */
 class RegexLikeAstInterpreter(grammar: Ast.Grammar) extends Parser {
-  private[this] val bindings = Map(grammar.rules.map{r => (r.name, expand(r.body))}:_*)
+  private[this] val ruleBindings = Map(grammar.rules.map{r => (r.name, expand(r.body))}:_*)
   private[this] var cursor = 0
   private[this] var input: String = null
   private def isEnd: Boolean = cursor == input.length
@@ -111,7 +111,7 @@ class RegexLikeAstInterpreter(grammar: Ast.Grammar) extends Parser {
           onFailAlt
         )
       case Ast.Ident(_, name) =>
-        eval(bindings(name), new HashMap, onSucc, onFail)
+        eval(ruleBindings(name), new HashMap, onSucc, onFail)
       case Ast.Binder(_, name, exp) =>
         val start = cursor
         _eval(exp,
@@ -143,7 +143,7 @@ class RegexLikeAstInterpreter(grammar: Ast.Grammar) extends Parser {
     cursor =  0
     input = inputStr
     val map = new HashMap[Symbol, (Int, Int)]
-    if(eval(bindings(grammar.start), map, () => true, () => false)) {
+    if(eval(ruleBindings(grammar.start), map, () => true, () => false)) {
       val result = Some(inputStr.substring(0, cursor))
       MatchResult(
         result, map.foldLeft(Map[Symbol, String]()){case (m, (k, v)) =>
