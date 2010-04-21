@@ -9,7 +9,7 @@ notations as inputs and parses strings.
 + scala 2.8.0 or later
 + jdk 1.5.0 or later
 
-## Build Requirment
+## Build Requirement
 + scala 2.8.0 or later
 + jdk 1.5.0 or later
 - Apache Ant 1.6 or later
