@@ -31,7 +31,6 @@ class PegVm(instructions: List[Insns.Insn]) extends AnyRef with Parser {
   private[this] var cursor: Int = 0  
   private[this] var saved: Stack[(PcStack, CursorStack)] = new Stack
   private[this] var input: Array[Char] = null
-  private[this] var result: (StartPos, EndPos) = null
   
   private def isEnd: Boolean = cursor == input.length
   private def isEnd(pos: Int): Boolean = pos >= input.length
@@ -64,7 +63,6 @@ class PegVm(instructions: List[Insns.Insn]) extends AnyRef with Parser {
         cursor
       }else {
         val Frame(pstartPc, pnextPc, pstartCursor, pbindings) = callStack.pop
-        result = (startCursor, cursor)
         startPc = pstartPc
         pc = pnextPc
         startCursor = pstartCursor
@@ -77,7 +75,7 @@ class PegVm(instructions: List[Insns.Insn]) extends AnyRef with Parser {
     },
     OP_SET_RESULT -> {insn =>
       val Insns.OpSetResult(_, name) = insn
-      bindings = bindings + (name -> result)
+      bindings = bindings + (name -> (startCursor, cursor))
       pc += 1
       null
     },
