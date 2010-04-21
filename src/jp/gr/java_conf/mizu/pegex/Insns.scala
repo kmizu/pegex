@@ -15,7 +15,7 @@ object Insns {
     val 
     OP_CHAR_CLASS, OP_CHAR, OP_STRING, OP_ANY, OP_CHOICE,
     OP_JUMP, OP_CALL, OP_RETURN, OP_COMMIT, OP_FAIL,
-    OP_CALL_LABEL, OP_SET_RESULT, OP_BACKREF = countUp
+    OP_CALL_LABEL, OP_SET_RESULT, OP_SET_START, OP_BACKREF = countUp
   }
   case class OpString(line: Int, str: Array[Char]) extends Insn {
     override def toString = "OpString \"" + str.mkString + "\""
@@ -65,6 +65,11 @@ object Insns {
     override def toString = "OpSet " + name
     val tag = Insn.OP_SET_RESULT
   }
+  case class OpSetStart(line: Int) extends Insn {
+    override def toString = "OpSetStart"
+    val tag = Insn.OP_SET_START
+  }
+
   case class OpBackref(line: Int, name: Symbol) extends Insn {
     override def toString = "OpBackref " + name
     val tag = Insn.OP_BACKREF

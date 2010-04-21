@@ -1,18 +1,22 @@
-#Thu Feb 11 18:01:55 JST 2010
+#Wed Apr 21 19:47:24 JST 2010
 Xcheck-null=false
 Xcheckinit=false
 Xdisable-assertions=false
 Xexperimental=false
 Xfuture=false
 Xlog-implicits=false
+Xmigration=false
 Xno-uescape=false
 Xno-varargs-conversion=false
+Xpluginsdir=misc;scala-devel;plugins
 Xstrict-warnings=false
 Xwarninit=false
 Yclosure-elim=false
 Ydead-code=false
 Ydetach=false
+Yfatal-warnings=false
 Yinline=true
+Yjenkins-hashCodes=false
 Ylinearizer=rpo
 Yno-generic-signatures=false
 Yno-imports=false
@@ -20,11 +24,12 @@ Yno-predefs=false
 Yself-in-annots=false
 Yspecialize=false
 Ysqueeze=on
+Ystruct-dispatch=poly-cache
 Ytailrecommend=false
 Ywarn-catches=false
 Ywarn-dead-code=false
 Ywarn-shadowing=false
-deprecation=false
+deprecation=true
 eclipse.preferences.version=1
 g=vars
 optimise=true

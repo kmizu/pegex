@@ -11,7 +11,7 @@ object PegToInsnCompiler {
       (r.name, translate(r.body):::List(Insns.OpReturn(r.pos.line)))
     })
     val (i, m) = insnsList.foldLeft((0, Map[Symbol, Int]())){
-      case ((i, m), (name, insns)) => (i + insns.size, m(name) = i)
+      case ((i, m), (name, insns)) => (i + insns.size, m.updated(name,i))
     }
     val insns = insnsList.flatMap{ case (name, insns) => insns }
     insns.zipWithIndex.map{
@@ -45,6 +45,10 @@ object PegToInsnCompiler {
         case None => Nil
         case Some(refname) => List(Insns.OpSetResult(p.line, refname))
       })
+    case Ast.Binder(p, name, exp) =>
+      List(Insns.OpSetStart(p.line)) :::
+      translate(exp) :::
+      List(Insns.OpSetResult(p.line, name))
     case Ast.Backref(p, name) =>
       List(Insns.OpBackref(p.line, name))
     case Ast.Seq(p, lhs, rhs) => Nil
@@ -68,5 +72,6 @@ object PegToInsnCompiler {
       translate(Ast.NotPred(p, Ast.NotPred(p, body)))
     case Ast.Opt(p, body) =>
       translate(Ast.Alt(p, body, Ast.Str(p, "")))
+    case Ast.CharSet(_, _, _) => error("should not reach here")
   }
 }

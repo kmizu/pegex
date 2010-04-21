@@ -81,6 +81,12 @@ class PegVm(instructions: List[Insns.Insn]) extends AnyRef with Parser {
       pc += 1
       null
     },
+    OP_SET_START -> {insn =>
+      val Insns.OpSetStart(_) = insn
+      startCursor = cursor
+      pc += 1
+      null
+    },
     OP_CHOICE -> {insn =>
       val Insns.OpChoice(_, relativeAddr) = insn
       choicesPc.push(pc + relativeAddr)
