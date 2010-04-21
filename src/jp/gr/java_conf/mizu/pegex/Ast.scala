@@ -67,6 +67,13 @@ object Ast {
    *  which is created from CharSet.
    */
   case class CharSet(pos: Pos, positive: Boolean, elems: Set[Char]) extends Exp
+  /** This class represents an AST of binder,
+   *  which binds the parsing result of exp to name.
+   *  @param pos position in source file
+   *  @param name name of parsing result of e
+   *  @param exp expression evaluated
+   */
+  case class Binder(pos: Pos, name: Symbol, exp: Exp) extends Exp
   /** This class represents an AST of identifier.
     * An identifier is used as reference of nonterminal.
     * @param pos position in source file
