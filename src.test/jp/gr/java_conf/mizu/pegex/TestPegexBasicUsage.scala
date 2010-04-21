@@ -53,5 +53,13 @@ object TestPegexBasicUsage {
     println(palindrome.matches("abba"))
     println(palindrome.matches("abc"))
     println("done.")
+    println("parsing testBackref ...")
+    val testBackref = new Pegex("""
+      L=#(A::(ab)+)##(A)$;
+    """, likeRegex = true)
+    println(testBackref.matches("ab"))
+    println(testBackref.matches("abab"))
+    println(testBackref.matches("ababab"))
+    println(testBackref.matches("abababab"))
   }
 }
