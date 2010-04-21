@@ -26,7 +26,7 @@ class RegexLikeAstInterpreter(grammar: Ast.Grammar) extends Parser {
     case e => e
   }
   private def eval(
-    node: Ast.Exp, bindingsForBackref: MutableMap[Symbol, (Int, Int)],
+    node: Ast.Exp, resultBindings: MutableMap[Symbol, (Int, Int)],
     onSucc: () => Boolean, onFail: () => Boolean
   ): Boolean = {
     def _eval(node: Ast.Exp, onSucc: () => Boolean, onFail: () => Boolean): Boolean = node match {
@@ -116,13 +116,13 @@ class RegexLikeAstInterpreter(grammar: Ast.Grammar) extends Parser {
         val start = cursor
         _eval(exp,
           () => {
-            bindingsForBackref(name) = (start, cursor)
+            resultBindings(name) = (start, cursor)
             onSucc()
           },
           onFail
         )
       case Ast.Backref(_, name) =>
-        val (start, end) = bindingsForBackref(name)
+        val (start, end) = resultBindings(name)
         def matches(): Boolean = {
           (0 until (end - start)).forall{i =>
             (!isEnd(cursor + i)) && input(start + i) == input(cursor + i)

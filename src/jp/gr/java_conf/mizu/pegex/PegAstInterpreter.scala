@@ -25,7 +25,7 @@ class PegAstInterpreter(grammar: Ast.Grammar) extends Parser {
     case Ast.NotPred(pos, body) => Ast.NotPred(pos, expand(body))
     case e => e
   }
-  private def eval(node: Ast.Exp, bindingsForBackref: MutableMap[Symbol, (Int, Int)]): Boolean = {
+  private def eval(node: Ast.Exp, resultBindings: MutableMap[Symbol, (Int, Int)]): Boolean = {
     def _eval(node: Ast.Exp): Boolean = node match {
       case Ast.Str(_, str) =>
         val len = str.length
@@ -101,11 +101,11 @@ class PegAstInterpreter(grammar: Ast.Grammar) extends Parser {
         val start = cursor
         val successful = _eval(exp)
         if(successful) {
-          bindingsForBackref(name) = (start, cursor)
+          resultBindings(name) = (start, cursor)
         }
         successful
       case Ast.Backref(_, name) =>
-        val (start, end) = bindingsForBackref(name)
+        val (start, end) = resultBindings(name)
         def matches(): Boolean = {
           (0 until (end - start)).forall{i =>
             (!isEnd(cursor + i)) && input(start + i) == input(cursor + i)
