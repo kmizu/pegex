@@ -75,8 +75,8 @@ class PegVm(instructions: List[Insns.Insn]) extends AnyRef with Parser {
         null
       }
     },
-    OP_SET -> {insn =>
-      val Insns.OpSet(_, name) = insn
+    OP_SET_RESULT -> {insn =>
+      val Insns.OpSetResult(_, name) = insn
       bindings = bindings + (name -> result)
       pc += 1
       null

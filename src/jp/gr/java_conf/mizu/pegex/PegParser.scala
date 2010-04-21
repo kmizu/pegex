@@ -36,7 +36,8 @@ object PegParser {
     lazy val Expression: Parser[Exp] = Sequence ~ (SLASH ~> Sequence).* ^^ {
       case x ~ xs => xs.foldLeft(x){(a, y) => Alt(y.pos, a, y)}
     }
-    lazy val Sequence: Parser[Exp] = Prefix.+ ^^ {case x::xs => 
+    lazy val Sequence: Parser[Exp] = Prefix.+ ^^ {ys => 
+      val x::xs = ys
       xs.foldLeft(x){(a, y) => Seq(y.pos, a, y)}
     }
     lazy val Prefix: Parser[Exp] = (

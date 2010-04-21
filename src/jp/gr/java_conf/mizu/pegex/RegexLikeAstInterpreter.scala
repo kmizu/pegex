@@ -124,6 +124,15 @@ class RegexLikeAstInterpreter(grammar: Ast.Grammar) extends Parser {
           case None =>
             eval(bindings(name), new HashMap, onSucc, onFail)
         }
+      case Ast.Binder(_, name, exp) =>
+        val start = cursor
+        _eval(exp,
+          () => {
+            bindingsForBackref(name) = (start, cursor)
+            onSucc()
+          },
+          onFail
+        )
       case Ast.Backref(_, name) =>
         val (start, end) = bindingsForBackref(name)
         def matches(): Boolean = {

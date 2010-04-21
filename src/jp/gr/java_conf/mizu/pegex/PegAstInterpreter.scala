@@ -107,6 +107,13 @@ class PegAstInterpreter(grammar: Ast.Grammar) extends Parser {
           case None =>
             eval(bindings(name), new HashMap)
         }
+      case Ast.Binder(_, name, exp) =>
+        val start = cursor
+        val successful = _eval(exp)
+        if(successful) {
+          bindingsForBackref(name) = (start, cursor)
+        }
+        successful
       case Ast.Backref(_, name) =>
         val (start, end) = bindingsForBackref(name)
         def matches(): Boolean = {

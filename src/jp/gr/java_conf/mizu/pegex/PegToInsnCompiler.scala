@@ -43,7 +43,7 @@ object PegToInsnCompiler {
       List(Insns.OpCallLabel(p.line, name)) :::
       (ref match { 
         case None => Nil
-        case Some(refname) => List(Insns.OpSet(p.line, refname))
+        case Some(refname) => List(Insns.OpSetResult(p.line, refname))
       })
     case Ast.Backref(p, name) =>
       List(Insns.OpBackref(p.line, name))
