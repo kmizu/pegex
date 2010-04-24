@@ -6,11 +6,12 @@
 
   <property environment="env"/>
   <property name="src.dir"            value="src"/>
-	<property name="test.dir"           value="src.test"/>
-	<property name="docs.dir"           value="docs"/>
+  <property name="test.dir"           value="src.test"/>
+  <property name="docs.dir"           value="docs"/>
   <property name="build.dir"          value="build"/>
   <property name="scala-compiler.jar" value="scala-compiler.jar"/>
   <property name="scala-library.jar"  value="scala-library.jar"/>
+  <property name="specs.jar"          value="specs_2.8.0.Beta1-1.6.2.jar"/>
   <!-- 2. Define Scala CLASSPATH. -->
 
   <path id="scala.classpath">
@@ -22,6 +23,7 @@
 
   <path id="project.classpath">
     <path refid="scala.classpath"/>
+  	<pathelement location="${specs.jar}"/>
     <pathelement location="${build.dir}"/>
   </path>
 
@@ -31,8 +33,8 @@
     <classpath refid="scala.classpath"/>
   </taskdef>
 
-	<property name="jar.name" value="pegex.jar"/>
-	<property name="pegex"    value="jp.gr.java_conf.mizu.pegex.PegexMatcher"/>
+  <property name="jar.name" value="pegex.jar"/>
+  <property name="pegex"    value="jp.gr.java_conf.mizu.pegex.PegexMatcher"/>
 
   <target name="compile">
     <mkdir dir="${build.dir}"/>
