@@ -1,6 +1,6 @@
 package jp.gr.java_conf.mizu.pegex
 
-object TestPegexBasicUsage {
+object PegexBasicSpec {
   def main(args: Array[String]) {
     import jp.gr.java_conf.mizu.pegex.Pegex._
     val alphabets = """L=[a-zA-Z]+$;""".e
