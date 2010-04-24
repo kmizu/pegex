@@ -34,8 +34,6 @@ object PegexBasicSpec extends Specification {
     comment.matches("/* incorrect comment") must_== None
   }
   """PEGEX representing subset of XMLs""" in {
-    println("done.")
-    println("parsing minXml ...")
     val minXml = """
       L=#(E)$; E=<#(tag:I)>#(E)*</##(tag)>; I=[a-z]+;""".e
     minXml.matches("<foo></foo>") must_== Some("<foo></foo>")
@@ -51,7 +49,7 @@ object PegexBasicSpec extends Specification {
     val palindrome = """L=#(A)$; A=a#(A)a|b#(A)b|c#(A)c|a|b|c|_;""".e(likeRegex=true)
     palindrome.matches("abcba") must_== Some("abcba")
     palindrome.matches("abba") must_== Some("abba")
-    palindrome.matches("abc") must_== Some("abc")
+    palindrome.matches("abc") must_== None
   }
   """PEGEX representing (ab)^n, where n is even number.  This is test of backreference feature""" in {
     println("parsing testBackref ...")

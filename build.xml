@@ -39,6 +39,7 @@
   <target name="compile">
     <mkdir dir="${build.dir}"/>
     <scalac srcdir="${src.dir}" destdir="${build.dir}" classpath="${scala-library.jar}"/>
+  	<scalac srcdir="${test.dir}" destdir="${build.dir}" classpath="${scala-library.jar}:${build.dir}:lib/${specs.jar}"/>
   </target>
 	
   <target name="jar" depends="compile">
