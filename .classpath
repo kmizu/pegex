@@ -2,8 +2,9 @@
 <classpath>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="src.test"/>
-	<classpathentry kind="con" path="ch.epfl.lamp.sdt.launching.SCALA_CONTAINER"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="lib" path="lib/specs_2.8.0.Beta1-1.6.2.jar"/>
+	<classpathentry kind="lib" path="scala-compiler.jar"/>
+	<classpathentry kind="lib" path="scala-library.jar"/>
 	<classpathentry kind="output" path="build"/>
 </classpath>
