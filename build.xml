@@ -59,7 +59,7 @@
 	</target>
 
   <target name="clean">
-    <delete dir="${build}" includes="**"/>
+    <delete dir="${build.dir}" includes="**"/>
   	<delete dir="${docs.dir}" includes="**"/>
   </target>
 </project>
