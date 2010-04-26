@@ -53,7 +53,7 @@ object PegexBasicSpec extends Specification {
   }
   """PEGEX representing lambda calculus""" in {
     val lambda = """
-      L=#(E)$; E=É…#(I)Å®#(E)|#(E) #(E)|#(I)|\(#(E)\); I=[a-zA-Z_][a-zA-Z0-9]*;
+      L=#(E)$; E=Œª#(I)‚Üí#(E)|#(I)|\(#(E)\)|#(E) #(E)|#(I); I=[a-zA-Z_][a-zA-Z0-9]*;
     """
   }
   """PEGEX representing (ab)^n, where n is even number.  This is test of backreference feature""" in {
