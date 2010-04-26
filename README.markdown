@@ -12,9 +12,11 @@ notations as inputs and parses strings.
 ## Build Requirement
 + scala 2.8.0 or later
 + jdk 1.5.0 or later
-- Apache Ant 1.6 or later
++ Apache Ant 1.6 or later
 
 ## Build Instructions
 1. Move to project's root directory.
+   > cd pegex
 2. Type "ant" in shell.
+   > ant
 3. Deploy the file "pegex.jar", which is library jar file generated from source files.
