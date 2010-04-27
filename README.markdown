@@ -20,3 +20,21 @@ notations as inputs and parses strings.
 2. Type "ant" in shell.
    > ant
 3. Deploy the file "pegex.jar", which is library jar file generated from source files.
+
+## Syntax of PEGEX
+(name=e;)*, where name is name of this rule and e is an expression
+
+### Kind of Expressions (e)
++ sequence: e1e2 e.g. ab
++ (ordered) chioce: e1|e2 e.g. a|b
++ repetition (>= 0): e* e.g. a*
++ repetition (>= 1): e+ e.g. a+
++ option: e? e.g. a?
++ and predicate: &e e.g. &a
++ not predicate: !e e.e. !a
++ any character: _
++ one character: x e.g. a
++ character class: [...] e.g. [a-zA-Z_]
++ reference of other rule: #(name) e.g. #(Ident)
+  #(name:e) binds parsing result of e to name
++ backreference: ##(name) e.g. #(I:Ident):##(I)
