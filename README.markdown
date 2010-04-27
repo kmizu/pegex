@@ -22,7 +22,7 @@ notations as inputs and parses strings.
 3. Deploy the file "pegex.jar", which is library jar file generated from source files.
 
 ## Syntax of PEGEX
-(*name*=*e*;)*, where *name* is name of this rule and *e* is an expression
+(*name*=*e*;)\*, where *name* is name of this rule and *e* is an expression
 
 ### Kind of Expressions (*e*)
 + e1e2: sequence.  e.g. ab
