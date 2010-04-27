@@ -58,11 +58,14 @@ object PegexBasicSpec extends Specification {
     testBackref.matches("ababab") must_== None
     testBackref.matches("abababab") must_== Some("abababab")
   }
-	"""PEGEX representing name:value pair""" in {
-	  val nv = """L=#(N::[a-zA-Z_][a-zA-Z0-9_]*)\:#(V::[0-9]+)$;""".e
-		val r1 = nv.matchesWithGroup("a:1")
-		r1.result must_== Some("a:1")
-		r1.group.get('N) must_== Some("a")
-		r1.group.get('V) must_== Some("1")
-	}
+  """PEGEX representing name:value pair""" in {
+    val nv = """L=#(N::[a-zA-Z_][a-zA-Z0-9_]*)\:#(V::[0-9]+)$;""".e
+    val r1 = nv.matchesWithGroup("a:1")
+    r1.result must_== Some("a:1")
+    r1.group.get('N) must_== Some("a")
+    r1.group.get('V) must_== Some("1")
+  }
+  override def main(args: Array[String]) {
+    super.main(args)
+  }
 }
