@@ -35,6 +35,6 @@ notations as inputs and parses strings.
 + _: any character.
 + *x*: one character.  e.g. a
 + [f-t...xyz...]: character class.  e.g. [a-zA-Z_]
-+ #(*name*):  reference of other rule.  e.g. #(Ident)
++ \#(*name*):  reference of other rule.  e.g. #(Ident)
   + An expression #(*name*:*e*) binds parsing result of e to name
 + backreference: ##(*name*) e.g. #(I:Ident):##(I)
