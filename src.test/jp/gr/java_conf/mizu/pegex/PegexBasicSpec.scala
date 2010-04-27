@@ -14,10 +14,13 @@ object PegexBasicSpec extends Specification {
       IdentStart=[a-zA-Z_];
       IdentRest=#(IdentStart)|[0-9];
     """.e    
-    ident.matches("HogeFooBar") must_== Some("HogeFooBar")
-    ident.matches("Hoge_Foo_Bar") must_== Some("Hoge_Foo_Bar")
-    ident.matches("Hoge10") must_== Some("Hoge10")
-    ident.matches("10Hoge") must_== None
+    List("HogeFooBar" -> Some("HogeFooBar"),
+         "Hoge_Foo_Bar" -> Some("Hoge_Foo_Bar"),
+         "Hoge10" -> Some("Hoge10"),
+         "10Hoge" -> None
+    ).foreach{ case (input, expectation) =>
+      ident.matches(input) must_== expectation
+    }
   }
   
   """PEGEX that greedy interpreter can parse successfully and possessive interpreter fails""" in {
