@@ -5,8 +5,8 @@ package jp.gr.java_conf.mizu.pegex
   * This class is used only for performance.
   * @author Kota Mizushima */
 class IntStack(initialCapacity: Int) {
-  private[this] var array: Array[Int] = new Array[Int](initialCapacity)
-  private[this] var _size: Int = 0
+  private[this] var array = new Array[Int](initialCapacity)
+  private[this] var _size = 0
   private def ensureCapacity(newCapacity: Int) {
     if(newCapacity > array.length) {
       val newArray = new Array[Int]((newCapacity * 1.5).asInstanceOf[Int])

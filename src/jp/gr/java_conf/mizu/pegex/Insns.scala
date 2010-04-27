@@ -11,7 +11,7 @@ object Insns {
   }
   object Insn {
     private[this] var count = 0
-    private[this] def countUp: Int = { val old = count; count += 1; old }
+    private[this] def countUp = { val old = count; count += 1; old }
     val 
     OP_CHAR_CLASS, OP_CHAR, OP_STRING, OP_ANY, OP_CHOICE,
     OP_JUMP, OP_CALL, OP_RETURN, OP_COMMIT, OP_FAIL,

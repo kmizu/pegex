@@ -20,20 +20,20 @@ class PegVm(instructions: List[Insns.Insn]) extends AnyRef with Parser {
   private type PcStack = IntStack
   private type CursorStack = IntStack
   
-  private[this] val insns: Array[Insns.Insn] = instructions.toArray  
-  private[this] var startPc: Int = 0
-  private[this] var pc: Int = 0
-  private[this] var startCursor: Int = 0
+  private[this] val insns = instructions.toArray  
+  private[this] var startPc = 0
+  private[this] var pc = 0
+  private[this] var startCursor = 0
   private[this] var bindings: Map[Symbol, (StartPos, EndPos)] = null
-  private[this] var callStack: Stack[Frame] = new Stack
-  private[this] var choicesPc: PcStack = new IntStack
-  private[this] var choicesCursor: CursorStack = new IntStack
-  private[this] var cursor: Int = 0  
-  private[this] var saved: Stack[(PcStack, CursorStack)] = new Stack
-  private[this] var input: Array[Char] = null
+  private[this] var callStack = new Stack[Frame]
+  private[this] var choicesPc = new PcStack
+  private[this] var choicesCursor = new CursorStack
+  private[this] var cursor = 0  
+  private[this] var saved = new Stack[(PcStack, CursorStack)]
+  private[this] var input = Array[Char]()
   
-  private def isEnd: Boolean = cursor == input.length
-  private def isEnd(pos: Int): Boolean = pos >= input.length
+  private def isEnd = cursor == input.length
+  private def isEnd(pos: Int) = pos >= input.length
   @inline
   private def rewind {
     if(choicesPc.isEmpty) {

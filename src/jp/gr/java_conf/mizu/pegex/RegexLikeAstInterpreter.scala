@@ -89,13 +89,13 @@ class RegexLikeAstInterpreter(grammar: Ast.Grammar) extends Parser {
           onFailAlt
         )
       case Ast.AndPred(_, body) =>
-        val start: Int = cursor
+        val start = cursor
         _eval(body,
           () => { cursor = start; onSucc() },
           onFail
         )
       case Ast.NotPred(_, body) =>
-        val start: Int = cursor
+        val start = cursor
         _eval(body,
           onFail,
           () => { cursor = start; onSucc() }

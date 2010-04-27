@@ -1,7 +1,7 @@
 package jp.gr.java_conf.mizu.pegex
 
 class Pegex(pattern: String, likeRegex: Boolean = true) {
-  private val interpreter = if(!likeRegex){
+  private[this] val interpreter = if(!likeRegex){
     new PegVm(
       PegToInsnCompiler.compile(
         PegexParser.parse(pattern)
@@ -22,7 +22,7 @@ class Pegex(pattern: String, likeRegex: Boolean = true) {
 object Pegex {
   class RichString(pattern: String) {
     def e: Pegex = new Pegex(pattern)
-    def e(likeRegex: Boolean = true) = new Pegex(pattern, likeRegex)
+    def e(likeRegex: Boolean = true): Pegex = new Pegex(pattern, likeRegex)
   }  
   implicit def toPeg(pattern: String): RichString = new RichString(pattern)
   def apply(pattern: String): Pegex = new Pegex(pattern)

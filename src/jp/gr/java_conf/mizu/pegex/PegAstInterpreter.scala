@@ -8,8 +8,8 @@ class PegAstInterpreter(grammar: Ast.Grammar) extends Parser {
   private[this] val bindings = Map(grammar.rules.map{r => (r.name, expand(r.body))}:_*)
   private[this] var cursor = 0
   private[this] var input: String = null
-  private def isEnd: Boolean = cursor == input.length
-  private def isEnd(pos: Int): Boolean = pos >= input.length
+  private def isEnd = cursor == input.length
+  private def isEnd(pos: Int) = pos >= input.length
   private def expand(node: Ast.Exp): Ast.Exp = node match {
     case Ast.CharClass(pos, positive, elems) => 
       Ast.CharSet(pos, positive, elems.foldLeft(Set[Char]()){       
@@ -53,7 +53,7 @@ class PegAstInterpreter(grammar: Ast.Grammar) extends Parser {
           true
         }
       case Ast.Rep0(_, body) =>
-        var start: Int = cursor
+        var start = cursor
         while(_eval(body)) {
           start = cursor
         }
@@ -68,19 +68,19 @@ class PegAstInterpreter(grammar: Ast.Grammar) extends Parser {
           true
         }
       case Ast.Opt(_, body) =>
-        var start: Int = cursor
+        var start = cursor
         if(!_eval(body)) {
           cursor = start
         }
         true
       case Ast.AndPred(_, body) =>
-        val start: Int = cursor
+        val start = cursor
         if(_eval(body)) {
           cursor = start
           true
         } else false
       case Ast.NotPred(_, body) =>
-        val start: Int = cursor
+        val start = cursor
         if(!_eval(body)) {
           cursor = start
           true
