@@ -19,14 +19,15 @@ object PegexBasicSpec extends Specification {
     ident.matches("Hoge10") must_== Some("Hoge10")
     ident.matches("10Hoge") must_== None
   }
-  """PEGEX not matching anything""" in {
-    val nothing = """L=a*a;""".e(likeRegex = false)
+  
+  """PEGEX that greedy interpreter can parse successfully and possessive interpreter fails""" in {
+    val ex = """L=a*a;"""
+    val nothing = ex.e(likeRegex = false)
     nothing.matches("aaa") must_== None
-  }
-  """PEGEX(greedy mode) representing one or more repetition of "a"""" in {
-    val a1OrMore = """L=a*a;""".e(likeRegex = true)
+    val a1OrMore = ex.e
     a1OrMore.matches("aaa") must_== Some("aaa")
   }
+
   """PEGEX representing nested comments""" in {
     val comment = """L=#(C)$; C=/\*(#(C)|!(\*/).)*\*/;""".e
     comment.matches("/* comment */") must_== Some("/* comment */")
