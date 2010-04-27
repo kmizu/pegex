@@ -41,8 +41,13 @@
     <scalac srcdir="${src.dir}" destdir="${build.dir}" classpath="${scala-library.jar}"/>
   	<scalac srcdir="${test.dir}" destdir="${build.dir}" classpath="${scala-library.jar}:${build.dir}:lib/${specs.jar}"/>
   </target>
+
+	<target name="test" depends="compile">
+		<java classname="jp.gr.java_conf.mizu.pegex.PegexBasicSpec"
+			    classpath="${build.dir}:${scala-library.jar}:lib/${specs.jar}"/>
+	</target>
 	
-  <target name="jar" depends="compile">
+  <target name="jar" depends="compile,test">
   	<copy file="${scala-library.jar}" tofile="scala-library.jar"/> 
     <jar destfile="${jar.name}" basedir="${build.dir}">
       <manifest>
@@ -59,7 +64,7 @@
 	</target>
 
   <target name="clean">
-    <delete dir="${build}" includes="**"/>
+    <delete dir="${build.dir}" includes="**"/>
   	<delete dir="${docs.dir}" includes="**"/>
   </target>
 </project>

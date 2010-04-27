@@ -23,6 +23,7 @@ class RegexLikeAstInterpreter(grammar: Ast.Grammar) extends Parser {
     case Ast.Opt(pos, body) => Ast.Opt(pos, expand(body))
     case Ast.AndPred(pos, body) => Ast.AndPred(pos, expand(body))
     case Ast.NotPred(pos, body) => Ast.NotPred(pos, expand(body))
+    case Ast.Binder(pos, n, e) => Ast.Binder(pos, n, expand(e))
     case e => e
   }
   private def eval(

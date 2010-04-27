@@ -51,17 +51,18 @@ object PegexBasicSpec extends Specification {
     palindrome.matches("abba") must_== Some("abba")
     palindrome.matches("abc") must_== None
   }
-  """PEGEX representing lambda calculus""" in {
-    val lambda = """
-      L=#(E)$; E=É…#(I)Å®#(E)|#(E) #(E)|#(I)|\(#(E)\); I=[a-zA-Z_][a-zA-Z0-9]*;
-    """
-  }
   """PEGEX representing (ab)^n, where n is even number.  This is test of backreference feature""" in {
-    println("parsing testBackref ...")
-    val testBackref = """L=#(A::(ab)+)##(A)$;""".e(likeRegex=true)
+    val testBackref = """L=#(A::(ab)+)##(A)$;""".e
     testBackref.matches("ab") must_== None
     testBackref.matches("abab") must_== Some("abab")
     testBackref.matches("ababab") must_== None
     testBackref.matches("abababab") must_== Some("abababab")
   }
+	"""PEGEX representing name:value pair""" in {
+	  val nv = """L=#(N::[a-zA-Z_][a-zA-Z0-9_]*)\:#(V::[0-9]+)$;""".e
+		val r1 = nv.matchesWithGroup("a:1")
+		r1.result must_== Some("a:1")
+		r1.group.get('N) must_== Some("a")
+		r1.group.get('V) must_== Some("1")
+	}
 }
