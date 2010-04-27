@@ -32,7 +32,8 @@ notations as inputs and parses strings.
 + e?: zero-or-one occurrence.  e.g? e.g. a?
 + &e: and predicate.  e.g. &a
 + !e:  not predicate. e.g. !a
-+ _: any character.
++ .: any character.
++ _: success certainly.
 + *x*: one character.  e.g. a
 + [f-t...xyz...]: character class.  e.g. [a-zA-Z_]
 + \#(*name*):  reference of other rule.  e.g. #(Ident)
