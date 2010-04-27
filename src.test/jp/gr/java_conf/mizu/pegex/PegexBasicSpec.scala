@@ -66,6 +66,8 @@ object PegexBasicSpec extends Specification {
     r1.result must_== Some("a:1")
     r1.group.get('N) must_== Some("a")
     r1.group.get('V) must_== Some("1")
+    r1('N) must_== "a"
+    r1('V) must_== "1"
     val nvPossessive = nvStr.e(likeRegex = false)
     val r2 = nvPossessive.matchesWithGroup("a:1")
     r2.result must_== Some("a:1")
