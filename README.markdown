@@ -22,19 +22,19 @@ notations as inputs and parses strings.
 3. Deploy the file "pegex.jar", which is library jar file generated from source files.
 
 ## Syntax of PEGEX
-(name=e;)*, where name is name of this rule and e is an expression
+(*name*=*e*;)*, where *name* is name of this rule and *e* is an expression
 
-### Kind of Expressions (e)
-+ sequence: e1e2 e.g. ab
-+ (ordered) chioce: e1|e2 e.g. a|b
-+ repetition (>= 0): e* e.g. a*
-+ repetition (>= 1): e+ e.g. a+
-+ option: e? e.g. a?
-+ and predicate: &e e.g. &a
-+ not predicate: !e e.e. !a
-+ any character: _
-+ one character: x e.g. a
-+ character class: [...] e.g. [a-zA-Z_]
-+ reference of other rule: #(name) e.g. #(Ident)
-  + An expression #(name:e) binds parsing result of e to name
-+ backreference: ##(name) e.g. #(I:Ident):##(I)
+### Kind of Expressions (*e*)
++ e1e2: sequence.  e.g. ab
++ e1|e2: ordered chocie.  e.g. a|b
++ e*: repetition (>= 0).  e.g. a*
++ e+: repetition (>= 1).  e.g. a+
++ e?: zero-or-one occurrence.  e.g? e.g. a?
++ &e: and predicate.  e.g. &a
++ !e:  not predicate. e.g. !a
++ _: any character.
++ *x*: one character.  e.g. a
++ [f-t...xyz...]: character class.  e.g. [a-zA-Z_]
++ #(*name*):  reference of other rule.  e.g. #(Ident)
+  + An expression #(*name*:*e*) binds parsing result of e to name
++ backreference: ##(*name*) e.g. #(I:Ident):##(I)
