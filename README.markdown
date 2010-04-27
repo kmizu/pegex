@@ -36,5 +36,5 @@ notations as inputs and parses strings.
 + one character: x e.g. a
 + character class: [...] e.g. [a-zA-Z_]
 + reference of other rule: #(name) e.g. #(Ident)
-  + #(name:e) binds parsing result of e to name
+  + An expression #(name:e) binds parsing result of e to name
 + backreference: ##(name) e.g. #(I:Ident):##(I)
