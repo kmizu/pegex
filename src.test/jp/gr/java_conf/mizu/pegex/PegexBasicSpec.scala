@@ -59,6 +59,9 @@ object PegexBasicSpec extends Specification {
     val palindrome = """L=#(A)$; A=a#(A)a|b#(A)b|c#(A)c|a|b|c|_;""".e(likeRegex=false)
     palindrome.matches("a" * 3) must_== Some("a" * 3)
     palindrome.matches("a" * 7) must_== Some("a" * 7)
+    palindrome.matches("a" * 15) must_== Some("a" * 15)
+    palindrome.matches("a" * 31) must_== Some("a" * 31)
+    palindrome.matches("a" * 63) must_== Some("a" * 63)
   }
   """PEGEX representing (ab)^n, where n is even number.  This is test of backreference feature""" in {
     val testBackref = """L=#(A::(ab)+)##(A)$;""".e
