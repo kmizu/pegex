@@ -14,7 +14,7 @@ object LineCounter {
     var count = 0
     eachFile(new File("src"), ".scala"){file =>
       val source = Source.fromFile(file)
-      count += source.getLines("\n").toList.size
+      count += source.getLines.toList.size
       source.close()
     }
     println(count)

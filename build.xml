@@ -11,7 +11,7 @@
   <property name="build.dir"          value="build"/>
   <property name="scala-compiler.jar" value="scala-compiler.jar"/>
   <property name="scala-library.jar"  value="scala-library.jar"/>
-  <property name="specs.jar"          value="specs_2.8.0.Beta1-1.6.2.jar"/>
+  <property name="specs.jar"          value="specs_2.8.0-1.6.5.jar"/>
   <!-- 2. Define Scala CLASSPATH. -->
 
   <path id="scala.classpath">
