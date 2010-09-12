@@ -4,6 +4,10 @@ package jp.gr.java_conf.mizu.pegex
   * It is used as namespace.
   * @author Kota Mizushima */
 object Ast {
+  type ==>[-A, +B] = PartialFunction[A, B]
+  
+  val DUMMY_POS = Pos(-1, -1)
+  
   /** A trait for types that has position. */
   trait HasPosition { def pos: Pos }
   /** This class represents position in a source file.
@@ -14,12 +18,14 @@ object Ast {
     * @param pos position in source file
     * @param start the start symbol.  A parser start to parse from this symbol
     * @param rules the list of rules constituting PEG grammar */
-  case class Grammar(pos: Pos, start: Symbol, rules: List[Rule]) extends HasPosition
+  case class Grammar(pos: Pos, start: Symbol, rules: List[Rule]) extends HasPosition {
+    def +(newRule: Rule): Grammar = copy(rules = newRule::rules)
+  }
   /** This class represents an AST of rule in PEG grammar.
     * @param pos position in source file
     * @param name the name of this rule.  It is referred in body
     * @param body the parsing expression which this rule represents */
-  case class Rule(pos: Pos, name: Symbol, body: Exp) extends HasPosition
+  case class Rule(pos: Pos, name: Symbol, body: Exp, action: Any ==> Any = { case a => a }) extends HasPosition
   /** This trait represents common super-type of parsing expression AST. */
   sealed trait Exp extends HasPosition
   /** This class represents an AST of sequence (e1 e2).
