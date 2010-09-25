@@ -60,11 +60,11 @@ object PegParser {
     | LT ~> Identifier <~ GT ^^ {ident => Backref(ident.pos, ident.name)}
     | Literal
     | CLASS
-    | loc <~ (DOT) ^^ { case pos => Wildcard(Pos(pos.line, pos.column)) }
+    | loc <~ (DOT | UNDER_SCORE) ^^ { case pos => Wildcard(Pos(pos.line, pos.column)) }
     )
     lazy val loc: Parser[Position] = Parser{reader => Success(reader.pos, reader)}    
-    lazy val Identifier: Parser[Ident] = loc ~ IdentStart ~ IdentCont.* <~Spacing ^^ {
-      case pos ~ s ~ c => Ident(Pos(pos.line, pos.column), Symbol("" + s + c.foldLeft("")(_ + _)))
+    lazy val Identifier: Parser[Ident] = loc ~ IdentStart ~ IdentCont.* <~Spacing ^? {
+      case pos ~ s ~ c  if !(c.length == 0 && s == '_') => Ident(Pos(pos.line, pos.column), Symbol("" + s + c.foldLeft("")(_ + _)))
     }
     lazy val IdentStart: Parser[Char] = crange('a','z') | crange('A','Z') | '_'
     lazy val IdentCont: Parser[Char] = IdentStart | crange('0','9')
@@ -116,6 +116,7 @@ object PegParser {
     lazy val OPEN = '(' <~ Spacing
     lazy val CLOSE = ')' <~ Spacing
     lazy val DOT = '.' <~ Spacing
+    lazy val UNDER_SCORE = '_' <~ Spacing
     lazy val Spacing = (Space | Comment).*
     lazy val Comment = (
       chr('#') ~ (not(EndOfLine) ~ any).* ~ EndOfLine
