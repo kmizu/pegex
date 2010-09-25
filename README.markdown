@@ -6,11 +6,11 @@ light-weight syntax of regular expressions.  It accepts a PEG-variant with regex
 notations as inputs and parses strings.
 
 ## Runtime Requirement
-+ scala 2.8.0 or later
++ scala 2.8.0.final or later
 + jdk 1.5.0 or later
 
 ## Build Requirement
-+ scala 2.8.0 or later
++ scala 2.8.0.final or later
 + jdk 1.5.0 or later
 + Apache Ant 1.6 or later
 
