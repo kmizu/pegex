@@ -5,6 +5,7 @@ object PegexBasicSpec extends Specification {
   import jp.gr.java_conf.mizu.pegex.Pegex._
   """PEGEX representing alphabet sequences""" in {
     val alphabets = """L=[a-zA-Z]+$;""".e
+    alphabets.matches("Hoge") must_== Some("Hoge")
     alphabets.matches("HogeFooBar") must_== Some("HogeFooBar")
     alphabets.matches("Hoge_Foo_Bar") must_== None
   }
