@@ -3,7 +3,6 @@
 	<exclude-output/>
 	<contentEntry url="file://$MODULE_DIR$">
 		<excludeFolder url="file://$MODULE_DIR$/build"/>
-		<excludeFolder url="file://$MODULE_DIR$/build"/>
 	</contentEntry>
 	<lib name="specs_2.8.0-1.6.5.jar" scope="COMPILE">
 		<relative-module-cls project-related="jar://$PROJECT_DIR$/lib/specs_2.8.0-1.6.5.jar!/"/>
