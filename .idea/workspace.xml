@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="5c3b2c36-51b0-4af9-a2b4-dd1730c48c38" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/jp/gr/java_conf/mizu/pegex/Ast.scala" afterPath="$PROJECT_DIR$/src/jp/gr/java_conf/mizu/pegex/Ast.scala" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/.idea/projectCodeStyle.xml" />
     </list>
     <ignored path="pegex.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -66,7 +66,7 @@
       <file leaf-file-name="Ast.scala" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/jp/gr/java_conf/mizu/pegex/Ast.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="21" selection-start="2430" selection-end="2430" vertical-scroll-proportion="0.0">
+            <state line="21" column="56" selection-start="901" selection-end="901" vertical-scroll-proportion="0.7027559">
               <folding />
             </state>
           </provider>
@@ -140,6 +140,7 @@
         <option value="$PROJECT_DIR$/src/jp/gr/java_conf/mizu/pegex/Hello.scala" />
         <option value="$PROJECT_DIR$/src/jp/gr/java_conf/mizu/pegex/PegexParser.scala" />
         <option value="$PROJECT_DIR$/src/jp/gr/java_conf/mizu/pegex/Pegex.scala" />
+        <option value="$PROJECT_DIR$/src/jp/gr/java_conf/mizu/pegex/Ast.scala" />
       </list>
     </option>
   </component>
@@ -260,7 +261,7 @@
     <property name="options.splitter.details.proportions" value="0.2" />
     <property name="dynamic.classpath" value="false" />
   </component>
-  <component name="RunManager" selected="Application.PegexBasicSpec">
+  <component name="RunManager" selected="Application.PegexMatcher">
     <configuration default="false" name="PegexMatcher" type="Application" factoryName="Application" temporary="true">
       <extension name="snapshooter" />
       <option name="MAIN_CLASS_NAME" value="jp.gr.java_conf.mizu.pegex.PegexMatcher" />
@@ -592,7 +593,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/jp/gr/java_conf/mizu/pegex/Ast.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="21" selection-start="2430" selection-end="2430" vertical-scroll-proportion="0.0">
+        <state line="21" column="56" selection-start="901" selection-end="901" vertical-scroll-proportion="0.7027559">
           <folding />
         </state>
       </provider>

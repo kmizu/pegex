@@ -19,7 +19,7 @@ object Ast {
     * @param start the start symbol.  A parser start to parse from this symbol
     * @param rules the list of rules constituting PEG grammar */
   case class Grammar(pos: Pos, start: Symbol, rules: List[Rule]) extends HasPosition {
-    def +(newRule: Rule): Grammar = copy(rules = newRule::rules)
+    def +(newRule: Rule): Grammar = Grammar(pos, start, rules = newRule::rules)
   }
   /** This class represents an AST of rule in PEG grammar.
     * @param pos position in source file
