@@ -4,7 +4,6 @@ import scala.util.parsing.input
 import input._
 import java.io._
 import Ast._
-
 /**
   * This object provides a parser that parses strings in Pegex and translates
   * them into ASTs of PEG.

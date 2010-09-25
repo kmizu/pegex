@@ -7,7 +7,7 @@ import PegParser._
   * @author Kota Mizushima */
 object PegToInsnCompiler {
   def compile(grammar :Ast.Grammar): List[Insns.Insn] = {
-    val insnsList = grammar.rules.map({r => 
+    val insnsList = grammar.rules.map({r =>
       (r.name, translate(r.body):::List(Insns.OpReturn(r.pos.line)))
     })
     val (i, m) = insnsList.foldLeft((0, Map[Symbol, Int]())){
