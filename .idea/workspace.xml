@@ -1,9 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" readonly="true" id="5c3b2c36-51b0-4af9-a2b4-dd1730c48c38" name="Default" comment="">
+    <list default="true" readonly="true" id="5c3b2c36-51b0-4af9-a2b4-dd1730c48c38" name="Default" comment="Fix bug of PEG parser.">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/jp/gr/java_conf/mizu/pegex/RegexLikeAstInterpreter.scala" afterPath="$PROJECT_DIR$/src/jp/gr/java_conf/mizu/pegex/RegexLikeAstInterpreter.scala" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/jp/gr/java_conf/mizu/pegex/Pegex.scala" afterPath="$PROJECT_DIR$/src/jp/gr/java_conf/mizu/pegex/Pegex.scala" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/jp/gr/java_conf/mizu/pegex/PegParser.scala" afterPath="$PROJECT_DIR$/src/jp/gr/java_conf/mizu/pegex/PegParser.scala" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/jp/gr/java_conf/mizu/pegex/PegAstInterpreter.scala" afterPath="$PROJECT_DIR$/src/jp/gr/java_conf/mizu/pegex/PegAstInterpreter.scala" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/jp/gr/java_conf/mizu/pegex/Parser.scala" afterPath="$PROJECT_DIR$/src/jp/gr/java_conf/mizu/pegex/Parser.scala" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/jp/gr/java_conf/mizu/pegex/PegVm.scala" afterPath="$PROJECT_DIR$/src/jp/gr/java_conf/mizu/pegex/PegVm.scala" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/jp/gr/java_conf/mizu/pegex/PegexMatcher.scala" afterPath="$PROJECT_DIR$/src/jp/gr/java_conf/mizu/pegex/PegexMatcher.scala" />
     </list>
     <ignored path="pegex.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -66,79 +71,43 @@
       <file leaf-file-name="PegexMatcher.scala" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/jp/gr/java_conf/mizu/pegex/PegexMatcher.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="38" column="27" selection-start="1027" selection-end="1027" vertical-scroll-proportion="0.0">
+            <state line="28" column="0" selection-start="650" selection-end="650" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PegToInsnCompiler.scala" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/jp/gr/java_conf/mizu/pegex/PegToInsnCompiler.scala">
+      <file leaf-file-name="PegexParser.scala" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/jp/gr/java_conf/mizu/pegex/PegexParser.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="3" column="0" selection-start="55" selection-end="55" vertical-scroll-proportion="0.0">
+            <state line="116" column="0" selection-start="5299" selection-end="6367" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Java1_5Recognizer.peg" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/example/Java1_5Recognizer.peg">
+      <file leaf-file-name="Pegex.scala" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/jp/gr/java_conf/mizu/pegex/Pegex.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="907" column="0" selection-start="22647" selection-end="22647" vertical-scroll-proportion="0.0">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PegParser.scala" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="Parser.scala" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/jp/gr/java_conf/mizu/pegex/Parser.scala">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="4" column="27" selection-start="144" selection-end="144" vertical-scroll-proportion="0.13385826">
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="PegParser.scala" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/jp/gr/java_conf/mizu/pegex/PegParser.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="48" column="0" selection-start="1987" selection-end="1987" vertical-scroll-proportion="0.036324788">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".classpath" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.classpath">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="pegex.iml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pegex.iml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="README.markdown" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/README.markdown">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="1" column="0" selection-start="107" selection-end="107" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="workspace.xml" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="386" column="0" selection-start="18051" selection-end="18051" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Ast.scala" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/jp/gr/java_conf/mizu/pegex/Ast.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="92" column="92" selection-start="4305" selection-end="4305" vertical-scroll-proportion="0.0">
+            <state line="1" column="0" selection-start="35" selection-end="35" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -155,6 +124,7 @@
     <option name="GIT_EXECUTABLE" value="C:\development\Git\bin\git.exe" />
     <option name="CHECKOUT_INCLUDE_TAGS" value="false" />
     <option name="LINE_SEPARATORS_CONVERSION" value="NONE" />
+    <option name="LINE_SEPARATORS_CONVERSION_ASK" value="false" />
   </component>
   <component name="IdeDocumentHistory">
     <option name="changedFiles">
@@ -163,6 +133,7 @@
         <option value="$PROJECT_DIR$/pegex.iml" />
         <option value="$PROJECT_DIR$/src/jp/gr/java_conf/mizu/pegex/PegexMatcher.scala" />
         <option value="$PROJECT_DIR$/src/jp/gr/java_conf/mizu/pegex/PegParser.scala" />
+        <option value="$PROJECT_DIR$/src/jp/gr/java_conf/mizu/pegex/Parser.scala" />
       </list>
     </option>
   </component>
@@ -201,7 +172,16 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Scope" />
+      <pane id="Scope">
+        <subPane subId="All">
+          <PATH>
+            <PATH_ELEMENT USER_OBJECT="Root">
+              <option name="myItemId" value="" />
+              <option name="myItemType" value="" />
+            </PATH_ELEMENT>
+          </PATH>
+        </subPane>
+      </pane>
       <pane id="Favorites" />
       <pane id="ProjectPane">
         <subPane>
@@ -210,10 +190,6 @@
               <option name="myItemId" value="pegex" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
             </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="External Libraries" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ExternalLibrariesNode" />
-            </PATH_ELEMENT>
           </PATH>
           <PATH>
             <PATH_ELEMENT>
@@ -222,38 +198,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="pegex" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pegex" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pegex" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pegex" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pegex" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pegex" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="example" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -417,6 +361,7 @@
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32965687" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32965687" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32965687" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -427,10 +372,9 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32996634" sideWeight="0.6617647" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32965687" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32965687" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
     </layout>
@@ -448,7 +392,7 @@
     <option name="ENABLE_BACKGROUND_PROCESSES" value="false" />
     <option name="CHANGED_ON_SERVER_INTERVAL" value="60" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Change configuration." />
+    <option name="LAST_COMMIT_MESSAGE" value="Fix bug of PEG parser." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -465,6 +409,7 @@
     <MESSAGE value="Some changes." />
     <MESSAGE value="Change configurations." />
     <MESSAGE value="Change configuration." />
+    <MESSAGE value="Fix bug of PEG parser." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -474,102 +419,37 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/.idea/compiler.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="4" column="27" selection-start="181" selection-end="181" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/misc.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/modules.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/vcs.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/ant.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="386" column="0" selection-start="18051" selection-end="18051" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/jp/gr/java_conf/mizu/pegex/Ast.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="92" column="92" selection-start="4305" selection-end="4305" vertical-scroll-proportion="0.0" />
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.classpath">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pegex.iml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/README.markdown">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="1" column="0" selection-start="107" selection-end="107" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/example/Java1_5Recognizer.peg">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="907" column="0" selection-start="22647" selection-end="22647" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/jp/gr/java_conf/mizu/pegex/PegexMatcher.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="38" column="27" selection-start="1027" selection-end="1027" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/jp/gr/java_conf/mizu/pegex/PegToInsnCompiler.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="3" column="0" selection-start="55" selection-end="55" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/benchmark/rats/CharClass.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="316" column="0" selection-start="8709" selection-end="8709" vertical-scroll-proportion="0.018556701">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/benchmark/rats/CppCodeGenerator.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="2673" column="0" selection-start="81200" selection-end="81200" vertical-scroll-proportion="0.9280899">
+        <state line="28" column="0" selection-start="650" selection-end="650" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/jp/gr/java_conf/mizu/pegex/PegParser.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="48" column="0" selection-start="1987" selection-end="1987" vertical-scroll-proportion="0.036324788">
+        <state line="1" column="0" selection-start="35" selection-end="35" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/jp/gr/java_conf/mizu/pegex/PegexParser.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="116" column="0" selection-start="5299" selection-end="6367" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/jp/gr/java_conf/mizu/pegex/Pegex.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/jp/gr/java_conf/mizu/pegex/Parser.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="4" column="27" selection-start="144" selection-end="144" vertical-scroll-proportion="0.13385826">
           <folding />
         </state>
       </provider>

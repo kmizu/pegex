@@ -13,10 +13,10 @@ class Pegex(pattern: String, likeRegex: Boolean = true) {
     )
   }
   def matches(input: String): Option[String] = {
-    interpreter.parse(input)
+    interpreter.matches(input)
   }
   def matchesWithGroup(input: String): MatchResult = {
-    interpreter.parseWithGroup(input)
+    interpreter.parse(input)
   }
 }
 object Pegex {

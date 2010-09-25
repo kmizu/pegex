@@ -140,7 +140,7 @@ class RegexLikeAstInterpreter(grammar: Ast.Grammar) extends Parser {
     }
     _eval(node, onSucc, onFail)
   }
-  def parseWithGroup(inputStr: String): MatchResult = {
+  def parse(inputStr: String): MatchResult = {
     cursor =  0
     input = inputStr
     val map = new HashMap[Symbol, (Int, Int)]

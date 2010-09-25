@@ -48,7 +48,7 @@ object PegexMatcher {
             val inputStr = readAll(reader)
             System.err.println("parsing " + input)     
             logTime{
-              interpreter.parse(inputStr)
+              interpreter.matches(inputStr)
             }
           }
         }

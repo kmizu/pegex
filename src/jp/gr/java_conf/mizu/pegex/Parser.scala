@@ -9,9 +9,9 @@ trait Parser {
     * @param inputStr the input string  
     * @return the parse result, which is Some[String] or None.
     */
-  def parse(inputStr: String): Option[String] = {
-    parseWithGroup(inputStr).result
+  def matches(inputStr: String): Option[String] = {
+    parse(inputStr).result
   }
   
-  def parseWithGroup(inputStr: String): MatchResult
+  def parse(inputStr: String): MatchResult
 }

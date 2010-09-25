@@ -209,7 +209,7 @@ class PegVm(instructions: List[Insns.Insn]) extends AnyRef with Parser {
     tmpResult.asInstanceOf[Int]
   }
   
-  def parseWithGroup(inputStr: String): MatchResult = {
+  def parse(inputStr: String): MatchResult = {
     try {
       eval(inputStr)
       val result = Some(inputStr.substring(0, cursor))

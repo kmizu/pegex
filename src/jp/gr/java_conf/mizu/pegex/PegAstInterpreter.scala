@@ -120,7 +120,7 @@ class PegAstInterpreter(grammar: Ast.Grammar) extends Parser {
     }
     _eval(node)
   }
-  def parseWithGroup(inputStr: String): MatchResult = {
+  def parse(inputStr: String): MatchResult = {
     cursor =  0
     input = inputStr
     val map = new HashMap[Symbol, (Int, Int)]
