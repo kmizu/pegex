@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" readonly="true" id="5c3b2c36-51b0-4af9-a2b4-dd1730c48c38" name="Default" comment="Rename parse to matches.&#10;Rename parseWithGroup to parse.">
+    <list default="true" readonly="true" id="5c3b2c36-51b0-4af9-a2b4-dd1730c48c38" name="Default" comment="Add example.">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src.test/jp/gr/java_conf/mizu/pegex/PegexBasicSpec.scala" afterPath="$PROJECT_DIR$/src.test/jp/gr/java_conf/mizu/pegex/PegexBasicSpec.scala" />
     </list>
     <ignored path="pegex.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -75,7 +74,7 @@
       <file leaf-file-name="PegexBasicSpec.scala" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src.test/jp/gr/java_conf/mizu/pegex/PegexBasicSpec.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="7" column="20" selection-start="252" selection-end="259" vertical-scroll-proportion="0.24536082">
+            <state line="7" column="0" selection-start="238" selection-end="238" vertical-scroll-proportion="0.24536082">
               <folding />
             </state>
           </provider>
@@ -126,6 +125,11 @@
   </component>
   <component name="Git.Settings">
     <option name="GIT_EXECUTABLE" value="C:\development\Git\bin\git.exe" />
+    <option name="PREVIOUS_COMMIT_AUTHORS">
+      <array>
+        <option value="kmizu &lt;mizukota@gmail.com" />
+      </array>
+    </option>
     <option name="CHECKOUT_INCLUDE_TAGS" value="false" />
     <option name="LINE_SEPARATORS_CONVERSION" value="NONE" />
     <option name="LINE_SEPARATORS_CONVERSION_ASK" value="false" />
@@ -431,7 +435,7 @@
     <option name="ENABLE_BACKGROUND_PROCESSES" value="false" />
     <option name="CHANGED_ON_SERVER_INTERVAL" value="60" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Rename parse to matches.&#10;Rename parseWithGroup to parse." />
+    <option name="LAST_COMMIT_MESSAGE" value="Add example." />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -450,6 +454,7 @@
     <MESSAGE value="Change configuration." />
     <MESSAGE value="Fix bug of PEG parser." />
     <MESSAGE value="Rename parse to matches.&#10;Rename parseWithGroup to parse." />
+    <MESSAGE value="Add example." />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -503,7 +508,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src.test/jp/gr/java_conf/mizu/pegex/PegexBasicSpec.scala">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="20" selection-start="252" selection-end="259" vertical-scroll-proportion="0.24536082">
+        <state line="7" column="0" selection-start="238" selection-end="238" vertical-scroll-proportion="0.24536082">
           <folding />
         </state>
       </provider>
