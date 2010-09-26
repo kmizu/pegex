@@ -9,7 +9,7 @@ import Ast._
   * them into ASTs of PEG.
   * @author Kota Mizushima */
 object PegexParser {
-  case class ParseException(pos: Pos, msg: String) extends Exception(pos + msg)
+  case class ParseException(pos: Pos, msg: String) extends Exception(pos.line + ", " + pos.column + ":" + msg)
   
   /*
    * See
