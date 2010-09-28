@@ -1,4 +1,4 @@
-package jp.gr.java_conf.mizu.pegex
+package org.onion_lang.pegex
 import scala.collection.{DefaultMap, Map}
 
 case class MatchResult(result: Option[String], group: Map[Symbol, String]) extends DefaultMap[Symbol, String] {

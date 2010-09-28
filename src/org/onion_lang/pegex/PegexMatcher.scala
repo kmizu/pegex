@@ -1,4 +1,4 @@
-package jp.gr.java_conf.mizu.pegex
+package org.onion_lang.pegex
 import java.io._
 import scala.collection.immutable._
 import Pegex._

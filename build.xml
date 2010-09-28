@@ -34,7 +34,7 @@
   </taskdef>
 
   <property name="jar.name" value="pegex.jar"/>
-  <property name="pegex"    value="jp.gr.java_conf.mizu.pegex.PegexMatcher"/>
+  <property name="pegex"    value="org.onion_lang.pegex.PegexMatcher"/>
 
   <target name="compile">
     <mkdir dir="${build.dir}"/>

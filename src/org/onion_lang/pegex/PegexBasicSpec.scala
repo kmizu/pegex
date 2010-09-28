@@ -1,8 +1,8 @@
-package jp.gr.java_conf.mizu.pegex
+package org.onion_lang.pegex
 import org.specs._
 
 object PegexBasicSpec extends Specification {
-  import jp.gr.java_conf.mizu.pegex.Pegex._
+  import org.onion_lang.pegex.Pegex._
   """PEGEX representing alphabet sequences""" in {
     val alphabets = """L=[a-zA-Z]+$;""".e
     alphabets.matches("Hoge") must_== Some("Hoge")

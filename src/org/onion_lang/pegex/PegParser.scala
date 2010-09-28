@@ -1,4 +1,4 @@
-package jp.gr.java_conf.mizu.pegex
+package org.onion_lang.pegex
 import scala.util.parsing.combinator._
 import scala.util.parsing.input
 import input._

@@ -1,4 +1,4 @@
-package jp.gr.java_conf.mizu.pegex
+package org.onion_lang.pegex
 
 /**
  * This trait represents parsers, which recognize inputs and return results.

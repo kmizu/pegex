@@ -1,4 +1,4 @@
-package jp.gr.java_conf.mizu.pegex
+package org.onion_lang.pegex
 
 /** This object provides types representing ASTs of extended PEG.
   * It is used as namespace.

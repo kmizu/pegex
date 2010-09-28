@@ -1,4 +1,4 @@
-package jp.gr.java_conf.mizu.pegex
+package org.onion_lang.pegex
 import scala.collection.immutable.Set
 
 /** This object provides types representing instructions
