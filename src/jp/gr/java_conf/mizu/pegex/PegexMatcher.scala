@@ -42,7 +42,7 @@ object PegexMatcher {
             if(opt == "-vm")
               new PegVm(insns)
             else if(opt == "-ast")
-              new PegAstInterpreter(grammar)
+              new PegInterpreter(grammar)
             else error("not implemented")
           open(input){reader =>
             val inputStr = readAll(reader)
