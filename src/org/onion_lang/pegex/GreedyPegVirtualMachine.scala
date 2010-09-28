@@ -7,7 +7,7 @@ import scala.collection.mutable
   * The definitions of this parsing machine's instruction is included 
   * in object Insns.
   * @author Kota Mizushima */
-class PegVm(instructions: List[Insns.Insn]) extends AnyRef with Parser {
+class GreedyPegVirtualMachine(instructions: List[Insns.Insn]) extends AnyRef with Parser {
   private case class Frame(
     startPc: Int, nextPc: Int, startCursor: Int, 
     bindings: Map[Symbol, (StartPos, EndPos)]

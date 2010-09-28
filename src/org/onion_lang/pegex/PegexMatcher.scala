@@ -40,9 +40,9 @@ object PegexMatcher {
           val insns = PegToInsnCompiler.compile(grammar)
           val interpreter: Parser =
             if(opt == "-vm")
-              new PegVm(insns)
+              new GreedyPegVirtualMachine(insns)
             else if(opt == "-ast")
-              new PegInterpreter(grammar)
+              new PossessivePegInterpreter(grammar)
             else error("not implemented")
           open(input){reader =>
             val inputStr = readAll(reader)

@@ -4,12 +4,12 @@ import scala.collection.mutable.{Map => MutableMap, HashMap}
 /**
   * This class represents interpreters by traversal of ASTs.
   * @author Kota Mizushima */
-class RegexLikeAstInterpreter(grammar: Ast.Grammar) extends Parser {
-  private[this] val ruleBindings = Map(grammar.rules.map{r => (r.name, expand(r.body))}:_*)
+class PossessivePegInterpreter(grammar: Ast.Grammar) extends Parser {
+  private[this] val bindings = Map(grammar.rules.map{r => (r.name, expand(r.body))}:_*)
   private[this] var cursor = 0
   private[this] var input: String = null
-  private def isEnd: Boolean = cursor == input.length
-  private def isEnd(pos: Int): Boolean = pos >= input.length
+  private def isEnd = cursor == input.length
+  private def isEnd(pos: Int) = pos >= input.length
   private def expand(node: Ast.Exp): Ast.Exp = node match {
     case Ast.CharClass(pos, positive, elems) => 
       Ast.CharSet(pos, positive, elems.foldLeft(Set[Char]()){       
@@ -23,105 +23,87 @@ class RegexLikeAstInterpreter(grammar: Ast.Grammar) extends Parser {
     case Ast.Opt(pos, body) => Ast.Opt(pos, expand(body))
     case Ast.AndPred(pos, body) => Ast.AndPred(pos, expand(body))
     case Ast.NotPred(pos, body) => Ast.NotPred(pos, expand(body))
-    case Ast.Binder(pos, n, e) => Ast.Binder(pos, n, expand(e))
     case e => e
   }
-  private def eval(
-    node: Ast.Exp, resultBindings: MutableMap[Symbol, (Int, Int)],
-    onSucc: () => Boolean, onFail: () => Boolean
-  ): Boolean = {
-    def _eval(node: Ast.Exp, onSucc: () => Boolean, onFail: () => Boolean): Boolean = node match {
+  private def eval(node: Ast.Exp, resultBindings: MutableMap[Symbol, (Int, Int)]): Boolean = {
+    def _eval(node: Ast.Exp): Boolean = node match {
       case Ast.Str(_, str) =>
         val len = str.length
         if(isEnd(cursor + len - 1)){
-          onFail()
+          return false
         }else {
           var i = 0
           while(i < len && str(i) == input(cursor + i)) i += 1
-          if(i < len) onFail()
+          if(i < len) false
           else {
             cursor += len
-            onSucc()
+            true
           }
         }
       case Ast.CharSet(_, positive, set) =>
-        if(isEnd || (positive != set(input(cursor)))) onFail()
+        if(isEnd || (positive != set(input(cursor)))) false
         else {
           cursor += 1
-          onSucc()
+          true
         }
       case Ast.Wildcard(_) =>
-        if(isEnd) onFail()
+        if(isEnd) false
         else {
           cursor += 1
-          onSucc()
+          true
         }
       case Ast.Rep0(_, body) =>
-        def onSuccRep(f: () => Boolean): Boolean = {
-          val start = cursor
-          val nf: () => Boolean = () => {
-            cursor = start
-            if(onSucc()) true else f()
-          }
-          _eval(body, () => { onSuccRep(nf) }, nf)
+        var start = cursor
+        while(_eval(body)) {
+          start = cursor
         }
-        onSuccRep(onSucc)
+        cursor = start
+        true
       case Ast.Rep1(_, body) =>
-        def onSuccRep(f: () => Boolean): Boolean = {
-          val start = cursor
-          val nf: () => Boolean = () => {
-            cursor = start
-            if(onSucc()) true else f()
-          }
-          _eval(body, () => { onSuccRep(nf) }, nf)
+        if(!_eval(body)) false
+        else {
+          var start: Int = cursor
+          while(_eval(body)) start = cursor
+          cursor = start
+          true
         }
-        _eval(body, 
-          () => { onSuccRep(onSucc) },
-          onFail
-        )
       case Ast.Opt(_, body) =>
-        val start = cursor
-        val onFailAlt: () => Boolean = () => {
-          cursor = start; onSucc() 
+        var start = cursor
+        if(!_eval(body)) {
+          cursor = start
         }
-        _eval(body, 
-          () => { if(onSucc()) true else onFailAlt() }, 
-          onFailAlt
-        )
+        true
       case Ast.AndPred(_, body) =>
         val start = cursor
-        _eval(body,
-          () => { cursor = start; onSucc() },
-          onFail
-        )
+        if(_eval(body)) {
+          cursor = start
+          true
+        } else false
       case Ast.NotPred(_, body) =>
         val start = cursor
-        _eval(body,
-          onFail,
-          () => { cursor = start; onSucc() }
-        )
+        if(!_eval(body)) {
+          cursor = start
+          true
+        } else false
       case Ast.Seq(_, e1, e2) =>
-        _eval(e1, () => { _eval(e2, onSucc, onFail) }, onFail)
+        _eval(e1) && _eval(e2)
       case Ast.Alt(_, e1, e2) =>
         val start = cursor
-        val onFailAlt: () => Boolean = () => {
-          cursor = start; _eval(e2, onSucc, onFail)
+        if(_eval(e1)) {
+          true
+        }else {
+          cursor = start
+          _eval(e2)
         }
-        _eval(e1,
-          () => { if(onSucc()) true else onFailAlt() },
-          onFailAlt
-        )
       case Ast.Ident(_, name) =>
-        eval(ruleBindings(name), new HashMap, onSucc, onFail)
+        eval(bindings(name), new HashMap)
       case Ast.Binder(_, name, exp) =>
         val start = cursor
-        _eval(exp,
-          () => {
-            resultBindings(name) = (start, cursor)
-            onSucc()
-          },
-          onFail
-        )
+        val successful = _eval(exp)
+        if(successful) {
+          resultBindings(name) = (start, cursor)
+        }
+        successful
       case Ast.Backref(_, name) =>
         val (start, end) = resultBindings(name)
         def matches(): Boolean = {
@@ -132,25 +114,25 @@ class RegexLikeAstInterpreter(grammar: Ast.Grammar) extends Parser {
         val successful = matches()
         if(successful) {
           cursor += (end - start)
-          onSucc()
-        }else {
-          onFail()
         }
+        successful
       case Ast.CharClass(_, _, _) => error("must not reach here")
     }
-    _eval(node, onSucc, onFail)
+    _eval(node)
   }
   def parse(inputStr: String): MatchResult = {
     cursor =  0
     input = inputStr
     val map = new HashMap[Symbol, (Int, Int)]
-    if(eval(ruleBindings(grammar.start), map, () => true, () => false)) {
+    if(eval(bindings(grammar.start), map)) {
       val result = Some(inputStr.substring(0, cursor))
       MatchResult(
         result, map.foldLeft(Map[Symbol, String]()){case (m, (k, v)) =>
           m + (k -> inputStr.substring(v._1, v._2))        
         }
       )
-    }else MatchResult(None, Map.empty)
+    }else {
+      MatchResult(None, Map.empty)
+    }
   }
 }

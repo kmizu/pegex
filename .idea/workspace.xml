@@ -1,25 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" readonly="true" id="5c3b2c36-51b0-4af9-a2b4-dd1730c48c38" name="Default" comment="Rename PegAstInterpreter to PegInterpreter">
-      <change type="MOVED" beforePath="C:\Users\Mizushima\IdeaProjects\pegex\src\jp\gr\java_conf\mizu\pegex\Pegex.scala" afterPath="$PROJECT_DIR$/src/org/onion_lang/pegex/Pegex.scala" />
-      <change type="MOVED" beforePath="C:\Users\Mizushima\IdeaProjects\pegex\src\jp\gr\java_conf\mizu\pegex\PegVm.scala" afterPath="$PROJECT_DIR$/src/org/onion_lang/pegex/PegVm.scala" />
-      <change type="MOVED" beforePath="C:\Users\Mizushima\IdeaProjects\pegex\src\jp\gr\java_conf\mizu\pegex\RegexLikeAstInterpreter.scala" afterPath="$PROJECT_DIR$/src/org/onion_lang/pegex/RegexLikeAstInterpreter.scala" />
-      <change type="MOVED" beforePath="C:\Users\Mizushima\IdeaProjects\pegex\src\jp\gr\java_conf\mizu\pegex\Parser.scala" afterPath="$PROJECT_DIR$/src/org/onion_lang/pegex/Parser.scala" />
-      <change type="MOVED" beforePath="C:\Users\Mizushima\IdeaProjects\pegex\src.test\jp\gr\java_conf\mizu\pegex\LineCounter.scala" afterPath="$PROJECT_DIR$/src/org/onion_lang/pegex/LineCounter.scala" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.xml" afterPath="$PROJECT_DIR$/build.xml" />
+    <list default="true" readonly="true" id="5c3b2c36-51b0-4af9-a2b4-dd1730c48c38" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/onion_lang/pegex/Pegex.scala" afterPath="$PROJECT_DIR$/src/org/onion_lang/pegex/Pegex.scala" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MOVED" beforePath="C:\Users\Mizushima\IdeaProjects\pegex\src\jp\gr\java_conf\mizu\pegex\Ast.scala" afterPath="$PROJECT_DIR$/src/org/onion_lang/pegex/Ast.scala" />
-      <change type="MOVED" beforePath="C:\Users\Mizushima\IdeaProjects\pegex\src\jp\gr\java_conf\mizu\pegex\MatchResult.scala" afterPath="$PROJECT_DIR$/src/org/onion_lang/pegex/MatchResult.scala" />
-      <change type="MOVED" beforePath="C:\Users\Mizushima\IdeaProjects\pegex\src\jp\gr\java_conf\mizu\pegex\PegToInsnCompiler.scala" afterPath="$PROJECT_DIR$/src/org/onion_lang/pegex/PegToInsnCompiler.scala" />
-      <change type="MOVED" beforePath="C:\Users\Mizushima\IdeaProjects\pegex\src\jp\gr\java_conf\mizu\pegex\FastInsns.scala" afterPath="$PROJECT_DIR$/src/org/onion_lang/pegex/FastInsns.scala" />
-      <change type="MOVED" beforePath="C:\Users\Mizushima\IdeaProjects\pegex\src\jp\gr\java_conf\mizu\pegex\PegexMatcher.scala" afterPath="$PROJECT_DIR$/src/org/onion_lang/pegex/PegexMatcher.scala" />
-      <change type="MOVED" beforePath="C:\Users\Mizushima\IdeaProjects\pegex\src\jp\gr\java_conf\mizu\pegex\PegInterpreter.scala" afterPath="$PROJECT_DIR$/src/org/onion_lang/pegex/PegInterpreter.scala" />
-      <change type="MOVED" beforePath="C:\Users\Mizushima\IdeaProjects\pegex\src\jp\gr\java_conf\mizu\pegex\PegexParser.scala" afterPath="$PROJECT_DIR$/src/org/onion_lang/pegex/PegexParser.scala" />
-      <change type="MOVED" beforePath="C:\Users\Mizushima\IdeaProjects\pegex\src.test\jp\gr\java_conf\mizu\pegex\PegexBasicSpec.scala" afterPath="$PROJECT_DIR$/src/org/onion_lang/pegex/PegexBasicSpec.scala" />
-      <change type="MOVED" beforePath="C:\Users\Mizushima\IdeaProjects\pegex\src\jp\gr\java_conf\mizu\pegex\PegParser.scala" afterPath="$PROJECT_DIR$/src/org/onion_lang/pegex/PegParser.scala" />
-      <change type="MOVED" beforePath="C:\Users\Mizushima\IdeaProjects\pegex\src\jp\gr\java_conf\mizu\pegex\IntStack.scala" afterPath="$PROJECT_DIR$/src/org/onion_lang/pegex/IntStack.scala" />
-      <change type="MOVED" beforePath="C:\Users\Mizushima\IdeaProjects\pegex\src\jp\gr\java_conf\mizu\pegex\Insns.scala" afterPath="$PROJECT_DIR$/src/org/onion_lang/pegex/Insns.scala" />
+      <change type="MOVED" beforePath="C:\Users\Mizushima\IdeaProjects\pegex\src\org\onion_lang\pegex\PegInterpreter.scala" afterPath="$PROJECT_DIR$/src/org/onion_lang/pegex/PossessivePegInterpreter.scala" />
+      <change type="MOVED" beforePath="C:\Users\Mizushima\IdeaProjects\pegex\src\org\onion_lang\pegex\RegexLikeAstInterpreter.scala" afterPath="$PROJECT_DIR$/src/org/onion_lang/pegex/GreedyPegInterpreter.scala" />
+      <change type="MOVED" beforePath="C:\Users\Mizushima\IdeaProjects\pegex\src\org\onion_lang\pegex\PegVm.scala" afterPath="$PROJECT_DIR$/src/org/onion_lang/pegex/GreedyPegVirtualMachine.scala" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/org/onion_lang/pegex/PegexMatcher.scala" afterPath="$PROJECT_DIR$/src/org/onion_lang/pegex/PegexMatcher.scala" />
     </list>
     <ignored path=".idea/workspace.xml" />
     <ignored path="pegex.iws" />
@@ -102,19 +90,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="build.xml" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="build.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/build.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="36" column="48" selection-start="1247" selection-end="1247" vertical-scroll-proportion="0.6591422">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MatchResult.scala" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/org/onion_lang/pegex/MatchResult.scala">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
               <folding />
             </state>
           </provider>
@@ -156,7 +135,7 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="LineCounter.scala" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="LineCounter.scala" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/org/onion_lang/pegex/LineCounter.scala">
           <provider selected="true" editor-type-id="text-editor">
             <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -165,10 +144,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PegInterpreter.scala" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/org/onion_lang/pegex/PegInterpreter.scala">
+      <file leaf-file-name="GreedyPegInterpreter.scala" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/org/onion_lang/pegex/GreedyPegInterpreter.scala">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+            <state line="94" column="0" selection-start="3349" selection-end="3349" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -265,20 +244,6 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="pegex" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pegex" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="pegex" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -633,7 +598,7 @@
     <option name="ENABLE_BACKGROUND_PROCESSES" value="false" />
     <option name="CHANGED_ON_SERVER_INTERVAL" value="60" />
     <option name="FORCE_NON_EMPTY_COMMENT" value="false" />
-    <option name="LAST_COMMIT_MESSAGE" value="Rename PegAstInterpreter to PegInterpreter" />
+    <option name="LAST_COMMIT_MESSAGE" value="Rename package from jp.gr.java_conf.mizu.pegex to org.onion_lang.pegex" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="OPTIMIZE_IMPORTS_BEFORE_PROJECT_COMMIT" value="false" />
     <option name="CHECK_FILES_UP_TO_DATE_BEFORE_COMMIT" value="false" />
@@ -656,6 +621,7 @@
     <MESSAGE value="Fix code." />
     <MESSAGE value="Improve an error message of ParseException." />
     <MESSAGE value="Rename PegAstInterpreter to PegInterpreter" />
+    <MESSAGE value="Rename package from jp.gr.java_conf.mizu.pegex to org.onion_lang.pegex" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager />
@@ -665,13 +631,6 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/src/org/onion_lang/pegex/PegVm.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="91" column="0" selection-start="2842" selection-end="2842" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/org/onion_lang/pegex/PegToInsnCompiler.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
@@ -714,13 +673,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/onion_lang/pegex/IntStack.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/org/onion_lang/pegex/Ast.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
@@ -734,20 +686,6 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/org/onion_lang/pegex/Insns.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/onion_lang/pegex/LineCounter.scala">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/org/onion_lang/pegex/PegInterpreter.scala">
       <provider selected="true" editor-type-id="text-editor">
         <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
@@ -770,7 +708,35 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/build.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="36" column="48" selection-start="1247" selection-end="1247" vertical-scroll-proportion="0.6591422">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/onion_lang/pegex/IntStack.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/onion_lang/pegex/GreedyPegInterpreter.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="94" column="0" selection-start="3349" selection-end="3349" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/onion_lang/pegex/PossessivePegInterpreter.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="108" column="0" selection-start="3450" selection-end="3450" vertical-scroll-proportion="0.036796536">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/org/onion_lang/pegex/LineCounter.scala">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>

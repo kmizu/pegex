@@ -4,12 +4,12 @@ import scala.collection.mutable.{Map => MutableMap, HashMap}
 /**
   * This class represents interpreters by traversal of ASTs.
   * @author Kota Mizushima */
-class PegInterpreter(grammar: Ast.Grammar) extends Parser {
-  private[this] val bindings = Map(grammar.rules.map{r => (r.name, expand(r.body))}:_*)
+class GreedyPegInterpreter(grammar: Ast.Grammar) extends Parser {
+  private[this] val ruleBindings = Map(grammar.rules.map{r => (r.name, expand(r.body))}:_*)
   private[this] var cursor = 0
   private[this] var input: String = null
-  private def isEnd = cursor == input.length
-  private def isEnd(pos: Int) = pos >= input.length
+  private def isEnd: Boolean = cursor == input.length
+  private def isEnd(pos: Int): Boolean = pos >= input.length
   private def expand(node: Ast.Exp): Ast.Exp = node match {
     case Ast.CharClass(pos, positive, elems) => 
       Ast.CharSet(pos, positive, elems.foldLeft(Set[Char]()){       
@@ -23,87 +23,105 @@ class PegInterpreter(grammar: Ast.Grammar) extends Parser {
     case Ast.Opt(pos, body) => Ast.Opt(pos, expand(body))
     case Ast.AndPred(pos, body) => Ast.AndPred(pos, expand(body))
     case Ast.NotPred(pos, body) => Ast.NotPred(pos, expand(body))
+    case Ast.Binder(pos, n, e) => Ast.Binder(pos, n, expand(e))
     case e => e
   }
-  private def eval(node: Ast.Exp, resultBindings: MutableMap[Symbol, (Int, Int)]): Boolean = {
-    def _eval(node: Ast.Exp): Boolean = node match {
+  private def eval(
+    node: Ast.Exp, resultBindings: MutableMap[Symbol, (Int, Int)],
+    onSucc: () => Boolean, onFail: () => Boolean
+  ): Boolean = {
+    def _eval(node: Ast.Exp, onSucc: () => Boolean, onFail: () => Boolean): Boolean = node match {
       case Ast.Str(_, str) =>
         val len = str.length
         if(isEnd(cursor + len - 1)){
-          return false
+          onFail()
         }else {
           var i = 0
           while(i < len && str(i) == input(cursor + i)) i += 1
-          if(i < len) false
+          if(i < len) onFail()
           else {
             cursor += len
-            true
+            onSucc()
           }
         }
       case Ast.CharSet(_, positive, set) =>
-        if(isEnd || (positive != set(input(cursor)))) false
+        if(isEnd || (positive != set(input(cursor)))) onFail()
         else {
           cursor += 1
-          true
+          onSucc()
         }
       case Ast.Wildcard(_) =>
-        if(isEnd) false
+        if(isEnd) onFail()
         else {
           cursor += 1
-          true
+          onSucc()
         }
       case Ast.Rep0(_, body) =>
-        var start = cursor
-        while(_eval(body)) {
-          start = cursor
+        def onSuccRep(f: () => Boolean): Boolean = {
+          val start = cursor
+          val nf: () => Boolean = () => {
+            cursor = start
+            if(onSucc()) true else f()
+          }
+          _eval(body, () => { onSuccRep(nf) }, nf)
         }
-        cursor = start
-        true
+        onSuccRep(onSucc)
       case Ast.Rep1(_, body) =>
-        if(!_eval(body)) false
-        else {
-          var start: Int = cursor
-          while(_eval(body)) start = cursor
-          cursor = start
-          true
+        def onSuccRep(f: () => Boolean): Boolean = {
+          val start = cursor
+          val nf: () => Boolean = () => {
+            cursor = start
+            if(onSucc()) true else f()
+          }
+          _eval(body, () => { onSuccRep(nf) }, nf)
         }
+        _eval(body, 
+          () => { onSuccRep(onSucc) },
+          onFail
+        )
       case Ast.Opt(_, body) =>
-        var start = cursor
-        if(!_eval(body)) {
-          cursor = start
+        val start = cursor
+        val onFailAlt: () => Boolean = () => {
+          cursor = start; onSucc() 
         }
-        true
+        _eval(body, 
+          () => { if(onSucc()) true else onFailAlt() }, 
+          onFailAlt
+        )
       case Ast.AndPred(_, body) =>
         val start = cursor
-        if(_eval(body)) {
-          cursor = start
-          true
-        } else false
+        _eval(body,
+          () => { cursor = start; onSucc() },
+          onFail
+        )
       case Ast.NotPred(_, body) =>
         val start = cursor
-        if(!_eval(body)) {
-          cursor = start
-          true
-        } else false
+        _eval(body,
+          onFail,
+          () => { cursor = start; onSucc() }
+        )
       case Ast.Seq(_, e1, e2) =>
-        _eval(e1) && _eval(e2)
+        _eval(e1, () => { _eval(e2, onSucc, onFail) }, onFail)
       case Ast.Alt(_, e1, e2) =>
         val start = cursor
-        if(_eval(e1)) {
-          true
-        }else {
-          cursor = start
-          _eval(e2)
+        val onFailAlt: () => Boolean = () => {
+          cursor = start; _eval(e2, onSucc, onFail)
         }
+        _eval(e1,
+          () => { if(onSucc()) true else onFailAlt() },
+          onFailAlt
+        )
       case Ast.Ident(_, name) =>
-        eval(bindings(name), new HashMap)
+        eval(ruleBindings(name), new HashMap, onSucc, onFail)
       case Ast.Binder(_, name, exp) =>
         val start = cursor
-        val successful = _eval(exp)
-        if(successful) {
-          resultBindings(name) = (start, cursor)
-        }
-        successful
+        _eval(exp,
+          () => {
+            resultBindings(name) = (start, cursor)
+            onSucc()
+          },
+          onFail
+        )
       case Ast.Backref(_, name) =>
         val (start, end) = resultBindings(name)
         def matches(): Boolean = {
@@ -114,25 +132,25 @@ class PegInterpreter(grammar: Ast.Grammar) extends Parser {
         val successful = matches()
         if(successful) {
           cursor += (end - start)
+          onSucc()
+        }else {
+          onFail()
         }
-        successful
       case Ast.CharClass(_, _, _) => error("must not reach here")
     }
-    _eval(node)
+    _eval(node, onSucc, onFail)
   }
   def parse(inputStr: String): MatchResult = {
     cursor =  0
     input = inputStr
     val map = new HashMap[Symbol, (Int, Int)]
-    if(eval(bindings(grammar.start), map)) {
+    if(eval(ruleBindings(grammar.start), map, () => true, () => false)) {
       val result = Some(inputStr.substring(0, cursor))
       MatchResult(
         result, map.foldLeft(Map[Symbol, String]()){case (m, (k, v)) =>
           m + (k -> inputStr.substring(v._1, v._2))        
         }
       )
-    }else {
-      MatchResult(None, Map.empty)
-    }
+    }else MatchResult(None, Map.empty)
   }
 }
