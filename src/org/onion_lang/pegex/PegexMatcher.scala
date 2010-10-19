@@ -32,6 +32,19 @@ object PegexMatcher {
   }
   def main(args: Array[String]){
     args.toList match {
+      case Nil =>
+        //REPL mode
+        while(true) {
+          val pattern = readLine("pattern> ")
+          if(pattern == "exit" || pattern == "") return
+          try {
+            val pegex = pattern.e
+            val input = readLine("input> ")
+            println(pegex.matches(input).getOrElse("not matched"))
+          }catch{
+            case e:Exception => println(e.getMessage)
+          }
+        }
       case List("-m", pattern, input) => 
         println(pattern.e.matches(input))
       case opt :: grammarFile :: inputs if inputs.length >= 1 =>
