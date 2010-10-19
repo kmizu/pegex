@@ -42,7 +42,7 @@ object PegexMatcher {
             if(opt == "-vm")
               new GreedyPegVirtualMachine(insns)
             else if(opt == "-ast")
-              new PossessivePegInterpreter(grammar)
+              new GreedyPegInterpreter(grammar)
             else error("not implemented")
           open(input){reader =>
             val inputStr = readAll(reader)
