@@ -1,6 +1,7 @@
 package org.onion_lang.pegex
 import java.io._
 import scala.collection.immutable._
+import scala.util.control.Breaks._
 import Pegex._
 
 /**
@@ -36,11 +37,14 @@ object PegexMatcher {
         //REPL mode
         while(true) {
           val pattern = readLine("pattern> ")
-          if(pattern == "exit" || pattern == "") return
+          if(pattern == ":quit" || pattern == "") return
           try {
             val pegex = pattern.e
-            val input = readLine("input> ")
-            println(pegex.matches(input).getOrElse("not matched"))
+            breakable {
+              val input = readLine("input> ")
+              if(pattern == ":quit") break
+              println(pegex.matches(input).map("matched: " + _).getOrElse("not matched"))
+            }
           }catch{
             case e:Exception => println(e.getMessage)
           }
