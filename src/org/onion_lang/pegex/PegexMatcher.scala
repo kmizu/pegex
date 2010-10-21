@@ -41,9 +41,11 @@ object PegexMatcher {
           try {
             val pegex = pattern.e
             breakable {
-              val input = readLine("input> ")
-              if(pattern == ":quit") break
-              println(pegex.matches(input).map("matched: " + _).getOrElse("not matched"))
+              while(true) {
+                val input = readLine("input> ")
+                if(input == ":quit") break
+                println(pegex.matches(input).map("matched: " + _).getOrElse("not matched"))
+              }
             }
           }catch{
             case e:Exception => println(e.getMessage)
