@@ -2,7 +2,7 @@ package org.onion_lang.pegex
 
 class Pegex(pattern: String, likeRegex: Boolean = true) {
   private[this] val interpreter = if(!likeRegex){
-    new GreedyPegVirtualMachine(
+    new PegVirtualMachine(
       PegToInsnCompiler.compile(
         PegexParser.parse(pattern)
       )

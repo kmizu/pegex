@@ -59,7 +59,7 @@ object PegexMatcher {
           val insns = PegToInsnCompiler.compile(grammar)
           val interpreter: Parser =
             if(opt == "-vm")
-              new GreedyPegVirtualMachine(insns)
+              new PegVirtualMachine(insns)
             else if(opt == "-ast")
               new GreedyPegInterpreter(grammar)
             else error("not implemented")
