@@ -20,5 +20,8 @@
     </wildcardResourcePatterns>
     <annotationProcessing enabled="false" useClasspath="true" />
   </component>
+  <component name="SbtSettings">
+    <option name="sbtLauncherJarPath" value="C:\development\sbt\sbt-launch-0.7.7.jar" />
+  </component>
 </project>
 

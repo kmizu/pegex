@@ -21,7 +21,7 @@ object PegexParser {
     private val any: Parser[Char] = elem(".", c => c != CharSequenceReader.EofCh)
     private def chr(c: Char): Parser[Char] = c
     private def crange(f: Char, t: Char): Parser[Char] = elem("[]", c => f <= c && c <= t)
-    private def cset(cs: Char*): Parser[Char] = elem("[]", c => cs.findIndexOf(_ == c) >= 0)
+    private def cset(cs: Char*): Parser[Char] = elem("[]", c => cs.indexWhere(_ == c) >= 0)
     private val escape: Map[Char, Char] = Map(
       'n' -> '\n', 'r' -> '\r', 't' -> '\t', 'f' -> '\f'
     )
@@ -94,7 +94,7 @@ object PegexParser {
     lazy val META: Parser[Char] = cset(META_CHARS:_*)
     lazy val HEX: Parser[Char] = crange('0','9') | crange('a', 'f')
     lazy val CHAR: Parser[Char] = ( 
-      chr('\\') ~ cset('n','r','t','f') ^^ { case _ ~ c => escape(c) }
+      chr('\\') ~> cset('n','r','t','f') ^^ { case c => escape(c) }
     | chr('\\') ~> chr('u') ~> (HEX ~ HEX ~ HEX ~ HEX) ^^ {
         case u1 ~ u2 ~ u3 ~ u4 => Integer.parseInt("" + u1 + u2 + u3 + u4, 16).toChar
       }
