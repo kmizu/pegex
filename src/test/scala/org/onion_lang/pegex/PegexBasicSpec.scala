@@ -1,5 +1,6 @@
 package org.onion_lang.pegex
-import org.specs._
+import org.specs2.runner.FilesRunner
+import org.specs2.mutable.Specification
 
 object PegexBasicSpec extends Specification {
   import org.onion_lang.pegex.Pegex._
@@ -9,7 +10,7 @@ object PegexBasicSpec extends Specification {
     alphabets.matches("HogeFooBar") must_== Some("HogeFooBar")
     alphabets.matches("Hoge_Foo_Bar") must_== None
   }
-  """PEGEX representing identifiers""" in {
+
     val ident = """
       L=#(IdentStart)#(IdentRest)*$;
       IdentStart=[a-zA-Z_];
@@ -20,9 +21,10 @@ object PegexBasicSpec extends Specification {
          "Hoge10" -> Some("Hoge10"),
          "10Hoge" -> None
     ).foreach{ case (input, expectation) =>
-      ident.matches(input) must_== expectation
+      """PEGEX representing identifiers""" in {
+        ident.matches(input) must_== expectation
+      }
     }
-  }
   
   """PEGEX that greedy interpreter can parse successfully and possessive interpreter fails""" in {
     val ex = """L=a*a;"""
@@ -85,8 +87,5 @@ object PegexBasicSpec extends Specification {
     r2.result must_== Some("a:1")
     r2.group.get('N) must_== Some("a")
     r2.group.get('V) must_== Some("1")    
-  }
-  override def main(args: Array[String]) {
-    super.main(args)
   }
 }
