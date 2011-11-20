@@ -1,11 +1,44 @@
 import sbt._
 import Keys._
+import sbt.Package._
+import java.util.jar.Attributes.Name._
+
+object BuildSettings {
+  val buildOrganization = "onion-lang.org"
+  val buildVersion = "1.0"
+  val buildScalaVersion = "2.9.1"
+  val buildSettings = Defaults.defaultSettings ++ Seq(
+    organization := buildOrganization,
+    version      := buildVersion,
+    scalaVersion := buildScalaVersion,
+    shellPrompt  := ShellPrompt.buildShellPrompt
+  )
+}
+
+// Shell prompt which show the current project, 
+// git branch and build version
+object ShellPrompt {
+  object devnull extends ProcessLogger {
+    def info (s: => String) {}
+    def error (s: => String) { }
+    def buffer[T] (f: => T): T = f
+  }
+
+  val buildShellPrompt = { 
+    (state: State) => {
+      val currProject = Project.extract (state).currentProject.id
+      "%s:%s> ".format (
+        currProject, BuildSettings.buildVersion
+      )
+    }
+  }
+}
 
 object PegexBuild extends Build {
-  // Declare a project in the root directory of the build with ID "pegex".
-  lazy val root = Project("pegex", file("."), settings = Defaults.defaultSettings ++ Seq(name := "pegex", version := "0.1"))
-  lazy val specsRepo = "org.specs2" % "specs2" % "2_2.9.1"
-  libraryDependencies ++= Seq(
-      "org.specs2" %% "specs2" % "2_2.9.1"
+  import BuildSettings._
+  lazy val pegex = Project(
+    id = "pegex",
+    base = file("."),
+    settings = buildSettings
   )
 }
