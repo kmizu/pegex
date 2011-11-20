@@ -4,7 +4,7 @@
     <facet type="scala" name="Scala">
       <configuration>
         <option name="compilerLibraryLevel" value="Global" />
-        <option name="compilerLibraryName" value="scala-2.9.0" />
+        <option name="compilerLibraryName" value="scala-library-2.9.1" />
       </configuration>
     </facet>
   </component>
@@ -16,9 +16,7 @@
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="library" exported="" name="specs" level="project" />
-    <orderEntry type="library" exported="" name="scala-2.9.0" level="application" />
-    <orderEntry type="library" name="scala-2.9.1" level="application" />
+    <orderEntry type="library" exported="" name="scala-library-2.9.1" level="application" />
   </component>
 </module>
 
