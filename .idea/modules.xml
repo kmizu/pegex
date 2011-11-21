@@ -2,7 +2,8 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/pegex.iml" filepath="$PROJECT_DIR$/pegex.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea_modules/pegex.iml" filepath="$PROJECT_DIR$/.idea_modules/pegex.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea_modules/project.iml" filepath="$PROJECT_DIR$/.idea_modules/project.iml" />
     </modules>
   </component>
 </project>
