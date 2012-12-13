@@ -6,13 +6,13 @@ import java.util.jar.Attributes.Name._
 object BuildSettings {
   val buildOrganization = "onion-lang.org"
   val buildVersion = "1.0"
-  val buildScalaVersion = "2.9.1"
+  val buildScalaVersion = "2.9.2"
   val buildSettings = Defaults.defaultSettings ++ Seq(
     organization := buildOrganization,
     version      := buildVersion,
     scalaVersion := buildScalaVersion,
     shellPrompt  := ShellPrompt.buildShellPrompt,
-    libraryDependencies ++= Seq("org.specs2" %% "specs2" % "1.6.1", "org.specs2" %% "specs2-scalaz-core" % "6.0.1" % "test")
+    libraryDependencies ++= Seq("org.specs2" %% "specs2" % "1.12.3" % "test")
   )
 }
 
