@@ -7,7 +7,7 @@ notations as inputs and parses strings.
 
 ## For sbt user
 
-Include the following in your `build.sbt` to add `pegex` to your project dependencies:
+Include the following in your `build.sbt` to add `pegex` to your project libraryDependencies:
 
 ```scala
 resolvers += "Sonatype snapshots" at "http://oss.sonatype.org/content/repositories/snapshots/"
