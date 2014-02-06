@@ -1,4 +1,7 @@
-package org.onion_lang.pegex
+package com
+package github
+package kmizu
+package pegex
 
 class Pegex(pattern: String, likeRegex: Boolean = true) {
   private[this] val interpreter = if(!likeRegex){

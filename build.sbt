@@ -2,20 +2,24 @@ organization := "com.github.kmizu"
 
 name := "pegex"
 
-version := "0.2-SNAPSHOT"
+version := "0.3-SNAPSHOT"
+
+scalaVersion := "2.10.3"
 
 publishMavenStyle := true
 
-crossScalaVersions := Seq("2.9.1", "2.9.2", "2.10.0-RC1")
+val scaladocBranch = settingKey[String]("branch name for scaladoc -doc-source-url")
 
-crossVersion := CrossVersion.full
+scaladocBranch := "master"
 
-scalaBinaryVersion <<= scalaBinaryVersion { v =>
-  if (v.startsWith("2.10"))
-    "2.10.0-RC1"
-  else
-    v
-}
+scalacOptions in (Compile, doc) ++= { Seq(
+  "-sourcepath", baseDirectory.value.getAbsolutePath,
+  "-doc-source-url", s"https://github.com/nscala-time/nscala-time/tree/${scaladocBranch.value}€{FILE_PATH}.scala"
+)}
+
+testOptions += Tests.Argument(TestFrameworks.Specs2, "console", "junitxml")
+
+crossScalaVersions := Seq("2.9.1", "2.9.2", "2.9.3", "2.10.3")
 
 scalacOptions <++= scalaVersion map { v =>
   if (v.startsWith("2.10"))
@@ -25,8 +29,17 @@ scalacOptions <++= scalaVersion map { v =>
 }
 
 libraryDependencies ++= Seq(
-  "org.specs2" %% "specs2" % "1.12.2"
+  "junit" % "junit" % "4.7" % "test"
 )
+
+libraryDependencies += {
+  if (scalaVersion.value.startsWith("2.1"))
+    "org.specs2" %% "specs2-junit" % "2.3.7" % "test"
+  else if (scalaVersion.value == "2.9.3")
+    "org.specs2" %% "specs2" % "1.12.4.1" % "test"
+  else
+    "org.specs2" %% "specs2" % "1.12.3" % "test"
+}
 
 initialCommands in console += {
   Iterator().map("import "+).mkString("\n")
@@ -36,8 +49,8 @@ pomExtra := (
   <url>https://github.com/kmizu/pegex</url>
   <licenses>
     <license>
-      <name>Apache</name>
-      <url>http://www.opensource.org/licenses/Apache-2.0</url>
+      <name>The MIT License</name>
+      <url>http://www.opensource.org/licenses/MIT</url>
       <distribution>repo</distribution>
     </license>
   </licenses>

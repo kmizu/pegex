@@ -1,4 +1,8 @@
-package org.onion_lang.pegex
+package com
+package github
+package kmizu
+package pegex
+
 import PegParser._
 
 /**
@@ -68,6 +72,6 @@ object PegToInsnCompiler {
       translate(Ast.NotPred(p, Ast.NotPred(p, body)))
     case Ast.Opt(p, body) =>
       translate(Ast.Alt(p, body, Ast.Str(p, "")))
-    case Ast.CharSet(_, _, _) => error("should not reach here")
+    case Ast.CharSet(_, _, _) => sys.error("should not reach here")
   }
 }

@@ -1,9 +1,12 @@
-package org.onion_lang.pegex
-import org.specs2.runner.FilesRunner
+package com
+package github
+package kmizu
+package pegex
+
+import Pegex._
 import org.specs2.mutable.Specification
 
 object PegexBasicSpec extends Specification {
-  import org.onion_lang.pegex.Pegex._
   """PEGEX representing alphabet sequences""" in {
     val alphabets = """L=[a-zA-Z]+$;""".e
     alphabets.matches("Hoge") must_== Some("Hoge")

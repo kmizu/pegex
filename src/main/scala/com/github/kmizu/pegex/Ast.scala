@@ -1,4 +1,7 @@
-package org.onion_lang.pegex
+package com
+package github
+package kmizu
+package pegex
 
 /** This object provides types representing ASTs of extended PEG.
   * It is used as namespace.

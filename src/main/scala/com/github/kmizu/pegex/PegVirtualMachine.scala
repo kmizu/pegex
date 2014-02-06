@@ -1,4 +1,8 @@
-package org.onion_lang.pegex
+package com
+package github
+package kmizu
+package pegex
+
 import scala.collection.mutable.Stack
 import scala.collection.mutable
 
@@ -183,7 +187,7 @@ class PegVirtualMachine(instructions: List[Insns.Insn]) extends AnyRef with Pars
       }
       null
     },
-    OP_CALL_LABEL -> {insn => error("must not reach here!")}
+    OP_CALL_LABEL -> {insn => sys.error("must not reach here!")}
   )
   private[this] val handlers: Array[Handler] = {
     val tmp = new Array[Handler](tag2handler.size)

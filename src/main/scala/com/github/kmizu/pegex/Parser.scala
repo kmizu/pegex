@@ -1,4 +1,7 @@
-package org.onion_lang.pegex
+package com
+package github
+package kmizu
+package pegex
 
 /**
  * This trait represents parsers, which recognize inputs and return results.

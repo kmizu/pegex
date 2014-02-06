@@ -1,4 +1,8 @@
-package org.onion_lang.pegex
+package com
+package github
+package kmizu
+package pegex
+
 import java.io.File
 import scala.io.Source
 

@@ -1,4 +1,8 @@
-package org.onion_lang.pegex
+package com
+package github
+package kmizu
+package pegex
+
 import scala.collection.mutable.{Map => MutableMap, HashMap}
 
 /**
@@ -136,7 +140,7 @@ class GreedyPegInterpreter(grammar: Ast.Grammar) extends Parser {
         }else {
           onFail()
         }
-      case Ast.CharClass(_, _, _) => error("must not reach here")
+      case Ast.CharClass(_, _, _) => sys.error("must not reach here")
     }
     _eval(node, onSucc, onFail)
   }

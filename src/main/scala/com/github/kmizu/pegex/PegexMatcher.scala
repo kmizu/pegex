@@ -1,4 +1,8 @@
-package org.onion_lang.pegex
+package com
+package github
+package kmizu
+package pegex
+
 import java.io._
 import scala.collection.immutable._
 import scala.util.control.Breaks._
@@ -62,7 +66,7 @@ object PegexMatcher {
               new PegVirtualMachine(insns)
             else if(opt == "-ast")
               new GreedyPegInterpreter(grammar)
-            else error("not implemented")
+            else sys.error("not implemented")
           open(input){reader =>
             val inputStr = readAll(reader)
             System.err.println("parsing " + input)     
