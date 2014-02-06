@@ -5,21 +5,30 @@ a PEG-based pattern matching  library for Scala.  PEGEX provides both power of P
 light-weight syntax of regular expressions.  It accepts a PEG-variant with regex-like 
 notations as inputs and parses strings.
 
+## For sbt user
+
+Include the following in your `build.sbt` to add `pegex` to your project dependencies:
+
+```scala
+resolvers += "Sonatype snapshots" at "http://oss.sonatype.org/content/repositories/snapshots/"
+
+libraryDependency += "com.github.kmizu" %% "pegex" % "0.3-SNAPSHOT"
+```
+
 ## Runtime Requirement
-+ Scala 2.8.0.final or later
-+ JDK 1.5.0 or later
+* Scala 2.9.1, Scala 2.9.2, Scala 2.9.3, Scala 2.10.X
+* JDK 1.6.0 or later
 
 ## Build Requirement
-+ Scala 2.8.0.final or later
-+ JDK 1.5.0 or later
-+ Apache Ant 1.6 or later
+* sbt 0.13.1
 
 ## Build Instructions
 1. Move to project's root directory.
-   > cd pegex
-2. Type "ant" in shell.
-   > ant
-3. Deploy the file "pegex.jar", which is library jar file generated from source files.
+   `$ cd pegex`
+2. Type "sbt" in shell.
+   `$ sbt`
+3. package the file "pegex_${scalaVersion}-${version}-SNAPSHOT.jar", in the sbt shell
+   `> package`
 
 ## Syntax of PEGEX
 (*name*=*e*;)\*, where *name* is name of this rule and *e* is an expression
