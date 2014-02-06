@@ -24,10 +24,15 @@ libraryDependency += "com.github.kmizu" %% "pegex" % "0.3-SNAPSHOT"
 
 ## Build Instructions
 1. Move to project's root directory.
+
    `$ cd pegex`
+   
 2. Type "sbt" in shell.
+
    `$ sbt`
+
 3. package the file "pegex_${scalaVersion}-${version}-SNAPSHOT.jar", in the sbt shell
+
    `> package`
 
 ## Syntax of PEGEX
