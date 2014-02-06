@@ -31,7 +31,7 @@ libraryDependency += "com.github.kmizu" %% "pegex" % "0.3-SNAPSHOT"
 
    `$ sbt`
 
-3. package the file `pegex_${scalaVersion}-${version}-SNAPSHOT.jar`, in the sbt shell
+3. In the sbt shell, type as the following to package the files to `pegex_${scalaVersion}-${version}-SNAPSHOT.jar`
 
    `> package`
 
