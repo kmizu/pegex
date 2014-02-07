@@ -14,7 +14,7 @@ scaladocBranch := "master"
 
 scalacOptions in (Compile, doc) ++= { Seq(
   "-sourcepath", baseDirectory.value.getAbsolutePath,
-  "-doc-source-url", s"https://github.com/nscala-time/nscala-time/tree/${scaladocBranch.value}€{FILE_PATH}.scala"
+  "-doc-source-url", s"https://github.com/kmizu/pegex/tree/${scaladocBranch.value}€{FILE_PATH}.scala"
 )}
 
 testOptions += Tests.Argument(TestFrameworks.Specs2, "console", "junitxml")
