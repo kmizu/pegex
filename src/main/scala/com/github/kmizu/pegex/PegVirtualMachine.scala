@@ -11,7 +11,7 @@ import scala.collection.mutable
   * The definitions of this parsing machine's instruction is included 
   * in object Insns.
   * @author Kota Mizushima */
-class PegVirtualMachine(instructions: List[Insns.Insn]) extends AnyRef with Parser {
+class PegVirtualMachine(instructions: List[Instructions.Instruction]) extends AnyRef with Parser {
   private case class Frame(
     startPc: Int, nextPc: Int, startCursor: Int, 
     bindings: Map[Symbol, (StartPos, EndPos)]
@@ -59,8 +59,8 @@ class PegVirtualMachine(instructions: List[Insns.Insn]) extends AnyRef with Pars
       cursor = choicesCursor.pop
     }
   }
-  private type Handler = (Insns.Insn => Any)
-  import Insns.Insn._
+  private type Handler = (Instructions.Instruction => Any)
+  import Instructions.Instruction._
   private[this] val tag2handler: Map[Int, Handler] = Map(
     OP_RETURN -> {(insn) =>
       if(saved.isEmpty) {
@@ -78,33 +78,33 @@ class PegVirtualMachine(instructions: List[Insns.Insn]) extends AnyRef with Pars
       }
     },
     OP_SET_RESULT -> {insn =>
-      val Insns.OpSetResult(_, name) = insn
+      val Instructions.OpSetResult(_, name) = insn
       bindings = bindings + (name -> (startCursor, cursor))
       pc += 1
       null
     },
     OP_SET_START -> {insn =>
-      val Insns.OpSetStart(_) = insn
+      val Instructions.OpSetStart(_) = insn
       startCursor = cursor
       pc += 1
       null
     },
     OP_CHOICE -> {insn =>
-      val Insns.OpChoice(_, relativeAddr) = insn
+      val Instructions.OpChoice(_, relativeAddr) = insn
       choicesPc.push(pc + relativeAddr)
       choicesCursor.push(cursor)
       pc += 1
       null
     },
     OP_COMMIT -> {insn =>
-      val Insns.OpCommit(_, relativeAddr) = insn
+      val Instructions.OpCommit(_, relativeAddr) = insn
       choicesPc.pop
       choicesCursor.pop
       pc += relativeAddr
       null
     },
     OP_CALL -> {insn =>
-      val Insns.OpCall(_, _, relativeAddr) = insn           
+      val Instructions.OpCall(_, _, relativeAddr) = insn
       callStack.push(Frame(startPc, pc + 1, startCursor, bindings))
       saved.push((choicesPc, choicesCursor))
       choicesPc = new IntStack
@@ -116,12 +116,12 @@ class PegVirtualMachine(instructions: List[Insns.Insn]) extends AnyRef with Pars
       null
     },
     OP_JUMP -> {insn =>
-      val Insns.OpJump(_, relativeAddr) = insn
+      val Instructions.OpJump(_, relativeAddr) = insn
       pc += relativeAddr
       null
     },
     OP_ANY -> {insn =>
-      val Insns.OpAny(_) = insn
+      val Instructions.OpAny(_) = insn
       if(isEnd) {
         rewind
       }else {
@@ -131,7 +131,7 @@ class PegVirtualMachine(instructions: List[Insns.Insn]) extends AnyRef with Pars
       null
     },
     OP_CHAR -> {insn =>
-      val Insns.OpChar(_, c) = insn
+      val Instructions.OpChar(_, c) = insn
       if(isEnd || input(cursor) != c) {
         rewind
       }else {
@@ -141,7 +141,7 @@ class PegVirtualMachine(instructions: List[Insns.Insn]) extends AnyRef with Pars
       null
     },
     OP_STRING -> {insn =>
-      val Insns.OpString(_, str) = insn
+      val Instructions.OpString(_, str) = insn
       val len = str.length
       if(isEnd(cursor + len - 1)){
         rewind
@@ -158,7 +158,7 @@ class PegVirtualMachine(instructions: List[Insns.Insn]) extends AnyRef with Pars
       }
     },
     OP_CHAR_CLASS -> {insn =>
-      val Insns.OpCharClass(_, set) = insn
+      val Instructions.OpCharClass(_, set) = insn
       if(isEnd || !set(input(cursor))) {
         rewind
       }else {
@@ -172,7 +172,7 @@ class PegVirtualMachine(instructions: List[Insns.Insn]) extends AnyRef with Pars
       null
     },
     OP_BACKREF -> {insn =>
-      val Insns.OpBackref(_, name) = insn
+      val Instructions.OpBackref(_, name) = insn
       val (start, end) = bindings(name)
       def matches(): Boolean = {
         (0 until (end - start)).forall{i =>

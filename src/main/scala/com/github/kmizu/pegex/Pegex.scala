@@ -6,7 +6,7 @@ package pegex
 class Pegex(pattern: String, likeRegex: Boolean = true) {
   private[this] val interpreter = if(!likeRegex){
     new PegVirtualMachine(
-      PegToInsnCompiler.compile(
+      PegToInstructionsCompiler.compile(
         PegexParser.parse(pattern)
       )
     )

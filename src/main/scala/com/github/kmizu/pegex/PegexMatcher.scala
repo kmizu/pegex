@@ -60,7 +60,7 @@ object PegexMatcher {
       case opt :: grammarFile :: inputs if inputs.length >= 1 =>
         inputs.foreach{input =>
           val grammar = PegParser.parse(grammarFile, new FileReader(grammarFile))
-          val insns = PegToInsnCompiler.compile(grammar)
+          val insns = PegToInstructionsCompiler.compile(grammar)
           val interpreter: Parser =
             if(opt == "-vm")
               new PegVirtualMachine(insns)
