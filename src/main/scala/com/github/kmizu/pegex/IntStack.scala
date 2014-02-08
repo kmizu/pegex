@@ -6,7 +6,8 @@ package pegex
 /**
   * This class represents stacks of ints.
   * This class is used only for performance.
-  * @author Kota Mizushima */
+  * @author Kota Mizushima
+  */
 class IntStack(initialCapacity: Int) {
   private[this] var array = new Array[Int](initialCapacity)
   private[this] var _size = 0

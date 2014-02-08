@@ -11,7 +11,8 @@ import Pegex._
 /**
   * This object provides a tool for pattern matching
   * using Pegex.
-  * @author Kota Mizushima */
+  * @author Kota Mizushima
+  */
 object PegexMatcher {
   def readAll(reader: Reader): String = {
     val buf = new StringBuilder
@@ -19,14 +20,14 @@ object PegexMatcher {
     while({ch = reader.read; ch} != -1) {
       buf.append(ch.asInstanceOf[Char])
     }
-    buf.toString
+    buf.toString()
   }
   def open[A](file :String)(f : Reader => A): A = {
     val r = new FileReader(file)
     try {
       f(r)
     } finally {
-      r.close
+      r.close()
     }
   }
   def logTime[A](a: => A): A = {
@@ -47,7 +48,7 @@ object PegexMatcher {
             breakable {
               while(true) {
                 val input = readLine("input> ")
-                if(input == ":quit") break
+                if(input == ":quit") break()
                 println(pegex.matches(input).map("matched: " + _).getOrElse("not matched"))
               }
             }
@@ -60,10 +61,10 @@ object PegexMatcher {
       case opt :: grammarFile :: inputs if inputs.length >= 1 =>
         inputs.foreach{input =>
           val grammar = PegParser.parse(grammarFile, new FileReader(grammarFile))
-          val insns = PegToInstructionsCompiler.compile(grammar)
+          val instructions = PegToInstructionsCompiler.compile(grammar)
           val interpreter: Parser =
             if(opt == "-vm")
-              new PegVirtualMachine(insns)
+              new PegVirtualMachine(instructions)
             else if(opt == "-ast")
               new GreedyPegInterpreter(grammar)
             else sys.error("not implemented")

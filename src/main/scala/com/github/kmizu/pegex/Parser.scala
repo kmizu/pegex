@@ -5,16 +5,17 @@ package pegex
 
 /**
  * This trait represents parsers, which recognize inputs and return results.
- * @author Kota Mizushima */
+ * @author Kota Mizushima
+ */
 trait Parser {
   /**
-    * Parses inputStr and returns a parse result.
-    * @param inputStr the input string  
+    * Parses input and returns a parse result.
+    * @param input the input string
     * @return the parse result, which is Some[String] or None.
     */
-  def matches(inputStr: String): Option[String] = {
-    parse(inputStr).result
+  def matches(input: String): Option[String] = {
+    parse(input).result
   }
   
-  def parse(inputStr: String): MatchResult
+  def parse(input: String): MatchResult
 }

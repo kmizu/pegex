@@ -7,7 +7,8 @@ import scala.collection.mutable.{Map => MutableMap, HashMap}
 
 /**
   * This class represents interpreters by traversal of ASTs.
-  * @author Kota Mizushima */
+  * @author Kota Mizushima
+  */
 class GreedyPegInterpreter(grammar: Ast.Grammar) extends Parser {
   private[this] val ruleBindings = Map(grammar.rules.map{r => (r.name, expand(r.body))}:_*)
   private[this] var cursor = 0
@@ -32,99 +33,99 @@ class GreedyPegInterpreter(grammar: Ast.Grammar) extends Parser {
   }
   private def eval(
     node: Ast.Exp, resultBindings: MutableMap[Symbol, (Int, Int)],
-    onSucc: () => Boolean, onFail: () => Boolean
+    onSuccess: () => Boolean, onFailure: () => Boolean
   ): Boolean = {
-    def _eval(node: Ast.Exp, onSucc: () => Boolean, onFail: () => Boolean): Boolean = node match {
+    def _eval(node: Ast.Exp, onSuccess: () => Boolean, onFailure: () => Boolean): Boolean = node match {
       case Ast.Str(_, str) =>
         val len = str.length
         if(isEnd(cursor + len - 1)){
-          onFail()
+          onFailure()
         }else {
           var i = 0
           while(i < len && str(i) == input(cursor + i)) i += 1
-          if(i < len) onFail()
+          if(i < len) onFailure()
           else {
             cursor += len
-            onSucc()
+            onSuccess()
           }
         }
       case Ast.CharSet(_, positive, set) =>
-        if(isEnd || (positive != set(input(cursor)))) onFail()
+        if(isEnd || (positive != set(input(cursor)))) onFailure()
         else {
           cursor += 1
-          onSucc()
+          onSuccess()
         }
       case Ast.Wildcard(_) =>
-        if(isEnd) onFail()
+        if(isEnd) onFailure()
         else {
           cursor += 1
-          onSucc()
+          onSuccess()
         }
       case Ast.Rep0(_, body) =>
         def onSuccRep(f: () => Boolean): Boolean = {
           val start = cursor
           val nf: () => Boolean = () => {
             cursor = start
-            if(onSucc()) true else f()
+            if(onSuccess()) true else f()
           }
           _eval(body, () => { onSuccRep(nf) }, nf)
         }
-        onSuccRep(onSucc)
+        onSuccRep(onSuccess)
       case Ast.Rep1(_, body) =>
         def onSuccRep(f: () => Boolean): Boolean = {
           val start = cursor
           val nf: () => Boolean = () => {
             cursor = start
-            if(onSucc()) true else f()
+            if(onSuccess()) true else f()
           }
           _eval(body, () => { onSuccRep(nf) }, nf)
         }
         _eval(body, 
-          () => { onSuccRep(onSucc) },
-          onFail
+          () => { onSuccRep(onSuccess) },
+          onFailure
         )
       case Ast.Opt(_, body) =>
         val start = cursor
         val onFailAlt: () => Boolean = () => {
-          cursor = start; onSucc() 
+          cursor = start; onSuccess() 
         }
         _eval(body, 
-          () => { if(onSucc()) true else onFailAlt() }, 
+          () => { if(onSuccess()) true else onFailAlt() }, 
           onFailAlt
         )
       case Ast.AndPred(_, body) =>
         val start = cursor
         _eval(body,
-          () => { cursor = start; onSucc() },
-          onFail
+          () => { cursor = start; onSuccess() },
+          onFailure
         )
       case Ast.NotPred(_, body) =>
         val start = cursor
         _eval(body,
-          onFail,
-          () => { cursor = start; onSucc() }
+          onFailure,
+          () => { cursor = start; onSuccess() }
         )
       case Ast.Seq(_, e1, e2) =>
-        _eval(e1, () => { _eval(e2, onSucc, onFail) }, onFail)
+        _eval(e1, () => { _eval(e2, onSuccess, onFailure) }, onFailure)
       case Ast.Alt(_, e1, e2) =>
         val start = cursor
         val onFailAlt: () => Boolean = () => {
-          cursor = start; _eval(e2, onSucc, onFail)
+          cursor = start; _eval(e2, onSuccess, onFailure)
         }
         _eval(e1,
-          () => { if(onSucc()) true else onFailAlt() },
+          () => { if(onSuccess()) true else onFailAlt() },
           onFailAlt
         )
       case Ast.Ident(_, name) =>
-        eval(ruleBindings(name), new HashMap, onSucc, onFail)
+        eval(ruleBindings(name), new HashMap, onSuccess, onFailure)
       case Ast.Binder(_, name, exp) =>
         val start = cursor
         _eval(exp,
           () => {
             resultBindings(name) = (start, cursor)
-            onSucc()
+            onSuccess()
           },
-          onFail
+          onFailure
         )
       case Ast.Backref(_, name) =>
         val (start, end) = resultBindings(name)
@@ -136,13 +137,13 @@ class GreedyPegInterpreter(grammar: Ast.Grammar) extends Parser {
         val successful = matches()
         if(successful) {
           cursor += (end - start)
-          onSucc()
+          onSuccess()
         }else {
-          onFail()
+          onFailure()
         }
       case Ast.CharClass(_, _, _) => sys.error("must not reach here")
     }
-    _eval(node, onSucc, onFail)
+    _eval(node, onSuccess, onFailure)
   }
   def parse(inputStr: String): MatchResult = this.synchronized{
     cursor =  0

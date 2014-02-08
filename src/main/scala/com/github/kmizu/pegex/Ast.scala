@@ -5,7 +5,8 @@ package pegex
 
 /** This object provides types representing ASTs of extended PEG.
   * It is used as namespace.
-  * @author Kota Mizushima */
+  * @author Kota Mizushima
+  */
 object Ast {
   type ==>[-A, +B] = PartialFunction[A, B]
   

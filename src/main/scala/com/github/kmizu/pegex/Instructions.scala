@@ -7,7 +7,8 @@ import scala.collection.immutable.Set
 
 /** This object provides types representing instructions
   * of parsing virtual machine.  It is used as namespace.
-  * @author Kota Mizushima */
+  * @author Kota Mizushima
+  */
 object Instructions {
   sealed trait Instruction {
     def line: Int
