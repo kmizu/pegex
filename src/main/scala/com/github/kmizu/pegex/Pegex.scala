@@ -8,7 +8,7 @@ class Pegex(pattern: String, likeRegex: Boolean = true) {
     new PegVirtualMachine(
       PegToInstructionsCompiler.compile(
         PegexParser.parse(pattern)
-      )
+      ).toVector
     )
   }else {
     new GreedyPegInterpreter(
