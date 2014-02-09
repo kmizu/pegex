@@ -29,11 +29,11 @@ class PegVirtualMachine(instructions: List[Instructions.Instruction]) extends An
   private[this] var pc = 0
   private[this] var startCursor = 0
   private[this] var bindings: Map[Symbol, (StartPos, EndPos)] = null
-  private[this] var callStack = new Stack[Frame]
+  private[this] val callStack = new Stack[Frame]
   private[this] var choicesPc = new PcStack
   private[this] var choicesCursor = new CursorStack
-  private[this] var cursor = 0  
-  private[this] var saved = new Stack[(PcStack, CursorStack)]
+  private[this] var cursor = 0
+  private[this] val saved = new Stack[(PcStack, CursorStack)]
   private[this] var input = Array[Char]()
   
   private def isEnd = cursor == input.length
@@ -66,12 +66,12 @@ class PegVirtualMachine(instructions: List[Instructions.Instruction]) extends An
       if(saved.isEmpty) {
         cursor
       }else {
-        val Frame(pstartPc, pnextPc, pstartCursor, pbindings) = callStack.pop
+        val Frame(pstartPc, pnextPc, pstartCursor, pbindings) = callStack.pop()
         startPc = pstartPc
         pc = pnextPc
         startCursor = pstartCursor
         bindings = pbindings
-        val (pcs, cursors) = saved.pop
+        val (pcs, cursors) = saved.pop()
         choicesPc = pcs
         choicesCursor = cursors
         null
@@ -196,8 +196,8 @@ class PegVirtualMachine(instructions: List[Instructions.Instruction]) extends An
   }  
   private def eval(inputStr: String): Int = {
     callStack.clear()
-    choicesPc.clear
-    choicesCursor.clear
+    choicesPc.clear()
+    choicesCursor.clear()
     saved.clear()
     startPc = 0
     pc = 0
