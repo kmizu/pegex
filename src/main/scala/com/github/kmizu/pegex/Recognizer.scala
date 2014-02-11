@@ -4,10 +4,10 @@ package kmizu
 package pegex
 
 /**
- * This trait represents parsers, which recognize inputs and return results.
+ * This trait represents recognizer, which recognize inputs and return results.
  * @author Kota Mizushima
  */
-trait Parser {
+trait Recognizer {
   /**
     * Parses input and returns a parse result.
     * @param input the input string

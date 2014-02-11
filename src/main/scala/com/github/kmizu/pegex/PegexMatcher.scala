@@ -62,7 +62,7 @@ object PegexMatcher {
         inputs.foreach{input =>
           val grammar = PegParser.parse(grammarFile, new FileReader(grammarFile))
           val instructions = PegToInstructionsCompiler.compile(grammar)
-          val interpreter: Parser =
+          val interpreter: Recognizer =
             if(opt == "-vm")
               new PegVirtualMachine(instructions)
             else if(opt == "-ast")

@@ -9,7 +9,7 @@ import scala.collection.mutable.{Map => MutableMap, HashMap}
   * This class represents interpreters by traversal of ASTs.
   * @author Kota Mizushima
   */
-class GreedyPegInterpreter(grammar: Ast.Grammar) extends Parser {
+class GreedyPegInterpreter(grammar: Ast.Grammar) extends Recognizer {
   private[this] val ruleBindings = Map(grammar.rules.map{r => (r.name, expand(r.body))}:_*)
   private[this] var cursor = 0
   private[this] var input: String = null
