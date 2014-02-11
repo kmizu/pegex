@@ -11,7 +11,7 @@ import scala.collection.mutable
   * The definitions of this parsing machine's instruction is included 
   * in object Insns.
   * @author Kota Mizushima */
-class PegVirtualMachine(instructions: Seq[Instructions.Instruction]) extends AnyRef with Recognizer {
+class PegVirtualMachine(instructions: Seq[Instructions.Instruction]) extends Recognizer {
   private case class Frame(
     startPc: Int, nextPc: Int, startCursor: Int, 
     bindings: Map[Symbol, (StartPos, EndPos)]

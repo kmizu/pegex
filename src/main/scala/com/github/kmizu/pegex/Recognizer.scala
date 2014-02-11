@@ -7,7 +7,7 @@ package pegex
  * This trait represents recognizer, which recognize inputs and return results.
  * @author Kota Mizushima
  */
-trait Recognizer {
+abstract class Recognizer() {
   /**
     * Parses input and returns a parse result.
     * @param input the input string
