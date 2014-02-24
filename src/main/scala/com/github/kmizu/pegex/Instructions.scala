@@ -42,7 +42,7 @@ object Instructions {
   case class OpCall(line: Int, label: Symbol, relativeAddr: Int) extends Instruction(Instruction.OP_CALL) {
     override def toString = "OpCall " + relativeAddr + "(" + label + ")"
   }
-  case class OpReturn(line: Int) extends Instruction(Instruction.OP_SET_RESULT) {
+  case class OpReturn(line: Int) extends Instruction(Instruction.OP_RETURN) {
     override def toString = "OpReturn"
   }
   case class OpCommit(line: Int, relativeAddr: Int) extends Instruction(Instruction.OP_COMMIT) {

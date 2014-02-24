@@ -190,7 +190,7 @@ class PegVirtualMachine(instructions: Seq[Instructions.Instruction]) extends Rec
     OP_CALL_LABEL -> {insn => sys.error("must not reach here!")}
   )
   private[this] val handlers: Array[Handler] = {
-    tag2handler.zipWithIndex.map{ case ((_, _), i) => tag2handler(i)}.toArray
+    (for(i <- 0 until tag2handler.size) yield tag2handler(i)).toArray
   }
   private def eval(inputStr: String): Int = {
     callStack.clear()
