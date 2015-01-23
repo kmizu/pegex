@@ -8,7 +8,7 @@ name := "pegex"
 
 version := "0.3-SNAPSHOT"
 
-scalaVersion := "2.10.3"
+scalaVersion := "2.11.5"
 
 publishMavenStyle := true
 
@@ -23,7 +23,7 @@ scalacOptions in (Compile, doc) ++= { Seq(
 
 testOptions += Tests.Argument(TestFrameworks.Specs2, "console", "junitxml")
 
-crossScalaVersions := Seq("2.9.1", "2.9.2", "2.9.3", "2.10.3")
+crossScalaVersions := Seq("2.9.1", "2.9.2", "2.9.3", "2.10.3", "2.11.5")
 
 scalacOptions <++= scalaVersion map { v =>
   if (v.startsWith("2.10"))
@@ -36,14 +36,17 @@ libraryDependencies ++= Seq(
   "junit" % "junit" % "4.7" % "test"
 )
 
-libraryDependencies += {
-  if (scalaVersion.value.startsWith("2.1"))
-    "org.specs2" %% "specs2-junit" % "2.3.7" % "test"
+libraryDependencies ++= {
+  if (scalaVersion.value.startsWith("2.10"))
+    List("org.specs2" %% "specs2-junit" % "2.3.7" % "test")
+  else if(scalaVersion.value.startsWith("2.11"))
+    List("org.specs2" %% "specs2-core" % "2.4.15" % "test", "org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.3")
   else if (scalaVersion.value == "2.9.3")
-    "org.specs2" %% "specs2" % "1.12.4.1" % "test"
+    List("org.specs2" %% "specs2" % "1.12.4.1" % "test")
   else
-    "org.specs2" %% "specs2" % "1.12.3" % "test"
+    List("org.specs2" %% "specs2" % "1.12.3" % "test")
 }
+
 
 initialCommands in console += {
   Iterator().map("import "+).mkString("\n")
