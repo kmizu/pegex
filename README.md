@@ -16,11 +16,11 @@ libraryDependency += "com.github.kmizu" %% "pegex" % "0.3-SNAPSHOT"
 ```
 
 ## Runtime Requirement
-* Scala 2.9.1, Scala 2.9.2, Scala 2.9.3, Scala 2.10.X
+* Scala 2.9.1, Scala 2.9.2, Scala 2.9.3, Scala 2.10.X, Scala 2.11.X
 * JDK 1.6.0 or later
 
 ## Build Requirement
-* sbt 0.13.1
+* sbt 0.13.X
 
 ## Build Instructions
 1. Move to project's root directory.
