@@ -3,14 +3,8 @@ package github
 package kmizu
 package pegex
 
-class Pegex(pattern: String, likeRegex: Boolean = true) {
-  private[this] val interpreter = if(!likeRegex){
-    new PegVirtualMachine(
-      PegToInstructionsCompiler.compile(
-        PegexParser.parse(pattern)
-      ).toVector
-    )
-  }else {
+class Pegex(pattern: String) {
+  private[this] val interpreter = {
     new GreedyPegInterpreter(
       PegexParser.parse(pattern)
     )
@@ -25,8 +19,7 @@ class Pegex(pattern: String, likeRegex: Boolean = true) {
 object Pegex {
   class RichString(pattern: String) {
     def e: Pegex = new Pegex(pattern)
-    def e(likeRegex: Boolean = true): Pegex = new Pegex(pattern, likeRegex)
-  }  
+  }
   implicit def toPeg(pattern: String): RichString = new RichString(pattern)
   def apply(pattern: String): Pegex = new Pegex(pattern)
 }

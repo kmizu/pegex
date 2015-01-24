@@ -41,13 +41,13 @@ object PegexMatcher {
       case Nil =>
         //REPL mode
         while(true) {
-          val pattern = readLine("pattern> ")
+          val pattern = io.StdIn.readLine("pattern> ")
           if(pattern == ":quit" || pattern == "") return
           try {
             val pegex = pattern.e
             breakable {
               while(true) {
-                val input = readLine("input> ")
+                val input = io.StdIn.readLine("input> ")
                 if(input == ":quit") break()
                 println(pegex.matches(input).map("matched: " + _).getOrElse("not matched"))
               }
@@ -60,12 +60,9 @@ object PegexMatcher {
         println(pattern.e.matches(input))
       case opt :: grammarFile :: inputs if inputs.length >= 1 =>
         inputs.foreach{input =>
-          val grammar = PegParser.parse(grammarFile, new FileReader(grammarFile))
-          val instructions = PegToInstructionsCompiler.compile(grammar)
+          val grammar = PegexParser.parse(grammarFile, new FileReader(grammarFile))
           val interpreter: Recognizer =
-            if(opt == "-vm")
-              new PegVirtualMachine(instructions)
-            else if(opt == "-ast")
+            if(opt == "-ast")
               new GreedyPegInterpreter(grammar)
             else sys.error("not implemented")
           open(input){reader =>

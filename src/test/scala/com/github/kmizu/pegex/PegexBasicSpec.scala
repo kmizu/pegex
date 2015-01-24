@@ -29,14 +29,6 @@ object PegexBasicSpec extends Specification {
       }
     }
   
-  """PEGEX that greedy interpreter can parse successfully and possessive interpreter fails""" in {
-    val ex = """L=a*a;"""
-    val nothing = ex.e(likeRegex = false)
-    nothing.matches("aaa") must_== None
-    val a1OrMore = ex.e
-    a1OrMore.matches("aaa") must_== Some("aaa")
-  }
-
   """PEGEX representing nested comments""" in {
     val comment = """L=#(C)$; C=/\*(#(C)|!(\*/).)*\*/;""".e
     comment.matches("/* comment */") must_== Some("/* comment */")
@@ -56,18 +48,10 @@ object PegexBasicSpec extends Specification {
     csl.matches("aabbbccc") must_== None
   }
   """PEGEX representing palindromes""" in {
-    val palindrome = """L=#(A)$; A=a#(A)a|b#(A)b|c#(A)c|a|b|c|_;""".e(likeRegex=true)
+    val palindrome = """L=#(A)$; A=a#(A)a|b#(A)b|c#(A)c|a|b|c|_;""".e
     palindrome.matches("abcba") must_== Some("abcba")
     palindrome.matches("abba") must_== Some("abba")
     palindrome.matches("abc") must_== None
-  }
-  """PEGEX representing palindrome (incorrect)""" in {
-    val palindrome = """L=#(A)$; A=a#(A)a|b#(A)b|c#(A)c|a|b|c|_;""".e(likeRegex=false)
-    palindrome.matches("a" * 3) must_== Some("a" * 3)
-    palindrome.matches("a" * 7) must_== Some("a" * 7)
-    palindrome.matches("a" * 15) must_== Some("a" * 15)
-    palindrome.matches("a" * 31) must_== Some("a" * 31)
-    palindrome.matches("a" * 63) must_== Some("a" * 63)
   }
   """PEGEX representing (ab)^n, where n is even number.  This is test of backreference feature""" in {
     val testBackref = """L=#(A::(ab)+)##(A)$;""".e
@@ -85,7 +69,7 @@ object PegexBasicSpec extends Specification {
     r1.group.get('V) must_== Some("1")
     r1('N) must_== "a"
     r1('V) must_== "1"
-    val nvPossessive = nvStr.e(likeRegex = false)
+    val nvPossessive = nvStr.e
     val r2 = nvPossessive.matchesWithGroup("a:1")
     r2.result must_== Some("a:1")
     r2.group.get('N) must_== Some("a")
