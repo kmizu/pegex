@@ -34,6 +34,9 @@ libraryDependency += "com.github.kmizu" %% "pegex" % "0.3-SNAPSHOT"
 3. In the sbt shell, type as the following to package the files to `pegex_${scalaVersion}-${version}-SNAPSHOT.jar`
 
    `> package`
+   
+## Example of PEGEX
+See `*.pegex` files under `example` directory.  These are valid PEGEXes.
 
 ## Syntax of PEGEX
 (*name*=*e*;)\*, where *name* is name of this rule and *e* is an expression
