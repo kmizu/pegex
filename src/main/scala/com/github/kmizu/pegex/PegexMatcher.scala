@@ -41,13 +41,13 @@ object PegexMatcher {
       case Nil =>
         //REPL mode
         while(true) {
-          val pattern = io.StdIn.readLine("pattern> ")
+          val pattern = readLine("pattern> ")
           if(pattern == ":quit" || pattern == "") return
           try {
             val pegex = pattern.e
             breakable {
               while(true) {
-                val input = io.StdIn.readLine("input> ")
+                val input = readLine("input> ")
                 if(input == ":quit") break()
                 println(pegex.matches(input).map("matched: " + _).getOrElse("not matched"))
               }
