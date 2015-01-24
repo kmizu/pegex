@@ -63,7 +63,7 @@ object PegexMatcher {
           val grammar = PegexParser.parse(grammarFile, new FileReader(grammarFile))
           val interpreter: Recognizer =
             if(opt == "-ast")
-              new GreedyPegInterpreter(grammar)
+              new PegexEvaluator(grammar)
             else sys.error("not implemented")
           open(input){reader =>
             val inputStr = readAll(reader)

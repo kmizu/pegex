@@ -5,7 +5,7 @@ package pegex
 
 class Pegex(pattern: String) {
   private[this] val interpreter = {
-    new GreedyPegInterpreter(
+    new PegexEvaluator(
       PegexParser.parse(pattern)
     )
   }
