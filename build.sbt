@@ -6,7 +6,7 @@ organization := "com.github.kmizu"
 
 name := "pegex"
 
-version := "0.3-SNAPSHOT"
+version := "0.3.0-SNAPSHOT"
 
 scalaVersion := "2.11.5"
 
