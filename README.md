@@ -12,7 +12,7 @@ Include the following in your `build.sbt` to add `pegex` to your project library
 ```scala
 resolvers += "Sonatype snapshots" at "http://oss.sonatype.org/content/repositories/snapshots/"
 
-libraryDependency += "com.github.kmizu" %% "pegex" % "0.3-SNAPSHOT"
+libraryDependency += "com.github.kmizu" %% "pegex" % "0.3.0-SNAPSHOT"
 ```
 
 ## Runtime Requirement
