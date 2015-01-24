@@ -39,6 +39,7 @@ libraryDependency += "com.github.kmizu" %% "pegex" % "0.3-SNAPSHOT"
 (*name*=*e*;)\*, where *name* is name of this rule and *e* is an expression
 
 ### Kind of Expressions (*e*)
+**Note that in PEGEX, aspace has meaning. Thus, `A=;` is different from `A= ;`**
 + e1e2: sequence.  e.g. ab
 + e1|e2: ordered chocie.  e.g. a|b
 + e*: repetition (>= 0).  e.g. a*
