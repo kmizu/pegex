@@ -23,7 +23,7 @@ scalacOptions in (Compile, doc) ++= { Seq(
 
 testOptions += Tests.Argument(TestFrameworks.Specs2, "console", "junitxml")
 
-crossScalaVersions := Seq("2.9.1", "2.9.2", "2.9.3", "2.10.3", "2.11.5")
+crossScalaVersions := Seq("2.10.5", "2.11.6")
 
 scalacOptions <++= scalaVersion map { v =>
   if (v.startsWith("2.10"))
