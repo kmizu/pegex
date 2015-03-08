@@ -1,4 +1,4 @@
-# PEGEX: A PEG-based pattern matching library EXtended by back reference with regex-like notation in Scala [![Build Status](https://travis-ci.org/kmizu/pegex.png?branch=master)](https://travis-ci.org/kmizu/pegex)
+## PEGEX: A PEG-based pattern matching library EXtended by back reference with regex-like notation in Scala [![Build Status](https://travis-ci.org/kmizu/pegex.png?branch=master)](https://travis-ci.org/kmizu/pegex)
 
 [![Join the chat at https://gitter.im/kmizu/pegex](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/kmizu/pegex?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
