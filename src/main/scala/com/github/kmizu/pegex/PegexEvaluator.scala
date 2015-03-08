@@ -35,6 +35,7 @@ class PegexEvaluator(grammar: Ast.Grammar) extends Recognizer {
     node: Ast.Exp, resultBindings: MutableMap[Symbol, (Int, Int)],
     onSuccess: () => Boolean, onFailure: () => Boolean
   ): Boolean = {
+    //TODO Consider using trampoline style, instead of direct CPS
     def _eval(node: Ast.Exp, onSuccess: () => Boolean, onFailure: () => Boolean): Boolean = node match {
       case Ast.Str(_, str) =>
         val len = str.length
