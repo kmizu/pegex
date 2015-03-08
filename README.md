@@ -1,5 +1,7 @@
 # PEGEX: A PEG-based pattern matching library EXtended by back reference with regex-like notation in Scala [![Build Status](https://travis-ci.org/kmizu/pegex.png?branch=master)](https://travis-ci.org/kmizu/pegex)
 
+[![Join the chat at https://gitter.im/kmizu/pegex](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/kmizu/pegex?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 PEGEX (Parsing Expression Grammar EXtended by back reference with regex-like notations) is 
 a PEG-based pattern matching  library for Scala.  PEGEX provides both power of PEG and 
 light-weight syntax of regular expressions.  It accepts a PEG-variant with regex-like 
