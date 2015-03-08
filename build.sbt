@@ -8,7 +8,7 @@ name := "pegex"
 
 version := "0.3.0-SNAPSHOT"
 
-scalaVersion := "2.11.5"
+scalaVersion := "2.11.6"
 
 publishMavenStyle := true
 
