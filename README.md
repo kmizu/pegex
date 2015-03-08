@@ -18,7 +18,7 @@ libraryDependency += "com.github.kmizu" %% "pegex" % "0.3.0-SNAPSHOT"
 ```
 
 ## Runtime Requirement
-* Scala 2.10.X or Scala 2.11.X
+* Scala 2.11.X
 * JDK 1.6.0 or later
 
 ## Build Requirement
