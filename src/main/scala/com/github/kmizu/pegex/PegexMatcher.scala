@@ -58,13 +58,10 @@ object PegexMatcher {
         }
       case List("-m", pattern, input) => 
         println(pattern.e.matches(input))
-      case opt :: grammarFile :: inputs if inputs.length >= 1 =>
+      case grammarFile :: inputs if inputs.length >= 1 =>
         inputs.foreach{input =>
           val grammar = PegexParser.parse(grammarFile, new FileReader(grammarFile))
-          val interpreter: Recognizer =
-            if(opt == "-ast")
-              new PegexEvaluator(grammar)
-            else sys.error("not implemented")
+          val interpreter: Recognizer = new PegexEvaluator(grammar)
           open(input){reader =>
             val inputStr = readAll(reader)
             System.err.println("parsing " + input)     
@@ -74,7 +71,7 @@ object PegexMatcher {
           }
         }
       case _ =>
-        println("""Usage: java -jar pegex.jar (-vm|-ast) <file_name> <input>
+        println("""Usage: java -jar pegex.jar <file_name> <input>
                   |   or  java -jar pegex.jar -m <pegex_pattern> <input_string>""".stripMargin)
     }
   }
