@@ -29,7 +29,7 @@ object PegexBasicSpec extends Specification {
       }
     }
 
-  """The folowing a PEGEX instance evaluation should occur StackOverflowError in current naive implementation""" in {
+  """The folowing PEGEX instance evaluation should occur StackOverflowError in current naive implementation""" in {
     val hoge = "L=(a*)*;".e
     hoge.matches("a") should throwA(new StackOverflowError())
   }
