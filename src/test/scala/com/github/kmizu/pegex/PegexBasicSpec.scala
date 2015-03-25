@@ -28,6 +28,11 @@ object PegexBasicSpec extends Specification {
         ident.matches(input) must_== expectation
       }
     }
+
+  """The folowing a PEGEX instance evaluation should occur StackOverflowError in current naive implementation""" in {
+    val hoge = "L=(a*)*;".e
+    hoge.matches("a") should throwA(new StackOverflowError())
+  }
   
   """PEGEX representing nested comments""" in {
     val comment = """L=#(C)$; C=/\*(#(C)|!(\*/).)*\*/;""".e
