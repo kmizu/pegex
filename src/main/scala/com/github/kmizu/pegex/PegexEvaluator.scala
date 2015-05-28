@@ -147,6 +147,11 @@ class PegexEvaluator(grammar: Ast.Grammar) {
     _eval(node, onSuccess, onFailure)
   }
 
+  /**
+   * Parses input and returns a parse result.
+   * @param inputStr the input string
+   * @return the parse result, which is MatchResult.
+   */
   def parse(inputStr: String): MatchResult = this.synchronized {
     cursor =  0
     input = inputStr
@@ -155,7 +160,7 @@ class PegexEvaluator(grammar: Ast.Grammar) {
       val result = Some(inputStr.substring(0, cursor))
       MatchResult(
         result, map.foldLeft(Map[Symbol, String]()){case (m, (k, v)) =>
-          m + (k -> inputStr.substring(v._1, v._2))        
+          m + (k -> inputStr.substring(v._1, v._2))
         }
       )
     }else MatchResult(None, Map.empty)
