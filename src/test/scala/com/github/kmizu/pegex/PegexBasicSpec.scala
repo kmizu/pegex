@@ -4,80 +4,94 @@ package kmizu
 package pegex
 
 import Pegex._
-import org.specs2.mutable.Specification
+import org.scalatest.{FeatureSpec, GivenWhenThen}
+import org.junit.runner.RunWith
+import org.scalatest.junit.JUnitRunner
 
-object PegexBasicSpec extends Specification {
-  """PEGEX representing alphabet sequences""" in {
-    val alphabets = """L=[a-zA-Z]+$;""".e
-    alphabets.matches("Hoge") must_== Some("Hoge")
-    alphabets.matches("HogeFooBar") must_== Some("HogeFooBar")
-    alphabets.matches("Hoge_Foo_Bar") must_== None
-  }
+@RunWith(classOf[JUnitRunner])
+class PegexBasicSpec extends FeatureSpec with GivenWhenThen {
+  feature("PEGEX") {
+    scenario("represents alphabet sequences") {
+      val alphabets = """[a-zA-Z]+$;""".e
+      assert(alphabets.matches("Hoge") === Some("Hoge"))
+      assert(alphabets.matches("HogeFooBar") === Some("HogeFooBar"))
+      assert(alphabets.matches("Hoge_Foo_Bar") === None)
+    }
 
-    val ident = """
-      L=#(IdentStart)#(IdentRest)*$;
+    scenario("represents identifiers") {
+      val ident = """#(IdentStart)#(IdentRest)*$;
       IdentStart=[a-zA-Z_];
       IdentRest=#(IdentStart)|[0-9];
-    """.e    
-    List("HogeFooBar" -> Some("HogeFooBar"),
-         "Hoge_Foo_Bar" -> Some("Hoge_Foo_Bar"),
-         "Hoge10" -> Some("Hoge10"),
-         "10Hoge" -> None
-    ).foreach{ case (input, expectation) =>
-      """PEGEX representing identifiers""" in {
-        ident.matches(input) must_== expectation
+                  """.e
+      List("HogeFooBar" -> Some("HogeFooBar"),
+        "Hoge_Foo_Bar" -> Some("Hoge_Foo_Bar"),
+        "Hoge10" -> Some("Hoge10"),
+        "10Hoge" -> None
+      ).foreach{ case (input, expectation) =>
+        assert(ident.matches(input) === expectation)
       }
     }
 
-  """The folowing PEGEX instance evaluation should occur StackOverflowError in current naive implementation""" in {
-    val hoge = "L=(a*)*;".e
-    hoge.matches("a") should throwA(new StackOverflowError())
+    scenario("represents nested comments") {
+      val comment = """#(C)$; C=/\*(#(C)|!(\*/).)*\*/;""".e
+      assert(comment.matches("/* comment */") === Some("/* comment */"))
+      assert(comment.matches("/* nested /* comment */ ok */") === Some("/* nested /* comment */ ok */"))
+      assert(comment.matches("/* incorrect comment") === None)
+    }
+
+    scenario("represents subset of XMLs") {
+      val minXml = """#(E)$; E=<#(tag:I)>#(E)*</##(tag)>; I=[a-z]+;""".e
+      assert(minXml.matches("<foo></foo>") === Some("<foo></foo>"))
+      assert(minXml.matches("<foo><bar></bar></foo>") === Some("<foo><bar></bar></foo>"))
+      assert(minXml.matches("<foo><bar></bar></hoo>") === None)
+    }
+
+    scenario("represents a context sensitive language") {
+      val csl = """&(#(A)!b)a+#(B)$; A=a#(A)?b; B=b#(B)?c;""".e
+      assert(csl.matches("aaabbbccc") === Some("aaabbbccc"))
+      assert(csl.matches("aabbbccc") === None)
+    }
+
+    scenario("represents palindrome")  {
+      val palindrome = """#(A)$; A=a#(A)a|b#(A)b|c#(A)c|a|b|c|_;""".e
+      assert(palindrome.matches("abcba") === Some("abcba"))
+      assert(palindrome.matches("abba") === Some("abba"))
+      assert(palindrome.matches("abc") === None)
+    }
+
+    scenario("represents name:value pair") {
+      val nvStr = """#(N::[a-zA-Z_][a-zA-Z0-9_]*)\:#(V::[0-9]+)$;"""
+      val nvGreedy = nvStr.e
+      val r1 = nvGreedy.matchesWithGroup("a:1")
+      assert(r1.result === Some("a:1"))
+      assert(r1.group.get('N) === Some("a"))
+      assert(r1.group.get('V) === Some("1"))
+      assert(r1('N) === "a")
+      assert(r1('V) === "1")
+      val nvPossessive = nvStr.e
+      val r2 = nvPossessive.matchesWithGroup("a:1")
+      assert(r2.result === Some("a:1"))
+      assert(r2.group.get('N) === Some("a"))
+      assert(r2.group.get('V) === Some("1"))
+    }
   }
-  
-  """PEGEX representing nested comments""" in {
-    val comment = """L=#(C)$; C=/\*(#(C)|!(\*/).)*\*/;""".e
-    comment.matches("/* comment */") must_== Some("/* comment */")
-    comment.matches("/* nested /* comment */ ok */") must_== Some("/* nested /* comment */ ok */")
-    comment.matches("/* incorrect comment") must_== None
+
+  feature("The folowing PEGEX instance evaluation") {
+    scenario("should occur StackOverflowError in current naive implementation") {
+      val hoge = "(a*)*;".e
+      intercept[StackOverflowError]{
+        hoge.matches("a")
+      }
+    }
   }
-  """PEGEX representing subset of XMLs""" in {
-    val minXml = """
-      L=#(E)$; E=<#(tag:I)>#(E)*</##(tag)>; I=[a-z]+;""".e
-    minXml.matches("<foo></foo>") must_== Some("<foo></foo>")
-    minXml.matches("<foo><bar></bar></foo>") must_== Some("<foo><bar></bar></foo>")
-    minXml.matches("<foo><bar></bar></hoo>") must_== None
-  }
-  """PEGEX representing a context sensitive language""" in {
-    val csl = """S=&(#(A)!b)a+#(B)$; A=a#(A)?b; B=b#(B)?c;""".e
-    csl.matches("aaabbbccc") must_== Some("aaabbbccc")
-    csl.matches("aabbbccc") must_== None
-  }
-  """PEGEX representing palindromes""" in {
-    val palindrome = """L=#(A)$; A=a#(A)a|b#(A)b|c#(A)c|a|b|c|_;""".e
-    palindrome.matches("abcba") must_== Some("abcba")
-    palindrome.matches("abba") must_== Some("abba")
-    palindrome.matches("abc") must_== None
-  }
-  """PEGEX representing (ab)^n, where n is even number.  This is test of backreference feature""" in {
-    val testBackref = """L=#(A::(ab)+)##(A)$;""".e
-    testBackref.matches("ab") must_== None
-    testBackref.matches("abab") must_== Some("abab")
-    testBackref.matches("ababab") must_== None
-    testBackref.matches("abababab") must_== Some("abababab")
-  }
-  """PEGEX representing name:value pair""" in {    
-    val nvStr = """L=#(N::[a-zA-Z_][a-zA-Z0-9_]*)\:#(V::[0-9]+)$;"""
-    val nvGreedy = nvStr.e
-    val r1 = nvGreedy.matchesWithGroup("a:1")
-    r1.result must_== Some("a:1")
-    r1.group.get('N) must_== Some("a")
-    r1.group.get('V) must_== Some("1")
-    r1('N) must_== "a"
-    r1('V) must_== "1"
-    val nvPossessive = nvStr.e
-    val r2 = nvPossessive.matchesWithGroup("a:1")
-    r2.result must_== Some("a:1")
-    r2.group.get('N) must_== Some("a")
-    r2.group.get('V) must_== Some("1")    
+
+  feature("PEGEX with backreference"){
+    scenario("represents (ab)^n, where n is even number.  This is test of backreference feature") {
+      val testBackref = """#(A::(ab)+)##(A)$;""".e
+      assert(testBackref.matches("ab") === None)
+      assert(testBackref.matches("abab") === Some("abab"))
+      assert(testBackref.matches("ababab") === None)
+      assert(testBackref.matches("abababab") === Some("abababab"))
+    }
   }
 }

@@ -21,7 +21,8 @@ object PegexParser {
    * Symposium on Principles of Programming Languages,2004.
    */
   object ParserCore extends Parsers {
-    type Elem = Char 
+    type Elem = Char
+    val StartRuleName: Symbol = 'S
     private val any: Parser[Char] = elem(".", c => c != CharSequenceReader.EofCh)
     private def chr(c: Char): Parser[Char] = c
     private def crange(f: Char, t: Char): Parser[Char] = elem("[]", c => f <= c && c <= t)
@@ -32,8 +33,8 @@ object PegexParser {
     private def not[T](p: => Parser[T], msg: String): Parser[Unit] = {
       not(p) | failure(msg)
     }
-    lazy val GRAMMER: Parser[Grammar] = (loc <~ Spacing) ~ Definition.+ <~ EndOfFile ^^ {
-      case pos ~ rules => Grammar(Pos(pos.line, pos.column), rules.head.name, rules)
+    lazy val GRAMMER: Parser[Grammar] = (loc ~ Expression <~ (SEMI_COLON <~ Spacing)) ~ Definition.* <~ EndOfFile ^^ {
+      case (pos ~ e) ~ rules => Grammar(Pos(pos.line, pos.column), StartRuleName, Rule(Pos(pos.line, pos.column), StartRuleName, e)::rules)
     }
     lazy val Definition: Parser[Rule] = (Identifier <~ EQ) ~ 
       Expression <~ SEMI_COLON <~ Spacing ^^ {

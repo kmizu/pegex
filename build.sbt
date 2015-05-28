@@ -21,9 +21,7 @@ scalacOptions in (Compile, doc) ++= { Seq(
   "-doc-source-url", s"https://github.com/kmizu/pegex/tree/${scaladocBranch.value}€{FILE_PATH}.scala"
 )}
 
-testOptions += Tests.Argument(TestFrameworks.Specs2, "console", "junitxml")
-
-crossScalaVersions := Seq("2.10.5", "2.11.6")
+testOptions in Test += Tests.Argument("-u", "target/scalatest-reports")
 
 scalacOptions <++= scalaVersion map { v =>
   if (v.startsWith("2.10"))
@@ -32,20 +30,12 @@ scalacOptions <++= scalaVersion map { v =>
     Seq("-unchecked", "-deprecation")
 }
 
-libraryDependencies ++= Seq(
-  "junit" % "junit" % "4.7" % "test"
-)
 
-libraryDependencies ++= {
-  if (scalaVersion.value.startsWith("2.10"))
-    List("org.specs2" %% "specs2-junit" % "2.3.7" % "test")
-  else if(scalaVersion.value.startsWith("2.11"))
-    List("org.specs2" %% "specs2-junit" % "2.4.15" % "test", "org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.3")
-  else if (scalaVersion.value == "2.9.3")
-    List("org.specs2" %% "specs2" % "1.12.4.1" % "test")
-  else
-    List("org.specs2" %% "specs2" % "1.12.3" % "test")
-}
+libraryDependencies ++= Seq(
+  "org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.3",
+  "junit" % "junit" % "4.7" % "test",
+  "org.scalatest" %% "scalatest" % "2.1.6" % "test"
+)
 
 
 initialCommands in console += {
