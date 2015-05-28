@@ -61,7 +61,7 @@ object PegexMatcher {
       case grammarFile :: inputs if inputs.length >= 1 =>
         inputs.foreach{input =>
           val grammar = PegexParser.parse(grammarFile, new FileReader(grammarFile))
-          val interpreter: Recognizer = new PegexEvaluator(grammar)
+          val interpreter = new PegexEvaluator(grammar)
           open(input){reader =>
             val inputStr = readAll(reader)
             System.err.println("parsing " + input)     

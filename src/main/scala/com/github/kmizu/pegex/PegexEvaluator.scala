@@ -9,7 +9,7 @@ import scala.collection.mutable.{Map => MutableMap, HashMap}
   * This class represents interpreters by traversal of ASTs.
   * @author Kota Mizushima
   */
-class PegexEvaluator(grammar: Ast.Grammar) extends Recognizer {
+class PegexEvaluator(grammar: Ast.Grammar) {
   private[this] val ruleBindings = Map(grammar.rules.map{r => (r.name, expand(r.body))}:_*)
   private[this] var cursor = 0
   private[this] var input: String = null
@@ -146,7 +146,8 @@ class PegexEvaluator(grammar: Ast.Grammar) extends Recognizer {
     }
     _eval(node, onSuccess, onFailure)
   }
-  def parse(inputStr: String): MatchResult = this.synchronized{
+
+  def parse(inputStr: String): MatchResult = this.synchronized {
     cursor =  0
     input = inputStr
     val map = new HashMap[Symbol, (Int, Int)]
@@ -158,5 +159,14 @@ class PegexEvaluator(grammar: Ast.Grammar) extends Recognizer {
         }
       )
     }else MatchResult(None, Map.empty)
+  }
+
+  /**
+   * Parses input and returns a parse result.
+   * @param input the input string
+   * @return the parse result, which is Some[String] or None.
+   */
+  def matches(input: String): Option[String] = {
+    parse(input).result
   }
 }
