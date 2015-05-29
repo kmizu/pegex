@@ -4,8 +4,8 @@ package kmizu
 package pegex
 
 import scala.util.parsing.combinator._
-import scala.util.parsing.input
-import input._
+import scala.util.parsing.input.{CharSequenceReader, StreamReader}
+import scala.util.parsing.input.Position
 import java.io._
 import Ast._
 /**
@@ -138,7 +138,7 @@ object PegexParser {
   }
   
   def parse(fileName: String, content: java.io.Reader): Grammar = {
-    ParserCore.GRAMMER(input.StreamReader(content)) match {
+    ParserCore.GRAMMER(StreamReader(content)) match {
       case ParserCore.Success(node, _) => node
       case ParserCore.Failure(msg, rest) => 
         val pos = rest.pos
