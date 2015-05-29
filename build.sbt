@@ -24,10 +24,7 @@ scalacOptions in (Compile, doc) ++= { Seq(
 testOptions in Test += Tests.Argument("-u", "target/scalatest-reports")
 
 scalacOptions <++= scalaVersion map { v =>
-  if (v.startsWith("2.10"))
-    Seq("-unchecked", "-deprecation", "-feature", "-language:implicitConversions")
-  else
-    Seq("-unchecked", "-deprecation")
+  Seq("-unchecked", "-deprecation", "-feature", "-language:implicitConversions")
 }
 
 
