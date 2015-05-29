@@ -17,9 +17,9 @@ class Pegex(pattern: String) {
   }
 }
 object Pegex {
-  class RichString(pattern: String) {
+  implicit class RichString(val pattern: String) extends AnyVal {
     def e: Pegex = new Pegex(pattern)
   }
-  implicit def toPeg(pattern: String): RichString = new RichString(pattern)
+
   def apply(pattern: String): Pegex = new Pegex(pattern)
 }
