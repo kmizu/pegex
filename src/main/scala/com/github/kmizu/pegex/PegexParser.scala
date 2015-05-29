@@ -10,17 +10,20 @@ import java.io._
 import Ast._
 /**
   * This object provides a parser that parses strings in Pegex and translates
-  * them into ASTs of PEG.
-  * @author Kota Mizushima */
+  * them into ASTs of PEGEX (which is like PEGs).
+  * @author Kota Mizushima
+  *
+  */
 object PegexParser {
+
+  /**
+   * This exception is thrown in the case of a parsing failure
+   * @param pos the position where the parsing failed
+   * @param msg error message
+   */
   case class ParseException(pos: Pos, msg: String) extends Exception(pos.line + ", " + pos.column + ":" + msg)
   
-  /*
-   * See
-   * Bryan Ford, "Parsing Expression Grammars: A Recognition-Based Syntactic Foundation",
-   * Symposium on Principles of Programming Languages,2004.
-   */
-  object ParserCore extends Parsers {
+  private object ParserCore extends Parsers {
     type Elem = Char
     val StartRuleName: Symbol = 'S
     private val any: Parser[Char] = elem(".", c => c != CharSequenceReader.EofCh)
@@ -136,7 +139,13 @@ object PegexParser {
     lazy val EndOfLine = chr('\r') ~ chr('\n') | chr('\n') | chr('\r')
     lazy val EndOfFile = not(any)
   }
-  
+
+  /**
+   * Parses a pattern from `content` and returns the `Grammar` instance, which is the parse result.
+   * @param fileName
+   * @param content
+   * @return `Grammar` instance
+   */
   def parse(fileName: String, content: java.io.Reader): Grammar = {
     ParserCore.GRAMMER(StreamReader(content)) match {
       case ParserCore.Success(node, _) => node
@@ -148,7 +157,12 @@ object PegexParser {
         throw new ParseException(Pos(pos.line, pos.column), msg)        
     }
   }
-  
+
+  /**
+   * Parses a `pattern` and returns the `Grammar` instance, which is the parse result.
+   * @param pattern input string
+   * @return `Grammar` instance
+   */
   def parse(pattern: String): Grammar = {
     parse("", new StringReader(pattern))
   }
