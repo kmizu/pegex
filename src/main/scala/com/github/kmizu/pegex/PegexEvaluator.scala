@@ -32,33 +32,35 @@ class PegexEvaluator(grammar: Ast.Grammar) {
     case e => e
   }
   private def eval(
-    node: Ast.Exp, resultBindings: MutableMap[Symbol, (Int, Int)],
-    onSuccess: () => Boolean, onFailure: () => Boolean
+    node: Ast.Exp, resultBindings: MutableMap[Symbol, (Int, Int)], onSuccess: () => Boolean
   ): Boolean = {
     //TODO Consider using trampoline style, instead of direct CPS
-    def _eval(node: Ast.Exp, onSuccess: () => Boolean, onFailure: () => Boolean): Boolean = node match {
+    def _eval(node: Ast.Exp, onSuccess: () => Boolean): Boolean = node match {
       case Ast.Str(_, str) =>
         val len = str.length
         if(isEnd(cursor + len - 1)){
-          onFailure()
+          false
         }else {
           var i = 0
           while(i < len && str(i) == input(cursor + i)) i += 1
-          if(i < len) onFailure()
-          else {
+          if(i < len) {
+            false
+          } else {
             cursor += len
             onSuccess()
           }
         }
       case Ast.CharSet(_, positive, set) =>
-        if(isEnd || (positive != set(input(cursor)))) onFailure()
-        else {
+        if(isEnd || (positive != set(input(cursor)))) {
+          false
+        } else {
           cursor += 1
           onSuccess()
         }
       case Ast.Wildcard(_) =>
-        if(isEnd) onFailure()
-        else {
+        if(isEnd) {
+          false
+        } else {
           cursor += 1
           onSuccess()
         }
@@ -69,7 +71,11 @@ class PegexEvaluator(grammar: Ast.Grammar) {
             cursor = start
             if(onSuccess()) true else f()
           }
-          _eval(body, () => { onSuccRep(nf) }, nf)
+          if(_eval(body, () => { onSuccRep(nf) })) {
+            true
+          } else {
+            nf()
+          }
         }
         onSuccRep(onSuccess)
       case Ast.Rep1(_, body) =>
@@ -79,54 +85,51 @@ class PegexEvaluator(grammar: Ast.Grammar) {
             cursor = start
             if(onSuccess()) true else f()
           }
-          _eval(body, () => { onSuccRep(nf) }, nf)
+          if(_eval(body, () => { onSuccRep(nf) })) {
+            true
+          } else {
+            nf()
+          }
         }
-        _eval(body, 
-          () => { onSuccRep(onSuccess) },
-          onFailure
-        )
+        _eval(body, () => { onSuccRep(onSuccess) })
       case Ast.Opt(_, body) =>
         val start = cursor
-        val onFailAlt: () => Boolean = () => {
-          cursor = start; onSuccess() 
+        if(_eval(body, onSuccess)) {
+          true
+        } else {
+          cursor = start
+          onSuccess()
         }
-        _eval(body, 
-          () => { if(onSuccess()) true else onFailAlt() }, 
-          onFailAlt
-        )
       case Ast.AndPred(_, body) =>
         val start = cursor
-        _eval(body,
-          () => { cursor = start; onSuccess() },
-          onFailure
-        )
+        _eval(body, () => { cursor = start; onSuccess() })
       case Ast.NotPred(_, body) =>
         val start = cursor
-        _eval(body,
-          onFailure,
-          () => { cursor = start; onSuccess() }
-        )
+        if(_eval(body, () => { true })) {
+          false
+        } else {
+          cursor = start
+          onSuccess()
+        }
       case Ast.Seq(_, e1, e2) =>
-        _eval(e1, () => { _eval(e2, onSuccess, onFailure) }, onFailure)
+        _eval(e1, () => { _eval(e2, onSuccess) })
       case Ast.Alt(_, e1, e2) =>
         val start = cursor
-        val onFailAlt: () => Boolean = () => {
-          cursor = start; _eval(e2, onSuccess, onFailure)
+        if(_eval(e1, onSuccess)) {
+          true
+        } else {
+          cursor = start
+          _eval(e2, onSuccess)
         }
-        _eval(e1,
-          () => { if(onSuccess()) true else onFailAlt() },
-          onFailAlt
-        )
       case Ast.Ident(_, name) =>
-        eval(ruleBindings(name), new HashMap, onSuccess, onFailure)
+        eval(ruleBindings(name), new HashMap, onSuccess)
       case Ast.Binder(_, name, exp) =>
         val start = cursor
         _eval(exp,
           () => {
             resultBindings(name) = (start, cursor)
             onSuccess()
-          },
-          onFailure
+          }
         )
       case Ast.Backref(_, name) =>
         val (start, end) = resultBindings(name)
@@ -140,11 +143,11 @@ class PegexEvaluator(grammar: Ast.Grammar) {
           cursor += (end - start)
           onSuccess()
         }else {
-          onFailure()
+          false
         }
       case Ast.CharClass(_, _, _) => sys.error("must not reach here")
     }
-    _eval(node, onSuccess, onFailure)
+    _eval(node, onSuccess)
   }
 
   /**
@@ -156,7 +159,7 @@ class PegexEvaluator(grammar: Ast.Grammar) {
     cursor =  0
     input = inputStr
     val map = new HashMap[Symbol, (Int, Int)]
-    if(eval(ruleBindings(grammar.start), map, () => true, () => false)) {
+    if(eval(ruleBindings(grammar.start), map, () => true)) {
       val result = Some(inputStr.substring(0, cursor))
       MatchResult(
         result, map.foldLeft(Map[Symbol, String]()){case (m, (k, v)) =>

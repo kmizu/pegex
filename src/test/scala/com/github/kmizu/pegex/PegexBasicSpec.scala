@@ -12,7 +12,7 @@ import org.scalatest.junit.JUnitRunner
 class PegexBasicSpec extends FeatureSpec with GivenWhenThen {
   feature("PEGEX") {
     scenario("represents alphabet sequences") {
-      val alphabets = """[a-zA-Z]+$;""".e
+      val alphabets = """[a-zA-Z]*$;""".e
       assert(alphabets.matches("Hoge") === Some("Hoge"))
       assert(alphabets.matches("HogeFooBar") === Some("HogeFooBar"))
       assert(alphabets.matches("Hoge_Foo_Bar") === None)
