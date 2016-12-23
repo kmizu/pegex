@@ -35,7 +35,7 @@ class PegexEvaluator(grammar: Ast.Grammar) {
     node: Ast.Exp, resultBindings: MutableMap[Symbol, (Int, Int)], onSuccess: () => Boolean
   ): Boolean = {
     //TODO Consider using trampoline style, instead of direct CPS
-    def _eval(node: Ast.Exp, onSuccess: () => Boolean): Boolean = node match {
+    def _eval(node: Ast.Exp)(onSuccess: => Boolean): Boolean = node match {
       case Ast.Str(_, str) =>
         val len = str.length
         if(isEnd(cursor + len - 1)){
@@ -47,7 +47,7 @@ class PegexEvaluator(grammar: Ast.Grammar) {
             false
           } else {
             cursor += len
-            onSuccess()
+            onSuccess
           }
         }
       case Ast.CharSet(_, positive, set) =>
@@ -55,82 +55,80 @@ class PegexEvaluator(grammar: Ast.Grammar) {
           false
         } else {
           cursor += 1
-          onSuccess()
+          onSuccess
         }
       case Ast.Wildcard(_) =>
         if(isEnd) {
           false
         } else {
           cursor += 1
-          onSuccess()
+          onSuccess
         }
       case Ast.Rep0(_, body) =>
-        def onSuccRep(f: () => Boolean): Boolean = {
+        def onSuccRep(f: => Boolean): Boolean = {
           val start = cursor
-          val nf: () => Boolean = () => {
+          def nf: Boolean = {
             cursor = start
-            if(onSuccess()) true else f()
+            if(onSuccess) true else f
           }
-          if(_eval(body, () => { onSuccRep(nf) })) {
+          if(_eval(body){ onSuccRep(nf) }) {
             true
           } else {
-            nf()
+            nf
           }
         }
         onSuccRep(onSuccess)
       case Ast.Rep1(_, body) =>
-        def onSuccRep(f: () => Boolean): Boolean = {
+        def onSuccRep(f: => Boolean): Boolean = {
           val start = cursor
-          val nf: () => Boolean = () => {
+          def nf: Boolean = {
             cursor = start
-            if(onSuccess()) true else f()
+            if(onSuccess) true else f
           }
-          if(_eval(body, () => { onSuccRep(nf) })) {
+          if(_eval(body){ onSuccRep(nf) }) {
             true
           } else {
-            nf()
+            nf
           }
         }
-        _eval(body, () => { onSuccRep(onSuccess) })
+        _eval(body){ onSuccRep(onSuccess) }
       case Ast.Opt(_, body) =>
         val start = cursor
-        if(_eval(body, onSuccess)) {
+        if(_eval(body)(onSuccess)) {
           true
         } else {
           cursor = start
-          onSuccess()
+          onSuccess
         }
       case Ast.AndPred(_, body) =>
         val start = cursor
-        _eval(body, () => { cursor = start; onSuccess() })
+        _eval(body){ cursor = start; onSuccess }
       case Ast.NotPred(_, body) =>
         val start = cursor
-        if(_eval(body, () => { true })) {
+        if(_eval(body){ true }) {
           false
         } else {
           cursor = start
-          onSuccess()
+          onSuccess
         }
       case Ast.Seq(_, e1, e2) =>
-        _eval(e1, () => { _eval(e2, onSuccess) })
+        _eval(e1){ _eval(e2)(onSuccess) }
       case Ast.Alt(_, e1, e2) =>
         val start = cursor
-        if(_eval(e1, onSuccess)) {
+        if(_eval(e1)(onSuccess)) {
           true
         } else {
           cursor = start
-          _eval(e2, onSuccess)
+          _eval(e2)(onSuccess)
         }
       case Ast.Ident(_, name) =>
-        eval(ruleBindings(name), new HashMap, onSuccess)
+        eval(ruleBindings(name), new HashMap, () => onSuccess)
       case Ast.Binder(_, name, exp) =>
         val start = cursor
-        _eval(exp,
-          () => {
-            resultBindings(name) = (start, cursor)
-            onSuccess()
-          }
-        )
+        _eval(exp) {
+          resultBindings(name) = (start, cursor)
+          onSuccess
+        }
       case Ast.Backref(_, name) =>
         val (start, end) = resultBindings(name)
         def matches(): Boolean = {
@@ -141,13 +139,13 @@ class PegexEvaluator(grammar: Ast.Grammar) {
         val successful = matches()
         if(successful) {
           cursor += (end - start)
-          onSuccess()
+          onSuccess
         }else {
           false
         }
       case Ast.CharClass(_, _, _) => sys.error("must not reach here")
     }
-    _eval(node, onSuccess)
+    _eval(node)(onSuccess())
   }
 
   /**
