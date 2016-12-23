@@ -8,7 +8,9 @@ name := "pegex"
 
 version := "0.3.0-SNAPSHOT"
 
-scalaVersion := "2.11.6"
+scalaVersion := "2.12.1"
+
+crossScalaVersions := Seq("2.11.8", "2.12.1")
 
 publishMavenStyle := true
 
@@ -23,15 +25,12 @@ scalacOptions in (Compile, doc) ++= { Seq(
 
 testOptions in Test += Tests.Argument("-u", "target/scalatest-reports")
 
-scalacOptions <++= scalaVersion map { v =>
-  Seq("-unchecked", "-deprecation", "-feature", "-language:implicitConversions")
-}
-
+scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature", "-language:implicitConversions")
 
 libraryDependencies ++= Seq(
-  "org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.3",
+  "org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.4",
   "junit" % "junit" % "4.7" % "test",
-  "org.scalatest" %% "scalatest" % "2.1.6" % "test"
+  "org.scalatest" %% "scalatest" % "3.0.0" % "test"
 )
 
 
@@ -61,7 +60,8 @@ pomExtra := (
   </developers>
 )
 
-publishTo <<= version { v =>
+publishTo := {
+  val v = version.value
   val nexus = "https://oss.sonatype.org/"
   if (v.endsWith("-SNAPSHOT"))
     Some("snapshots" at nexus+"content/repositories/snapshots")
