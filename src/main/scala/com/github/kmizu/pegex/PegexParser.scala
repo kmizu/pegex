@@ -44,59 +44,59 @@ object PegexParser {
       case n ~ b => Rule(n.pos, n.name, b)
     }  
     
-    lazy val Expression: Parser[Exp] = rep1sep(Sequence, BAR) ^^ {ns =>
-      val x :: xs = ns; xs.foldLeft(x){(a, y) => Alt(y.pos, a, y)}
+    lazy val Expression: Parser[Expression] = rep1sep(Sequence, BAR) ^^ { ns =>
+      val x :: xs = ns; xs.foldLeft(x){(a, y) => Choice(y.pos, a, y)}
     }
-    lazy val Sequence: Parser[Exp] = Prefix.+ ^^ {ns =>
-      val x :: xs = ns; xs.foldLeft(x){(a, y) => Seq(y.pos, a, y)}
+    lazy val Sequence: Parser[Expression]   = Prefix.+ ^^ { ns =>
+      val x :: xs = ns; xs.foldLeft(x){(a, y) => Ast.Sequence(y.pos, a, y)}
     }
-    lazy val Prefix: Parser[Exp] = (
-      (loc <~ AND) ~ Suffix ^^ { case pos ~ e => AndPred(Pos(pos.line, pos.column), e) }
-    | (loc <~ NOT) ~ Suffix ^^ { case pos ~ e => NotPred(Pos(pos.line, pos.column), e) }
+    lazy val Prefix: Parser[Expression]     = (
+      (loc <~ AND) ~ Suffix ^^ { case pos ~ e => AndPredicate(Pos(pos.line, pos.column), e) }
+    | (loc <~ NOT) ~ Suffix ^^ { case pos ~ e => NotPredicate(Pos(pos.line, pos.column), e) }
     | Suffix
     )
-    lazy val Suffix: Parser[Exp] = (
-      loc ~ Primary <~ QUESTION ^^ { case pos ~ e => Opt(Pos(pos.line, pos.column), e) }
-    | loc ~ Primary <~ STAR ^^ { case pos ~ e => Rep0(Pos(pos.line, pos.column), e) }
-    | loc ~ Primary <~ PLUS ^^ { case pos ~ e => Rep1(Pos(pos.line, pos.column), e) }
+    lazy val Suffix: Parser[Expression]     = (
+      loc ~ Primary <~ QUESTION ^^ { case pos ~ e => Optional(Pos(pos.line, pos.column), e) }
+    | loc ~ Primary <~ STAR ^^ { case pos ~ e => Repeat0(Pos(pos.line, pos.column), e) }
+    | loc ~ Primary <~ PLUS ^^ { case pos ~ e => Repeat1(Pos(pos.line, pos.column), e) }
     | Primary
     )
-    lazy val Primary: Parser[Exp] = (
+    lazy val Primary: Parser[Expression]    = (
       (chr('#') ~> chr('(')) ~> Identifier ~ 
       opt(chr(':') ~> chr(':') ~> Expression | chr(':') ~> Identifier) <~ chr(')') ^^ { 
         case ident ~ Some(exp) => Binder(ident.pos, ident.name, exp)
         case ident ~ None => ident
       }
     | OPEN ~> Expression <~ CLOSE
-    | (chr('#') ~> chr('#') ~> chr('(')) ~> Identifier <~ chr(')') ^^ {ident => Backref(ident.pos, ident.name)}
+    | (chr('#') ~> chr('#') ~> chr('(')) ~> Identifier <~ chr(')') ^^ {ident => Backreference(ident.pos, ident.name)}
     | CLASS
     | loc <~ DOLLAR ^^ { case pos => 
-        val p = Pos(pos.line, pos.column); NotPred(p, Wildcard(p))
+        val p = Pos(pos.line, pos.column); NotPredicate(p, Wildcard(p))
       }
     | loc <~ DOT ^^ { case pos => Wildcard(Pos(pos.line, pos.column)) }
-    | loc <~ chr('_') ^^ { case pos => Str(Pos(pos.line, pos.column), "") }
+    | loc <~ chr('_') ^^ { case pos => StringLiteral(Pos(pos.line, pos.column), "") }
     | Literal
     )
-    lazy val loc: Parser[Position] = Parser{reader => Success(reader.pos, reader)}    
-    lazy val Identifier: Parser[Ident] = loc ~ IdentStart ~ IdentCont.* ^^ {
-      case pos ~ s ~ c => Ident(Pos(pos.line, pos.column), Symbol("" + s + c.foldLeft("")(_ + _)))
+    lazy val loc: Parser[Position]          = Parser{reader => Success(reader.pos, reader)}
+    lazy val Identifier: Parser[Identifier] = loc ~ IdentStart ~ IdentCont.* ^^ {
+      case pos ~ s ~ c => Ast.Identifier(Pos(pos.line, pos.column), Symbol("" + s + c.foldLeft("")(_ + _)))
     }
-    lazy val IdentStart: Parser[Char] = crange('a','z') | crange('A','Z') | '_'
-    lazy val IdentCont: Parser[Char] = IdentStart | crange('0','9')
-    lazy val Literal: Parser[Str] = loc ~ CHAR ^^ {
-      case pos ~ c => Str(Pos(pos.line, pos.column), "" + c )
+    lazy val IdentStart: Parser[Char]       = crange('a','z') | crange('A','Z') | '_'
+    lazy val IdentCont: Parser[Char]        = IdentStart | crange('0','9')
+    lazy val Literal: Parser[StringLiteral]           = loc ~ CHAR ^^ {
+      case pos ~ c => StringLiteral(Pos(pos.line, pos.column), "" + c )
     }
-    lazy val CLASS: Parser[CharClass] = {
+    lazy val CLASS: Parser[CharacterClass]       = {
       (loc <~ chr('[')) ~ opt(chr('^')) ~ ((not(chr(']')) ~> Range).* <~ ']' ~> Spacing) ^^ {
         //negative character class
-        case (pos ~ Some(_) ~ rs) => CharClass(Pos(pos.line, pos.column), false, rs)
+        case (pos ~ Some(_) ~ rs) => CharacterClass(Pos(pos.line, pos.column), false, rs)
         //positive character class
-        case (pos ~ None ~ rs) => CharClass(Pos(pos.line, pos.column), true, rs)
+        case (pos ~ None ~ rs) => CharacterClass(Pos(pos.line, pos.column), true, rs)
       }
     }
-    lazy val Range: Parser[CharClassElement] = (
-      CHAR ~ '-' ~ CHAR ^^ { case f~_~t => CharRange(f, t) }
-    | CHAR ^^ { case c => OneChar(c) }
+    lazy val Range: Parser[CharacterClassElement] = (
+      CHAR ~ '-' ~ CHAR ^^ { case f~_~t => CharacterRange(f, t) }
+    | CHAR ^^ { case c => OneCharacter(c) }
     )
     private val META_CHARS = List('$','|','&','!','?','*','+','(',')','[',']',':',';','=','#','\'','"','\\')
     lazy val META: Parser[Char] = cset(META_CHARS:_*)

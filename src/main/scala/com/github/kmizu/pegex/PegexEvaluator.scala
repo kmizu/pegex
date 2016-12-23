@@ -15,28 +15,28 @@ class PegexEvaluator(grammar: Ast.Grammar) {
   private[this] var input: String = null
   private def isEnd: Boolean = cursor == input.length
   private def isEnd(pos: Int): Boolean = pos >= input.length
-  private def expand(node: Ast.Exp): Ast.Exp = node match {
-    case Ast.CharClass(pos, positive, elems) => 
-      Ast.CharSet(pos, positive, elems.foldLeft(Set[Char]()){       
-        case (set, Ast.CharRange(f, t)) => (set /: (f to t))((set, c) => set + c)
-        case (set, Ast.OneChar(c)) => set + c
+  private def expand(node: Ast.Expression): Ast.Expression = node match {
+    case Ast.CharacterClass(pos, positive, elems) =>
+      Ast.CharacterSet(pos, positive, elems.foldLeft(Set[Char]()){
+        case (set, Ast.CharacterRange(f, t)) => (set /: (f to t))((set, c) => set + c)
+        case (set, Ast.OneCharacter(c)) => set + c
       })
-    case Ast.Alt(pos, e1, e2) => Ast.Alt(pos, expand(e1), expand(e2))
-    case Ast.Seq(pos, e1, e2) => Ast.Seq(pos, expand(e1), expand(e2))
-    case Ast.Rep0(pos, body) => Ast.Rep0(pos, expand(body))
-    case Ast.Rep1(pos, body) => Ast.Rep1(pos, expand(body))
-    case Ast.Opt(pos, body) => Ast.Opt(pos, expand(body))
-    case Ast.AndPred(pos, body) => Ast.AndPred(pos, expand(body))
-    case Ast.NotPred(pos, body) => Ast.NotPred(pos, expand(body))
+    case Ast.Choice(pos, e1, e2) => Ast.Choice(pos, expand(e1), expand(e2))
+    case Ast.Sequence(pos, e1, e2) => Ast.Sequence(pos, expand(e1), expand(e2))
+    case Ast.Repeat0(pos, body) => Ast.Repeat0(pos, expand(body))
+    case Ast.Repeat1(pos, body) => Ast.Repeat1(pos, expand(body))
+    case Ast.Optional(pos, body) => Ast.Optional(pos, expand(body))
+    case Ast.AndPredicate(pos, body) => Ast.AndPredicate(pos, expand(body))
+    case Ast.NotPredicate(pos, body) => Ast.NotPredicate(pos, expand(body))
     case Ast.Binder(pos, n, e) => Ast.Binder(pos, n, expand(e))
     case e => e
   }
   private def eval(
-    node: Ast.Exp, resultBindings: MutableMap[Symbol, (Int, Int)], onSuccess: () => Boolean
+                    node: Ast.Expression, resultBindings: MutableMap[Symbol, (Int, Int)], onSuccess: () => Boolean
   ): Boolean = {
     //TODO Consider using trampoline style, instead of direct CPS
-    def _eval(node: Ast.Exp)(onSuccess: => Boolean): Boolean = node match {
-      case Ast.Str(_, str) =>
+    def _eval(node: Ast.Expression)(onSuccess: => Boolean): Boolean = node match {
+      case Ast.StringLiteral(_, str) =>
         val len = str.length
         if(isEnd(cursor + len - 1)){
           false
@@ -50,7 +50,7 @@ class PegexEvaluator(grammar: Ast.Grammar) {
             onSuccess
           }
         }
-      case Ast.CharSet(_, positive, set) =>
+      case Ast.CharacterSet(_, positive, set) =>
         if(isEnd || (positive != set(input(cursor)))) {
           false
         } else {
@@ -64,7 +64,7 @@ class PegexEvaluator(grammar: Ast.Grammar) {
           cursor += 1
           onSuccess
         }
-      case Ast.Rep0(_, body) =>
+      case Ast.Repeat0(_, body) =>
         def onSuccRep(f: => Boolean): Boolean = {
           val start = cursor
           def nf: Boolean = {
@@ -78,7 +78,7 @@ class PegexEvaluator(grammar: Ast.Grammar) {
           }
         }
         onSuccRep(onSuccess)
-      case Ast.Rep1(_, body) =>
+      case Ast.Repeat1(_, body) =>
         def onSuccRep(f: => Boolean): Boolean = {
           val start = cursor
           def nf: Boolean = {
@@ -92,7 +92,7 @@ class PegexEvaluator(grammar: Ast.Grammar) {
           }
         }
         _eval(body){ onSuccRep(onSuccess) }
-      case Ast.Opt(_, body) =>
+      case Ast.Optional(_, body) =>
         val start = cursor
         if(_eval(body)(onSuccess)) {
           true
@@ -100,10 +100,10 @@ class PegexEvaluator(grammar: Ast.Grammar) {
           cursor = start
           onSuccess
         }
-      case Ast.AndPred(_, body) =>
+      case Ast.AndPredicate(_, body) =>
         val start = cursor
         _eval(body){ cursor = start; onSuccess }
-      case Ast.NotPred(_, body) =>
+      case Ast.NotPredicate(_, body) =>
         val start = cursor
         if(_eval(body){ true }) {
           false
@@ -111,9 +111,9 @@ class PegexEvaluator(grammar: Ast.Grammar) {
           cursor = start
           onSuccess
         }
-      case Ast.Seq(_, e1, e2) =>
+      case Ast.Sequence(_, e1, e2) =>
         _eval(e1){ _eval(e2)(onSuccess) }
-      case Ast.Alt(_, e1, e2) =>
+      case Ast.Choice(_, e1, e2) =>
         val start = cursor
         if(_eval(e1)(onSuccess)) {
           true
@@ -121,7 +121,7 @@ class PegexEvaluator(grammar: Ast.Grammar) {
           cursor = start
           _eval(e2)(onSuccess)
         }
-      case Ast.Ident(_, name) =>
+      case Ast.Identifier(_, name) =>
         eval(ruleBindings(name), new HashMap, () => onSuccess)
       case Ast.Binder(_, name, exp) =>
         val start = cursor
@@ -129,7 +129,7 @@ class PegexEvaluator(grammar: Ast.Grammar) {
           resultBindings(name) = (start, cursor)
           onSuccess
         }
-      case Ast.Backref(_, name) =>
+      case Ast.Backreference(_, name) =>
         val (start, end) = resultBindings(name)
         def matches(): Boolean = {
           (0 until (end - start)).forall{i =>
@@ -143,7 +143,7 @@ class PegexEvaluator(grammar: Ast.Grammar) {
         }else {
           false
         }
-      case Ast.CharClass(_, _, _) => sys.error("must not reach here")
+      case Ast.CharacterClass(_, _, _) => sys.error("must not reach here")
     }
     _eval(node)(onSuccess())
   }
