@@ -77,11 +77,9 @@ class PegexBasicSpec extends FeatureSpec with GivenWhenThen {
   }
 
   feature("The folowing PEGEX instance evaluation") {
-    scenario("should occur StackOverflowError in current naive implementation") {
+    scenario("should terminate successfully") {
       val hoge = "(a*)*;".e
-      intercept[StackOverflowError]{
-        hoge.matches("a")
-      }
+      assert(hoge.matches("aaaaaaa") === Some("aaaaaaa"))
     }
   }
 

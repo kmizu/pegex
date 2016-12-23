@@ -71,7 +71,15 @@ class PegexEvaluator(grammar: Ast.Grammar) {
             cursor = start
             if(onSuccess) true else f
           }
-          if(_eval(body){ onSuccRep(nf) }) {
+          if(_eval(body){
+            val previous = start
+            val current = cursor
+            if(previous == current) {
+              nf
+            } else {
+              onSuccRep(nf)
+            }
+          }) {
             true
           } else {
             nf
@@ -85,7 +93,15 @@ class PegexEvaluator(grammar: Ast.Grammar) {
             cursor = start
             if(onSuccess) true else f
           }
-          if(_eval(body){ onSuccRep(nf) }) {
+          if(_eval(body){
+            val previous = start
+            val current = cursor
+            if(previous == current) {
+              nf
+            } else {
+              onSuccRep(nf)
+            }
+          }) {
             true
           } else {
             nf
