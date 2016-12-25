@@ -7,7 +7,7 @@ package pegex
   * It is used as namespace.
   * @author Kota Mizushima
   */
-object Ast {
+object AstNode {
   type ==>[-A, +B] = PartialFunction[A, B]
   
   val DUMMY_POS = Pos(-1, -1)

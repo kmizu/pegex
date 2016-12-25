@@ -7,7 +7,7 @@ import scala.util.parsing.combinator._
 import scala.util.parsing.input.{CharSequenceReader, StreamReader}
 import scala.util.parsing.input.Position
 import java.io._
-import Ast._
+import AstNode._
 /**
   * This object provides a parser that parses strings in Pegex and translates
   * them into ASTs of PEGEX (which is like PEGs).
@@ -48,7 +48,7 @@ object PegexParser {
       val x :: xs = ns; xs.foldLeft(x){(a, y) => Choice(y.pos, a, y)}
     }
     lazy val Sequence: Parser[Expression]   = Prefix.+ ^^ { ns =>
-      val x :: xs = ns; xs.foldLeft(x){(a, y) => Ast.Sequence(y.pos, a, y)}
+      val x :: xs = ns; xs.foldLeft(x){(a, y) => AstNode.Sequence(y.pos, a, y)}
     }
     lazy val Prefix: Parser[Expression]     = (
       (loc <~ AND) ~ Suffix ^^ { case pos ~ e => AndPredicate(Pos(pos.line, pos.column), e) }
@@ -79,7 +79,7 @@ object PegexParser {
     )
     lazy val loc: Parser[Position]          = Parser{reader => Success(reader.pos, reader)}
     lazy val Identifier: Parser[Identifier] = loc ~ IdentStart ~ IdentCont.* ^^ {
-      case pos ~ s ~ c => Ast.Identifier(Pos(pos.line, pos.column), Symbol("" + s + c.foldLeft("")(_ + _)))
+      case pos ~ s ~ c => AstNode.Identifier(Pos(pos.line, pos.column), Symbol("" + s + c.foldLeft("")(_ + _)))
     }
     lazy val IdentStart: Parser[Char]       = crange('a','z') | crange('A','Z') | '_'
     lazy val IdentCont: Parser[Char]        = IdentStart | crange('0','9')
