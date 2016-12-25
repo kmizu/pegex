@@ -4,12 +4,9 @@ package kmizu
 package pegex
 
 import Pegex._
-import org.scalatest.{FeatureSpec, GivenWhenThen}
-import org.junit.runner.RunWith
-import org.scalatest.junit.JUnitRunner
+import org.scalatest.FeatureSpec
 
-@RunWith(classOf[JUnitRunner])
-class PegexBasicSpec extends FeatureSpec with GivenWhenThen {
+class PegexBasicSpec extends FeatureSpec {
   feature("PEGEX") {
     scenario("represents alphabet sequences") {
       val alphabets = """[a-zA-Z]*$;""".e
