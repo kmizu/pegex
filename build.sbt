@@ -1,7 +1,3 @@
-import SonatypeKeys._
-
-sonatypeSettings
-
 organization := "com.github.kmizu"
 
 name := "pegex"
