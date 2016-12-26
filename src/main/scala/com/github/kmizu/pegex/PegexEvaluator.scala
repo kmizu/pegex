@@ -31,10 +31,7 @@ class PegexEvaluator(grammar: AstNode.Grammar) {
     case AstNode.Binder(pos, n, e) => AstNode.Binder(pos, n, expand(e))
     case e => e
   }
-  private def eval(
-                    node: AstNode.Expression, resultBindings: MutableMap[Symbol, (Int, Int)], onSuccess: () => Boolean
-  ): Boolean = {
-    //TODO Consider using trampoline style, instead of direct CPS
+  private def eval(node: AstNode.Expression, resultBindings: MutableMap[Symbol, (Int, Int)], onSuccess: () => Boolean): Boolean = {
     def _eval(node: AstNode.Expression)(onSuccess: => Boolean): Boolean = node match {
       case AstNode.StringLiteral(_, str) =>
         val len = str.length

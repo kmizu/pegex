@@ -30,14 +30,14 @@ class PegexBasicSpec extends FeatureSpec {
     }
 
     scenario("nested comments") {
-      val comment = """#(C)$; C=/\*(#(C)|!(\*/).)*\*/;""".e
+      val comment = """#(C)$; C=/\*(#(C)|(?!\*/).)*\*/;""".e
       assert(comment.matches("/* comment */") === Some("/* comment */"))
       assert(comment.matches("/* nested /* comment */ ok */") === Some("/* nested /* comment */ ok */"))
       assert(comment.matches("/* incorrect comment") === None)
     }
 
     scenario("a context sensitive language") {
-      val csl = """&(#(A)!b)a+#(B)$; A=a#(A)?b; B=b#(B)?c;""".e
+      val csl = """(?=#(A)(?!b))a+#(B)$; A=a#(A)?b; B=b#(B)?c;""".e
       assert(csl.matches("aaabbbccc") === Some("aaabbbccc"))
       assert(csl.matches("aabbbccc") === None)
     }

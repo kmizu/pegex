@@ -48,17 +48,28 @@ See `*.pegex` files under `example` directory.  These are valid PEGEXes.
 **Note that in PEGEX, space characters have meanings. 
 Thus, `A=;` is different from `A= ;`**
 
-- e1e2: sequence.  e.g. ab
-- e1|e2: ordered chocie.  e.g. a|b
-- e*: repetition (>= 0).  e.g. a*
-- e+: repetition (>= 1).  e.g. a+
-- e?: zero-or-one occurrence.  e.g? e.g. a?
-- &e: and predicate.  e.g. &a
-- !e:  not predicate. e.g. !a
+- e1e2: sequence of expressions
+  - `"ab"`
+  - `"ac"`
+- e1|e2: unordered choice of expressions
+  - `"a|b"`
+  - `"(ab|bc)"`
+- e*: zero or more repetition
+  - `"a*"`
+- e+: one or more repetition.
+  - `"a+"`
+- e?: zero-or-one repetition.
+  - `"(a|b)?"`
+- (?=e): positive lookahead.
+  - `"(?=a)"`
+- (?!e): negative lookahead
+  - `"(?!a)"`
 - .: any character.
+  - `"(?!a)."` matches one character except `a`
 - _: success certainly.
-- *x*: one character.  e.g. a
-- [f-t...xyz...]: character class.  e.g. [a-zA-Z_]
-- \#(*name*):  reference of other rule.  e.g. #(Ident)
-  -  An expression #(*name*:*e*) binds parsing result of e to name
-- ##(*name*):backreference e.g. #(I:Ident):##(I)
+- *x*: one character.
+- `[f-t...xyz...]`: character class.  e.g. `[a-zA-Z_]`
+- `#(name)`:  reference of other rule.  e.g. `#(Ident)`
+  -  An expression `#(name:e)` binds parsing result of `e` to `name`
+- `##(name)`: back reference.
+  - `#(I:Ident):##(I)`

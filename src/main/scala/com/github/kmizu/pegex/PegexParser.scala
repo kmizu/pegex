@@ -54,11 +54,7 @@ object PegexParser {
     lazy val Sequence: Parser[Expression]   = Prefix.+ ^^ { ns =>
       val x :: xs = ns; xs.foldLeft(x){(a, y) => AstNode.Sequence(y.pos, a, y)}
     }
-    lazy val Prefix: Parser[Expression]     = (
-      (loc <~ AND) ~ Suffix ^^ { case pos ~ e => AndPredicate(Pos(pos.line, pos.column), e) }
-    | (loc <~ NOT) ~ Suffix ^^ { case pos ~ e => NotPredicate(Pos(pos.line, pos.column), e) }
-    | Suffix
-    )
+    lazy val Prefix: Parser[Expression]     = Suffix
     lazy val Suffix: Parser[Expression]     = (
       loc ~ Primary <~ QUESTION ^^ { case pos ~ e => Optional(Pos(pos.line, pos.column), e) }
     | loc ~ Primary <~ STAR ^^ { case pos ~ e => Repeat0(Pos(pos.line, pos.column), e) }
