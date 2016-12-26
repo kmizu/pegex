@@ -15,9 +15,7 @@ Currently, PEGEXes seem stronger than CFGs and alike [Boolean Grammars](https://
 Include the following in your `build.sbt` to add `pegex` to your project libraryDependencies:
 
 ```scala
-resolvers += "Sonatype snapshots" at "http://oss.sonatype.org/content/repositories/snapshots/"
-
-libraryDependency += "com.github.kmizu" %% "pegex" % "0.3.0-SNAPSHOT"
+libraryDependency += "com.github.kmizu" %% "pegex" % "0.3"
 ```
 
 ## Runtime Requirement
