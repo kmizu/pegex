@@ -6,8 +6,6 @@ organization := "com.github.kmizu"
 
 name := "pegex"
 
-version := "0.3.0-SNAPSHOT"
-
 scalaVersion := "2.12.1"
 
 crossScalaVersions := Seq("2.11.8", "2.12.1")
