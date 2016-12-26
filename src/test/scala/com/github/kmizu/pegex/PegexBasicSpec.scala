@@ -91,8 +91,30 @@ class PegexBasicSpec extends FeatureSpec {
 
     scenario("hat(^) and dollar($)") {
       val hello = peg"^Hello$$;"
-      hello.matches("Hello") ===  Some("Hello")
-      hello.matches("Hello, World") === None
+      assert(hello.matches("Hello") === Some("Hello"))
+      assert(hello.matches("Hello, World") === None)
+    }
+  }
+
+  feature("PEGEX with positive lookahead") {
+    scenario("?=ab") {
+      val abLA = peg"(?=ab)"
+      assert(abLA.matches("ab") === Some(""))
+      assert(abLA.matches("bc") === None)
+      val ab = peg"ab"
+      assert(ab.matches("ab") === Some("ab"))
+      assert(ab.matches("bc") === None)
+    }
+  }
+
+  feature("PEGEX with negative lookahead") {
+    scenario("?!ab") {
+      val abNLA = peg"(?!ab)"
+      assert(abNLA.matches("ab") === None)
+      assert(abNLA.matches("bc") === Some(""))
+      val ab = peg"ab"
+      assert(ab.matches("ab") === Some("ab"))
+      assert(ab.matches("bc") === None)
     }
   }
 }

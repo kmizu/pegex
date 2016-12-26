@@ -28,16 +28,20 @@ object PegexParser {
     val StartRuleName: Symbol = 'S
     private val any: Parser[Char] = elem(".", c => c != CharSequenceReader.EofCh)
     private def char(c: Char): Parser[Char] = c
-    private def crange(f: Char, t: Char): Parser[Char] = elem("[]", c => f <= c && c <= t)
-    private def cset(cs: Char*): Parser[Char] = elem("[]", c => cs.indexWhere(_ == c) >= 0)
+    private def string(literal: String): Parser[String] =
+      if(literal == "") success("") else (literal.charAt(0) ~ string(literal.substring(1))) ^^ { case x ~ xs => x + xs}
+    private def range(f: Char, t: Char): Parser[Char] = elem("[]", c => f <= c && c <= t)
+    private def set(cs: Char*): Parser[Char] = elem("[]", c => cs.indexWhere(_ == c) >= 0)
     private val escape: Map[Char, Char] = Map(
       'n' -> '\n', 'r' -> '\r', 't' -> '\t', 'f' -> '\f'
     )
     private def not[T](p: => Parser[T], msg: String): Parser[Unit] = {
       not(p) | failure(msg)
     }
-    lazy val GRAMMER: Parser[Grammar] = (loc ~ Expression <~ (SEMI_COLON <~ Spacing)) ~ Definition.* <~ EndOfFile ^^ {
-      case (pos ~ e) ~ rules => Grammar(Pos(pos.line, pos.column), StartRuleName, Rule(Pos(pos.line, pos.column), StartRuleName, e)::rules)
+    lazy val GRAMMER: Parser[Grammar] = loc ~ Expression ~ ((SEMI_COLON <~ Spacing) ~> Definition.*).? <~ EndOfFile ^^ {
+      case (pos ~ e) ~ rules =>
+        val allRules = AstNode.Rule(Pos(pos.column, pos.line), StartRuleName, e) :: rules.getOrElse(Nil)
+        Grammar(Pos(pos.line, pos.column), StartRuleName, allRules)
     }
     lazy val Definition: Parser[Rule] = (Identifier <~ EQ) ~ 
       Expression <~ SEMI_COLON <~ Spacing ^^ {
@@ -68,7 +72,9 @@ object PegexParser {
         case ident ~ None => ident
       }
     | OPEN ~> Expression <~ CLOSE
-    | (char('#') ~> char('#') ~> char('(')) ~> Identifier <~ char(')') ^^ {ident => Backreference(ident.pos, ident.name)}
+    | loc ~ (string("(?=") ~> Expression <~ CLOSE) ^^ { case l ~ e => AndPredicate(Pos(l.column, l.line), e) }
+    | loc ~ (string("(?!") ~> Expression <~ CLOSE) ^^ { case l ~ e => NotPredicate(Pos(l.column, l.line), e) }
+    | loc ~ (string("##(") ~> Identifier <~ char(')')) ^^ { case l ~ i => Backreference(Pos(l.column, l.line), i.name) }
     | CLASS
     | loc <~ DOLLAR ^^ { case pos => 
         val p = Pos(pos.line, pos.column); NotPredicate(p, Wildcard(p))
@@ -82,8 +88,8 @@ object PegexParser {
     lazy val Identifier: Parser[Identifier] = loc ~ IdentStart ~ IdentCont.* ^^ {
       case pos ~ s ~ c => AstNode.Identifier(Pos(pos.line, pos.column), Symbol("" + s + c.foldLeft("")(_ + _)))
     }
-    lazy val IdentStart: Parser[Char]       = crange('a','z') | crange('A','Z') | '_'
-    lazy val IdentCont: Parser[Char]        = IdentStart | crange('0','9')
+    lazy val IdentStart: Parser[Char]       = range('a','z') | range('A','Z') | '_'
+    lazy val IdentCont: Parser[Char]        = IdentStart | range('0','9')
     lazy val Literal: Parser[StringLiteral]           = loc ~ CHAR ^^ {
       case pos ~ c => StringLiteral(Pos(pos.line, pos.column), "" + c )
     }
@@ -99,23 +105,27 @@ object PegexParser {
       CHAR ~ '-' ~ CHAR ^^ { case f~_~t => CharacterRange(f, t) }
     | CHAR ^^ { case c => OneCharacter(c) }
     )
-    private val META_CHARS = List('$','|','&','!','?','*','+','(',')','[',']',':',';','=','#','\'','"','\\')
-    lazy val META: Parser[Char] = cset(META_CHARS:_*)
-    lazy val HEX: Parser[Char] = crange('0','9') | crange('a', 'f')
+    lazy val Meta: Parser[Char] = {
+      set(META_CHARACTERS:_*)
+    }
+    private lazy val META_CHARACTERS: List[Char] = List(
+      '$','|','&','!','?','*','+','(',')','[',']',':',';','=','#','\'','"','\\'
+    )
+    lazy val HEX: Parser[Char] = range('0','9') | range('a', 'f')
     lazy val CHAR: Parser[Char] = ( 
-      char('\\') ~> cset('n','r','t','f') ^^ { case c => escape(c) }
+      char('\\') ~> set('n','r','t','f') ^^ { case c => escape(c) }
     | char('\\') ~> char('u') ~> (HEX ~ HEX ~ HEX ~ HEX) ^^ {
         case u1 ~ u2 ~ u3 ~ u4 => Integer.parseInt("" + u1 + u2 + u3 + u4, 16).toChar
       }
-    | char('\\') ~ META ^^ { case _ ~ c => c }
-    | char('\\') ~ crange('0','2') ~ crange('0','7') ~ crange('0','7') ^^ {
+    | char('\\') ~ Meta ^^ { case _ ~ c => c }
+    | char('\\') ~ range('0','2') ~ range('0','7') ~ range('0','7') ^^ {
         case _ ~ a ~ b ~ c => Integer.parseInt("" + a + b + c, 8).toChar
       }
-    | char('\\') ~ crange('0','7') ~ opt(crange('0','7')) ^^ {
+    | char('\\') ~ range('0','7') ~ opt(range('0','7')) ^^ {
         case _ ~ a ~ Some(b) => Integer.parseInt("" + a + b, 8).toChar
         case _ ~ a ~ _ => Integer.parseInt("" + a, 8).toChar
       }
-    | not(META, " meta character " + META_CHARS.mkString("[",",","]") + " is not expected") ~>  any ^^ { case c => c}
+    | not(Meta, " meta character " + META_CHARACTERS.mkString("[",",","]") + " is not expected") ~>  any ^^ { case c => c}
     )
     lazy val DOLLAR = char('$')
     lazy val LT = char('<')
