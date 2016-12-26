@@ -21,5 +21,9 @@ object Pegex {
     def e: Pegex = new Pegex(pattern)
   }
 
+  implicit class PegexContext(val self: StringContext) extends AnyVal {
+    def peg(args: Any*): Pegex = new Pegex(self.s(args:_*))
+  }
+
   def apply(pattern: String): Pegex = new Pegex(pattern)
 }
