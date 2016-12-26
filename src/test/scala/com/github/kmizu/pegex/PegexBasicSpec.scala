@@ -88,5 +88,11 @@ class PegexBasicSpec extends FeatureSpec {
       assert(minXml.matches("<foo><bar></bar></foo>") === Some("<foo><bar></bar></foo>"))
       assert(minXml.matches("<foo><bar></bar></hoo>") === None)
     }
+
+    scenario("hat(^) and dollar($)") {
+      val hello = peg"^Hello$$;"
+      hello.matches("Hello") ===  Some("Hello")
+      hello.matches("Hello, World") === None
+    }
   }
 }

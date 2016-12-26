@@ -69,6 +69,11 @@ object AstNode {
   /** This class represents an AST of wild-card character ..
     * @param pos position in source file */
   case class Wildcard(pos: Pos) extends Expression
+  /**
+    * This class represents an AST which represents start of input
+    * @param pos position in source file *
+    */
+  case class Start(pos: Pos) extends Expression
   /** This class represents an AST of character class [...].
     * @param pos position in source file
     * @param elems the list of element constituting character class. */

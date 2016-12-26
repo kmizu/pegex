@@ -27,7 +27,7 @@ object PegexParser {
     type Elem = Char
     val StartRuleName: Symbol = 'S
     private val any: Parser[Char] = elem(".", c => c != CharSequenceReader.EofCh)
-    private def chr(c: Char): Parser[Char] = c
+    private def char(c: Char): Parser[Char] = c
     private def crange(f: Char, t: Char): Parser[Char] = elem("[]", c => f <= c && c <= t)
     private def cset(cs: Char*): Parser[Char] = elem("[]", c => cs.indexWhere(_ == c) >= 0)
     private val escape: Map[Char, Char] = Map(
@@ -62,19 +62,20 @@ object PegexParser {
     | Primary
     )
     lazy val Primary: Parser[Expression]    = (
-      (chr('#') ~> chr('(')) ~> Identifier ~ 
-      opt(chr(':') ~> chr(':') ~> Expression | chr(':') ~> Identifier) <~ chr(')') ^^ { 
+      (char('#') ~> char('(')) ~> Identifier ~
+      opt(char(':') ~> char(':') ~> Expression | char(':') ~> Identifier) <~ char(')') ^^ {
         case ident ~ Some(exp) => Binder(ident.pos, ident.name, exp)
         case ident ~ None => ident
       }
     | OPEN ~> Expression <~ CLOSE
-    | (chr('#') ~> chr('#') ~> chr('(')) ~> Identifier <~ chr(')') ^^ {ident => Backreference(ident.pos, ident.name)}
+    | (char('#') ~> char('#') ~> char('(')) ~> Identifier <~ char(')') ^^ {ident => Backreference(ident.pos, ident.name)}
     | CLASS
     | loc <~ DOLLAR ^^ { case pos => 
         val p = Pos(pos.line, pos.column); NotPredicate(p, Wildcard(p))
       }
     | loc <~ DOT ^^ { case pos => Wildcard(Pos(pos.line, pos.column)) }
-    | loc <~ chr('_') ^^ { case pos => StringLiteral(Pos(pos.line, pos.column), "") }
+    | loc <~ HAT ^^ { case pos => Start(Pos(pos.line, pos.column)) }
+    | loc <~ char('_') ^^ { case pos => StringLiteral(Pos(pos.line, pos.column), "") }
     | Literal
     )
     lazy val loc: Parser[Position]          = Parser{reader => Success(reader.pos, reader)}
@@ -87,7 +88,7 @@ object PegexParser {
       case pos ~ c => StringLiteral(Pos(pos.line, pos.column), "" + c )
     }
     lazy val CLASS: Parser[CharacterClass]       = {
-      (loc <~ chr('[')) ~ opt(chr('^')) ~ ((not(chr(']')) ~> Range).* <~ ']' ~> Spacing) ^^ {
+      (loc <~ char('[')) ~ opt(char('^')) ~ ((not(char(']')) ~> Range).* <~ ']' ~> Spacing) ^^ {
         //negative character class
         case (pos ~ Some(_) ~ rs) => CharacterClass(Pos(pos.line, pos.column), false, rs)
         //positive character class
@@ -102,41 +103,42 @@ object PegexParser {
     lazy val META: Parser[Char] = cset(META_CHARS:_*)
     lazy val HEX: Parser[Char] = crange('0','9') | crange('a', 'f')
     lazy val CHAR: Parser[Char] = ( 
-      chr('\\') ~> cset('n','r','t','f') ^^ { case c => escape(c) }
-    | chr('\\') ~> chr('u') ~> (HEX ~ HEX ~ HEX ~ HEX) ^^ {
+      char('\\') ~> cset('n','r','t','f') ^^ { case c => escape(c) }
+    | char('\\') ~> char('u') ~> (HEX ~ HEX ~ HEX ~ HEX) ^^ {
         case u1 ~ u2 ~ u3 ~ u4 => Integer.parseInt("" + u1 + u2 + u3 + u4, 16).toChar
       }
-    | chr('\\') ~ META ^^ { case _ ~ c => c }
-    | chr('\\') ~ crange('0','2') ~ crange('0','7') ~ crange('0','7') ^^ { 
+    | char('\\') ~ META ^^ { case _ ~ c => c }
+    | char('\\') ~ crange('0','2') ~ crange('0','7') ~ crange('0','7') ^^ {
         case _ ~ a ~ b ~ c => Integer.parseInt("" + a + b + c, 8).toChar
       }
-    | chr('\\') ~ crange('0','7') ~ opt(crange('0','7')) ^^ {
+    | char('\\') ~ crange('0','7') ~ opt(crange('0','7')) ^^ {
         case _ ~ a ~ Some(b) => Integer.parseInt("" + a + b, 8).toChar
         case _ ~ a ~ _ => Integer.parseInt("" + a, 8).toChar
       }
     | not(META, " meta character " + META_CHARS.mkString("[",",","]") + " is not expected") ~>  any ^^ { case c => c}
     )
-    lazy val DOLLAR = chr('$')
-    lazy val LT = chr('<')
-    lazy val GT = chr('>')
-    lazy val COLON = chr(':')
-    lazy val SEMI_COLON = chr(';')
-    lazy val EQ = chr('=')
-    lazy val BAR = chr('|')
-    lazy val AND = chr('&')
-    lazy val NOT = chr('!')
-    lazy val QUESTION = chr('?')
-    lazy val STAR = chr('*')
-    lazy val PLUS = chr('+')
-    lazy val OPEN = chr('(')
-    lazy val CLOSE = chr(')')
-    lazy val DOT = chr('.')
+    lazy val DOLLAR = char('$')
+    lazy val LT = char('<')
+    lazy val GT = char('>')
+    lazy val COLON = char(':')
+    lazy val SEMI_COLON = char(';')
+    lazy val EQ = char('=')
+    lazy val BAR = char('|')
+    lazy val AND = char('&')
+    lazy val NOT = char('!')
+    lazy val QUESTION = char('?')
+    lazy val STAR = char('*')
+    lazy val PLUS = char('+')
+    lazy val OPEN = char('(')
+    lazy val CLOSE = char(')')
+    lazy val DOT = char('.')
+    lazy val HAT = char('^')
     lazy val Spacing = (Space | Comment).*
     lazy val Comment = (
-      chr('/') ~ chr('/') ~ (not(EndOfLine) ~ any).* ~ EndOfLine
+      char('/') ~ char('/') ~ (not(EndOfLine) ~ any).* ~ EndOfLine
     )
-    lazy val Space = chr(' ') | chr('\t') | EndOfLine
-    lazy val EndOfLine = chr('\r') ~ chr('\n') | chr('\n') | chr('\r')
+    lazy val Space = char(' ') | char('\t') | EndOfLine
+    lazy val EndOfLine = char('\r') ~ char('\n') | char('\n') | char('\r')
     lazy val EndOfFile = not(any)
   }
 

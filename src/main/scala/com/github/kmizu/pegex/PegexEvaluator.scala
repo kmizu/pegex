@@ -64,6 +64,12 @@ class PegexEvaluator(grammar: AstNode.Grammar) {
           cursor += 1
           onSuccess
         }
+      case AstNode.Start(_) =>
+        if(cursor == 0) {
+          onSuccess
+        } else {
+          false
+        }
       case AstNode.Repeat0(_, body) =>
         def onSuccRep(f: => Boolean): Boolean = {
           val start = cursor
