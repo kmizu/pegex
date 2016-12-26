@@ -97,7 +97,7 @@ object AstNode {
   /** This class represents an AST of backward-reference.
     * @param pos position in source file
     * @param name the name of backward-reference */
-  case class Backreference(pos: Pos, name: Symbol) extends Expression
+  case class BackReference(pos: Pos, name: Symbol) extends Expression
   /** This trait represents common super-type of element in character class. */
   sealed trait CharacterClassElement
   /** An element of character class representing one character. */

@@ -7,6 +7,7 @@ import scala.util.parsing.combinator._
 import scala.util.parsing.input.{CharSequenceReader, StreamReader}
 import scala.util.parsing.input.Position
 import java.io._
+
 import AstNode._
 /**
   * This object provides a parser that parses strings in Pegex and translates
@@ -62,15 +63,13 @@ object PegexParser {
     | Primary
     )
     lazy val Primary: Parser[Expression]    = (
-      (char('#') ~> char('(')) ~> Identifier ~
-      opt(char(':') ~> char(':') ~> Expression | char(':') ~> Identifier) <~ char(')') ^^ {
-        case ident ~ Some(exp) => Binder(ident.pos, ident.name, exp)
-        case ident ~ None => ident
-      }
-    | OPEN ~> Expression <~ CLOSE
+      loc ~ (string("(?<") ~> Identifier <~ string(">")) ~ Expression <~ string(")") ^^ { case _ ~ p ~ e => Binder(p.pos, p.name, e) }
     | loc ~ (string("(?=") ~> Expression <~ CLOSE) ^^ { case l ~ e => AndPredicate(Pos(l.column, l.line), e) }
     | loc ~ (string("(?!") ~> Expression <~ CLOSE) ^^ { case l ~ e => NotPredicate(Pos(l.column, l.line), e) }
-    | loc ~ (string("##(") ~> Identifier <~ char(')')) ^^ { case l ~ i => Backreference(Pos(l.column, l.line), i.name) }
+    | loc ~ (string("\\g'") ~> Identifier <~ string("'")) ^^ { case l ~ i => i }
+    | loc ~ (string("#{") ~> Identifier <~ string("}")) ^^ { case l ~ i => i }
+    | loc ~ (string("\\k<") ~> Identifier <~ string(">")) ^^ { case l ~ i => BackReference(Pos(l.column, l.line), i.name) }
+    | OPEN ~> Expression <~ CLOSE
     | CLASS
     | loc <~ DOLLAR ^^ { case pos => 
         val p = Pos(pos.line, pos.column); NotPredicate(p, Wildcard(p))

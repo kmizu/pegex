@@ -4,11 +4,8 @@ package kmizu
 package pegex
 
 class Pegex(pattern: String) {
-  private[this] val interpreter = {
-    new PegexEvaluator(
-      PegexParser.parse(pattern)
-    )
-  }
+  val grammar = PegexParser.parse(pattern)
+  val interpreter = new PegexEvaluator(grammar)
   def matches(input: String): Option[String] = {
     interpreter.matches(input)
   }

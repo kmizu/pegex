@@ -148,7 +148,7 @@ class PegexEvaluator(grammar: AstNode.Grammar) {
           resultBindings(name) = (start, cursor)
           onSuccess
         }
-      case AstNode.Backreference(_, name) =>
+      case AstNode.BackReference(_, name) =>
         val (start, end) = resultBindings(name)
         def matches(): Boolean = {
           (0 until (end - start)).forall{i =>
