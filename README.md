@@ -66,7 +66,3 @@ Thus, `A=;` is different from `A= ;`**
 - _: success certainly.
 - *x*: one character.
 - `[f-t...xyz...]`: character class.  e.g. `[a-zA-Z_]`
-- `#(name)`:  reference of other rule.  e.g. `#(Ident)`
-  -  An expression `#(name:e)` binds parsing result of `e` to `name`
-- `##(name)`: back reference.
-  - `#(I:Ident):##(I)`
