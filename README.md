@@ -48,22 +48,31 @@ See `*.pegex` files under `example` directory.  These are valid PEGEXes.
 **Note that in PEGEX, space characters have meanings. 
 Thus, `A=;` is different from `A= ;`**
 
-- e1e2: sequence of expressions
+- `e1e2`: sequence of expressions
   - `"ab"`
   - `"ac"`
-- e1|e2: unordered choice of expressions
+- `e1|e2`: unordered choice of expressions
   - `"a|b"`
   - `"(ab|bc)"`
-- e*: zero or more repetition
+- `e*`: zero or more repetition
   - `"a*"`
-- e+: one or more repetition.
+- `e+`: one or more repetition.
   - `"a+"`
-- e?: zero-or-one repetition.
+- `e?`: zero-or-one repetition.
   - `"(a|b)?"`
-- (?=e): positive lookahead.
+- `(?=e)`: positive lookahead.
   - `"(?=a)"`
-- (?!e): negative lookahead
+- `(?!e)`: negative lookahead
   - `"(?!a)"`
+- `(?<name>e)`: named capture
+-  `\g'E'`: (recursive) rule invocation of `E`
+   - is identical to `#{E}`
+- `\k<name>`: back reference of the named capture of `name`
+
+```
+#{E}$; E=<(?<tag>#{I})>#{E}*</\k<tag>>; I=[a-z]+;
+```
+
 - .: any character.
   - `"(?!a)."` matches one character except `a`
 - _: success certainly.
