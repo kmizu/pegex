@@ -109,7 +109,7 @@ object PegexParser {
       set(META_CHARACTERS:_*)
     }
     private lazy val META_CHARACTERS: List[Char] = List(
-      '$','|','&','!','?','*','+','(',')','[',']',':',';','=','#','\'','"','\\'
+      '$', '^', '|','&','!','?','*','+','(',')','[',']',';','=','#','\'','"','\\'
     )
     lazy val HEX: Parser[Char] = range('0','9') | range('a', 'f')
     lazy val CHAR: Parser[Char] = ( 

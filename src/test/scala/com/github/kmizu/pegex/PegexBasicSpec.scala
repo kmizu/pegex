@@ -50,19 +50,13 @@ class PegexBasicSpec extends FeatureSpec {
     }
 
     scenario("name:value pair") {
-      val nvStr = """#(N::[a-zA-Z_][a-zA-Z0-9_]*)\:#(V::[0-9]+)$;"""
-      val nvGreedy = nvStr.e
-      val r1 = nvGreedy.matchesWithGroup("a:1")
+      val nv = peg"""#(N::[a-zA-Z_][a-zA-Z0-9_]*):#(V::[0-9]+)$$;"""
+      val r1 = nv.matchesWithGroup("a:1")
       assert(r1.result === Some("a:1"))
       assert(r1.group.get('N) === Some("a"))
       assert(r1.group.get('V) === Some("1"))
       assert(r1('N) === "a")
       assert(r1('V) === "1")
-      val nvPossessive = nvStr.e
-      val r2 = nvPossessive.matchesWithGroup("a:1")
-      assert(r2.result === Some("a:1"))
-      assert(r2.group.get('N) === Some("a"))
-      assert(r2.group.get('V) === Some("1"))
     }
   }
 
