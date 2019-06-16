@@ -2,9 +2,11 @@ organization := "com.github.kmizu"
 
 name := "pegex"
 
-scalaVersion := "2.12.3"
+def Scala212 = "2.12.8"
 
-crossScalaVersions := Seq("2.11.11", "2.12.3")
+scalaVersion := Scala212
+
+crossScalaVersions := Seq("2.11.12", Scala212, "2.13.0")
 
 publishMavenStyle := true
 
@@ -22,11 +24,12 @@ testOptions in Test += Tests.Argument("-u", "target/scalatest-reports")
 scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature", "-language:implicitConversions")
 
 libraryDependencies ++= Seq(
-  "org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.4",
+  "org.scala-lang.modules" %% "scala-parser-combinators" % "1.1.2",
   "junit" % "junit" % "4.7" % "test",
-  "org.scalatest" %% "scalatest" % "3.0.0" % "test"
+  "org.scalatest" %% "scalatest" % "3.0.8" % "test"
 )
 
+fork in Test := true
 
 initialCommands in console += {
   Iterator().map("import "+).mkString("\n")

@@ -4,8 +4,12 @@ cache:
   directories:
   - $HOME/.ivy2/cache
   - $HOME/.sbt/launchers
-jdk: oraclejdk8
+dist: xenial
+jdk: openjdk8
 script:
 - sbt ++$TRAVIS_SCALA_VERSION test
 - find $HOME/.ivy2 -name "ivydata-*.properties" | xargs rm
-scala: 2.12.1
+scala:
+- 2.13.0
+- 2.12.8
+- 2.11.12

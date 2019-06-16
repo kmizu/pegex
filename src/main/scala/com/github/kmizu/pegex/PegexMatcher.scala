@@ -36,7 +36,7 @@ object PegexMatcher {
     System.err.println("time " + (System.currentTimeMillis() - start) + "ms")
     result
   }
-  def main(args: Array[String]){
+  def main(args: Array[String]): Unit = {
     args.toList match {
       case Nil =>
         //REPL mode
