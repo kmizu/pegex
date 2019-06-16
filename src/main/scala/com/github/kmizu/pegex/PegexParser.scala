@@ -174,7 +174,7 @@ object PegexParser {
     parse("", new StringReader(pattern))
   }
   
-  def main(args: Array[String]) {
+  def main(args: Array[String]): Unit = {
     val g = parse(args(0), new FileReader(args(0)))
     println(g)
   }
