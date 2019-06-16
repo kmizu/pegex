@@ -55,8 +55,8 @@ class PegexBasicSpec extends FeatureSpec {
       assert(r1.result === Some("a:1"))
       assert(r1.group.get('N) === Some("a"))
       assert(r1.group.get('V) === Some("1"))
-      assert(r1('N) === "a")
-      assert(r1('V) === "1")
+      assert(r1.group('N) === "a")
+      assert(r1.group('V) === "1")
     }
   }
 
