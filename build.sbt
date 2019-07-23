@@ -2,11 +2,13 @@ organization := "com.github.kmizu"
 
 name := "pegex"
 
+def Scala211 = "2.11.12"
 def Scala212 = "2.12.8"
+def Scala213 = "2.13.0"
 
-scalaVersion := Scala212
+scalaVersion := Scala213
 
-crossScalaVersions := Seq("2.11.12", Scala212, "2.13.0")
+crossScalaVersions := Seq(Scala211, Scala212, Scala211)
 
 publishMavenStyle := true
 
