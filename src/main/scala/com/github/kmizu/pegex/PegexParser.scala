@@ -8,7 +8,7 @@ import scala.util.parsing.input.{CharSequenceReader, StreamReader}
 import scala.util.parsing.input.Position
 import java.io._
 
-import AstNode._
+import Ast._
 /**
   * This object provides a parser that parses strings in Pegex and translates
   * them into ASTs of PEGEX (which is like PEGs).
@@ -41,7 +41,7 @@ object PegexParser {
     }
     lazy val GRAMMER: Parser[Grammar] = loc ~ Expression ~ ((SEMI_COLON <~ Spacing) ~> Definition.*).? <~ EndOfFile ^^ {
       case (pos ~ e) ~ rules =>
-        val allRules = AstNode.Rule(Pos(pos.column, pos.line), StartRuleName, e) :: rules.getOrElse(Nil)
+        val allRules = Ast.Rule(Pos(pos.column, pos.line), StartRuleName, e) :: rules.getOrElse(Nil)
         Grammar(Pos(pos.line, pos.column), StartRuleName, allRules)
     }
     lazy val Definition: Parser[Rule] = (Identifier <~ EQ) ~ 
@@ -53,7 +53,7 @@ object PegexParser {
       val x :: xs = ns; xs.foldLeft(x){(a, y) => Choice(y.pos, a, y)}
     }
     lazy val Sequence: Parser[Expression]   = Prefix.+ ^^ { ns =>
-      val x :: xs = ns; xs.foldLeft(x){(a, y) => AstNode.Sequence(y.pos, a, y)}
+      val x :: xs = ns; xs.foldLeft(x){(a, y) => Ast.Sequence(y.pos, a, y)}
     }
     lazy val Prefix: Parser[Expression]     = Suffix
     lazy val Suffix: Parser[Expression]     = (
@@ -81,7 +81,7 @@ object PegexParser {
     )
     lazy val loc: Parser[Position]          = Parser{reader => Success(reader.pos, reader)}
     lazy val Identifier: Parser[Identifier] = loc ~ IdentStart ~ IdentCont.* ^^ {
-      case pos ~ s ~ c => AstNode.Identifier(Pos(pos.line, pos.column), Symbol("" + s + c.foldLeft("")(_ + _)))
+      case pos ~ s ~ c => Ast.Identifier(Pos(pos.line, pos.column), Symbol("" + s + c.foldLeft("")(_ + _)))
     }
     lazy val IdentStart: Parser[Char]       = range('a','z') | range('A','Z') | '_'
     lazy val IdentCont: Parser[Char]        = IdentStart | range('0','9')
