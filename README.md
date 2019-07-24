@@ -10,16 +10,16 @@ PEGEX (Parsing Expression Grammar EXtended by back reference with regex-like not
 PEGEX provides both power of PEG and light-weight syntax of regular expressions.  It accepts a PEG-variant with regex-like notations.  
 Currently, PEGEXes seem stronger than CFGs and alike [Boolean Grammars](https://en.wikipedia.org/wiki/Boolean_grammar).
 
-## For sbt user
+## Usage
 
-Include the following in your `build.sbt` to add `pegex` to your project libraryDependencies:
+Add the following line to your `build.sbt`
 
 ```scala
-libraryDependency += "com.github.kmizu" %% "pegex" % "0.3"
+libraryDependency += "com.github.kmizu" %% "pegex" % "1.0.0"
 ```
 
-## Runtime Requirement
-* Scala 2.11.X, Scala 2.12.X, or Scala 2.13.X
+## Requirement
+* Scala 2.11.X, Scala 2.12.X, and Scala 2.13.X
 * JDK 1.8.0 or later
 
 ## Build Requirement
@@ -66,3 +66,10 @@ Thus, `A=;` is different from `A= ;`**
 - _: success certainly.
 - *x*: one character.
 - `[f-t...xyz...]`: character class.  e.g. `[a-zA-Z_]`
+
+## Releate Note
+
+### 1.0.0
+
+- Support Scala 2.11.X, 2.12.X, and 2.13.X
+- From this version, follow Semantic Versioning 
