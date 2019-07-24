@@ -8,7 +8,7 @@ def Scala213 = "2.13.0"
 
 scalaVersion := Scala213
 
-crossScalaVersions := Seq(Scala211, Scala212, Scala211)
+crossScalaVersions := Seq(Scala211, Scala212, Scala213)
 
 publishMavenStyle := true
 

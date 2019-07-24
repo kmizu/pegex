@@ -1,0 +1,1266 @@
+[33mcommit d3a7959c38e66f2a65f79947a6572c803baac4bf[m[33m ([m[1;36mHEAD -> [m[1;32mmaster[m[33m, [m[1;33mtag: releases/1.0.2[m[33m)[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Wed Jul 24 08:49:10 2019 +0900
+
+    Setting version to 1.0.2
+
+[33mcommit 8e4d93c8510ec5818ac8506e6a1d4678f61566b9[m[33m ([m[1;33mtag: releases/1.0.1[m[33m)[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Wed Jul 24 08:36:50 2019 +0900
+
+    Setting version to 1.0.1
+
+[33mcommit 407d99f99c33ef58109ba849a1a435cb284e5f30[m[33m ([m[1;33mtag: releases/1.0.0[m[33m)[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Wed Jul 24 08:27:57 2019 +0900
+
+    Setting version to 1.0.0
+
+[33mcommit 8722b061dca00214171562c47e0560093925e8bf[m[33m ([m[1;31morigin/master[m[33m, [m[1;31morigin/HEAD[m[33m)[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Wed Jul 24 08:26:25 2019 +0900
+
+    Update README to release 1.0.0
+
+[33mcommit 83f33af69edc92a7d192b9e1a26eaa22b3267688[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Wed Jul 24 08:20:31 2019 +0900
+
+    Breaking changes: rename AstNode to Ast
+    
+    For better naming
+
+[33mcommit e405b2e59a130388f862f3eaf1ef3a1ab060dde6[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Wed Jul 24 08:18:23 2019 +0900
+
+    Improve build definition
+
+[33mcommit 6c0355ea78e1c8133b81e5e7f84bb2d21cb73914[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Wed Jul 24 08:14:25 2019 +0900
+
+    Rename License file
+
+[33mcommit 916a17d46da9a1ef0a86647a109950cf5951300d[m
+Merge: dd56666 1eca004
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Sun Jun 16 13:27:42 2019 +0900
+
+    Merge pull request #4 from xuwei-k/Scala-2.13.0
+    
+    Scala 2.13.0
+
+[33mcommit 1eca0049c2ae1fe8da46a53da61278079eaa06d3[m
+Author: xuwei-k <6b656e6a69@gmail.com>
+Date:   Sun Jun 16 12:44:12 2019 +0900
+
+    fix procedure syntax
+    
+    procedure syntax is deprecated https://github.com/scala/scala/commit/1d4d901fcea0a162cd139836b246e85cc0130a6b
+
+[33mcommit e2c9d13b64b7a8c70ce875485a4fbb26aabbda83[m
+Author: xuwei-k <6b656e6a69@gmail.com>
+Date:   Sun Jun 16 12:44:05 2019 +0900
+
+    Scala 2.13.0
+
+[33mcommit dd566668f2076fac03dc4adae4ec73602df13765[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Fri Oct 6 18:21:07 2017 +0900
+
+    Use sbt 1.0.2
+
+[33mcommit b5df7fa1d643ca70b7395a924f8b79994ae1b4fb[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Mon Dec 26 17:01:55 2016 +0900
+
+    Remove obsolte features
+
+[33mcommit 05fea6b8541cce0c8a2b4994c7466c0952584621[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Mon Dec 26 16:59:45 2016 +0900
+
+    Updte dependencies
+
+[33mcommit 3fa9355a3c67f4565ca17e5c4b1814957e33ee95[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Mon Dec 26 16:57:38 2016 +0900
+
+    Setting version to 0.4-SNAPSHOT
+
+[33mcommit 4621fb79f7605e0d5e97fcd46ac99e20151e9faa[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Mon Dec 26 16:57:02 2016 +0900
+
+    Setting version to 0.3
+
+[33mcommit e9de3c3b9ab175c2879de857ee4180ac42f8b33f[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Mon Dec 26 16:55:33 2016 +0900
+
+    Setting version to 0.4-SNAPSHOT
+
+[33mcommit 31fed0b50350cd7d7d7cd3dddc297e6569627d0e[m[33m ([m[1;33mtag: releases/0.3[m[33m)[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Mon Dec 26 16:54:49 2016 +0900
+
+    update README.md
+
+[33mcommit aabced3c8de61ac4f6dc975fd8d6c41c9d4f9700[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Mon Dec 26 16:54:49 2016 +0900
+
+    Setting version to 0.3
+
+[33mcommit bf5a62a1b0611d8ebfdf4ad36e3421cc25c499fb[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Mon Dec 26 16:53:48 2016 +0900
+
+    Set version
+
+[33mcommit 01c91e33e8533c0821bc5f088833170d91e25979[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Mon Dec 26 16:52:38 2016 +0900
+
+    Update README
+
+[33mcommit 35209ca67eb5529eaeab26bcbc840482ba4e5ea3[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Mon Dec 26 16:45:36 2016 +0900
+
+    Add documents
+
+[33mcommit f4f5aff605bfeb154b7f78b2f31a99cc0bb896fc[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Mon Dec 26 16:34:15 2016 +0900
+
+    Support Ruby's regex-like notations
+    
+    * named capture: (?<name>pat)
+    * subexpression call: \g'name'
+      * is idential to #{name}, which is not included in Ruby
+    * back reference: \k<name>
+
+[33mcommit 2b5c7e998f58f5d9964dc0eeafb0acced7f26b44[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Mon Dec 26 15:12:05 2016 +0900
+
+    Remove PEG-style lookahead operators (! and &).
+
+[33mcommit b8527785585f41243b37212136c27a2d3d034965[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Mon Dec 26 14:51:49 2016 +0900
+
+    Update meta characters
+
+[33mcommit 0c161cf8cd91078f6d658185d18453a0a1aaf011[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Mon Dec 26 14:44:11 2016 +0900
+
+    regex-like positive-negative lookahead operators
+
+[33mcommit 2c1f182ed678651517d851cf9846c5b367924c0c[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Mon Dec 26 14:04:07 2016 +0900
+
+    ^, start of input, is supported
+
+[33mcommit 1f18832b1161ccd9a583fe77dbd58ad5e7dd94e2[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Mon Dec 26 13:38:23 2016 +0900
+
+    Refactor tests
+
+[33mcommit 5aa6bceb6c7b042f750dac9648a3bc8ee0ed4df9[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Mon Dec 26 13:24:15 2016 +0900
+
+    Update README.md
+
+[33mcommit 6a7d2f8d3eb6b372b1e875966c813e57f20e2a52[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Mon Dec 26 13:19:32 2016 +0900
+
+    Remove useless settings
+
+[33mcommit fd361dbb5b1b3c2a534e1d97903f6b7790c8447c[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Mon Dec 26 13:16:54 2016 +0900
+
+    Use sbt-release
+
+[33mcommit 2e821a92885d1c76e36cd0e7b5023b268df42ccb[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Mon Dec 26 13:15:03 2016 +0900
+
+    Separate version from build.sbt
+
+[33mcommit 5c74f2444dcab645eea7fee0c336ccc56662a2a1[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Sun Dec 25 12:40:24 2016 +0900
+
+    Remove dependencies to junit
+
+[33mcommit c9780683819a28c930fce707bf480aa7f9344c15[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Sun Dec 25 12:23:46 2016 +0900
+
+    Rename Ast.scala to AstNode.scala
+
+[33mcommit 8ae4b8138155b414b0265ce44a5f171164c6605b[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Fri Dec 23 16:04:00 2016 +0900
+
+    Updare .travis.yml to fix build failure
+
+[33mcommit 452664d178f7bb96c473d5af286a737712df8650[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Fri Dec 23 15:55:43 2016 +0900
+
+    Update .travis.yml to build successfully
+
+[33mcommit bd4ffeac992a9e1a51f7288ef059b654d7fd709e[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Fri Dec 23 15:48:52 2016 +0900
+
+    The evaluation of nested repetition terminates successfully
+
+[33mcommit 4d1e8734c92202a3631b74f807a1b5685ad06e8a[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Fri Dec 23 15:41:53 2016 +0900
+
+    Use longer (or canonical) name
+
+[33mcommit 64fc00158ffbfd737171c974a1e3c6890bc7ae32[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Fri Dec 23 15:34:45 2016 +0900
+
+    Simplify code using by-name parameter
+
+[33mcommit a00f7e58d467a0e704b18179dce5acd0120411bb[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Fri Dec 23 15:27:28 2016 +0900
+
+    Refactor: remove `onFailure`
+
+[33mcommit b26773fd127de2e999a15901cb3cd001664cd50d[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Fri Dec 23 14:15:18 2016 +0900
+
+    Set crossScalaVersions
+
+[33mcommit 41c0b8e246873cd01cf948f703dfc2339a147257[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Fri Dec 23 14:11:57 2016 +0900
+
+    Update sbt.version
+
+[33mcommit bbbbdae3f3e44dfd813eeff6a910a3a23cd690b0[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Sat May 21 21:43:18 2016 +0900
+
+    Update sbt.version
+
+[33mcommit 9db18cb88babf2022e93308a4970ef82c618871f[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Sat May 30 00:29:21 2015 +0900
+
+    Fix .travis.yml
+
+[33mcommit a58ca789712596cf6b7bc63a218179fadc7e0feb[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Fri May 29 22:24:30 2015 +0900
+
+    Remove unneeded license files.
+
+[33mcommit c417013260704257b0932a7de5e48803bbc3a712[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Fri May 29 18:35:12 2015 +0900
+
+    Remove redundant settings.
+
+[33mcommit 774a37bbde382f03eca5df098f205ea8e9415b0b[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Fri May 29 17:46:49 2015 +0900
+
+    Change to use implicit classes and value classes
+
+[33mcommit 357077319d4dbb834f6f2a8e7f15bb89a0d2f5d9[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Fri May 29 17:44:04 2015 +0900
+
+    Remove an unused class.
+
+[33mcommit 75a8a2d23f173a735e06060bf74ccef0ab1bbc3b[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Fri May 29 17:27:04 2015 +0900
+
+    Add scaladoc comment.
+
+[33mcommit dac88e89dee72ae719ad6e8551ab0a3fdfd0e99b[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Fri May 29 16:49:21 2015 +0900
+
+    Refactoring
+
+[33mcommit 2c0aa53fc9aed1aa8811cd161735e5ec40cd20fe[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Fri May 29 08:27:04 2015 +0900
+
+    Add documentation comment
+
+[33mcommit 76ff69db697edb9db105f210abdd3db7e5da5916[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Fri May 29 00:09:07 2015 +0900
+
+    All tests migration from Specs2 to ScalaTest succeeded!
+
+[33mcommit 25d5b7722f72857e81e602812ee40bf12dc66c18[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Thu May 28 23:16:02 2015 +0900
+
+    Remove com.github.kmizu.pegex.Recognizer, which is no longer needed
+
+[33mcommit 1f84f3f320f324bcf781b35e94e6da637ede9661[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Sat Apr 11 17:26:50 2015 +0900
+
+    Add email-address.pegex
+
+[33mcommit 20f241e90153788b175948ac442043c2218d4ced[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Thu Mar 26 03:02:23 2015 +0900
+
+    Fix typo
+
+[33mcommit 3dc99374398e8ca644f99468737dd825c4fd5468[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Thu Mar 26 02:20:38 2015 +0900
+
+    LineCounter.scala is no longer needed
+
+[33mcommit ab9106ef2b7295cf21d3cee699352803782fa256[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Thu Mar 26 02:15:37 2015 +0900
+
+    Add test that occurs StackOverflowError
+
+[33mcommit f08f5cfca034c67bcf00107890cdf0aff15962f1[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Mon Mar 9 00:22:03 2015 +0900
+
+    Drop Scala 2.10 support
+
+[33mcommit 179cd3891f2bbede457d4576f9b417d59c4dde9c[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Mon Mar 9 00:15:20 2015 +0900
+
+    A little changes
+
+[33mcommit a9767a5f161976659ddf097273d8902e0f501f81[m
+Merge: 386c564 51bea18
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Mon Mar 9 00:13:36 2015 +0900
+
+    Merge pull request #3 from gitter-badger/gitter-badge
+    
+    Add a Gitter chat badge to README.md
+
+[33mcommit 386c564bafaa9448441679190fef65bc361ee50d[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Sun Mar 8 23:00:53 2015 +0900
+
+    Update .travis.yml
+
+[33mcommit dbf531f8159440bc3f7aa58f903388912d035a07[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Sun Mar 8 22:59:32 2015 +0900
+
+    Remove warning because of using readLine() directly.
+
+[33mcommit 744089f99ce819a1d0442592760e28b88e04aed7[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Sun Mar 8 22:58:14 2015 +0900
+
+    Remove Instructions, which is no longer used.
+
+[33mcommit bf51f1eaa3ce4eb426bb0697c86bd9c1947a939a[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Sun Mar 8 22:52:08 2015 +0900
+
+    Fix build.sbt and README.md to drop Scala 2.9.X support.
+
+[33mcommit 487359700453c740985daa05cf609951ed93750a[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Sun Mar 8 22:50:14 2015 +0900
+
+    Add TODO comment about trampoline.
+
+[33mcommit 4b7745b6137539bfd83297422f139ff85ee52386[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Sun Mar 8 22:18:35 2015 +0900
+
+    Change command-line tool behaviour.
+
+[33mcommit 2c83d30230f3db3a075343f9a0855713ff8ba2d3[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Sun Mar 8 21:57:06 2015 +0900
+
+    Update scalaVersion to 2.11.6
+
+[33mcommit 51bea184da1296acc60589f70f77ac137dcb16a0[m
+Author: The Gitter Badger <badger@gitter.im>
+Date:   Sun Mar 8 12:05:16 2015 +0000
+
+    Added Gitter badge
+
+[33mcommit c4ddef5d490d33c7a3568de513c435ce06c65c04[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Sat Jan 24 22:59:04 2015 +0900
+
+    Change from https to http
+
+[33mcommit d218f3df22407ec32d5adbf3ff1a23c56f13aefc[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Sat Jan 24 22:27:20 2015 +0900
+
+    Fix problems against cross-building
+
+[33mcommit 1d99186f8ee7241a406e4c7a2535b7dfd38752e4[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Sat Jan 24 21:15:30 2015 +0900
+
+    Fix mistake.
+
+[33mcommit d5dca26a61c219faa450b3f9fcb9a94f730a27a2[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Sat Jan 24 21:13:42 2015 +0900
+
+    Change versioning
+
+[33mcommit c3de62086600839f98f242c802fdec318b0aa865[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Sat Jan 24 21:11:18 2015 +0900
+
+    Add some description
+
+[33mcommit 63cb908ca7c6462e61f863de64f5839b151dcce0[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Sat Jan 24 21:09:13 2015 +0900
+
+    `benchmark` directory is removed it's no longer needed
+
+[33mcommit a6608e8f1726ecfac378ebe7b59679e909ee7505[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Sat Jan 24 21:06:29 2015 +0900
+
+    Add note
+
+[33mcommit 341af429ca220431e2fd736ef49df1a6d7741c39[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Sat Jan 24 21:02:04 2015 +0900
+
+    Renaming this to PegexEvaluator
+
+[33mcommit 944839094347ae73021ddff73ff6daa7d47f613d[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Sat Jan 24 13:06:06 2015 +0900
+
+    Remove .peg but not .pegex since .peg is no longer supported
+
+[33mcommit d67d2201e57493c01a7f500610a01ce3364160e3[m
+Merge: aa54ecb 36fc4a3
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Sat Jan 24 12:23:07 2015 +0900
+
+    Merge branch 'master' of github.com:kmizu/pegex
+
+[33mcommit aa54ecbe807ec514a0a7a7dbbafbc4b4cf9b1b8a[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Sat Jan 24 12:22:44 2015 +0900
+
+    Remove 'possessive' matcher and the related classes
+
+[33mcommit 36fc4a3b96025919886fd3b2c96c5c86175a9ea1[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Sat Jan 24 08:30:02 2015 +0900
+
+    Update README.md
+    
+    Add description about version
+
+[33mcommit 284575329a0531fb600db10016c3151aad3f92d4[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Sat Jan 24 08:20:08 2015 +0900
+
+    Fix build.sbt to use specs2-junit in Scala 2.11
+
+[33mcommit 3af705d64b69858358f3cd695b0d194b17b94e30[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Sat Jan 24 00:41:43 2015 +0900
+
+    Use sbt from 0.13.1 0.13.7
+    Update scala from 2.10.3 to 2.10.5
+
+[33mcommit c390d3c180ab95ea96f5db12f9729b2b2786c805[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Sat Jan 24 00:15:04 2015 +0900
+
+    Update Copyright
+
+[33mcommit e928e22028cdc0919dcfe21d6c734518bf261d48[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Tue Feb 25 00:41:20 2014 +0900
+
+    Fix regression.
+
+[33mcommit 4a3b4a754211d8e61148b294c245f593a5c897c6[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Tue Feb 18 01:31:12 2014 +0900
+
+    Show Build Status
+
+[33mcommit 2d25ed8b306056256216f5d7303257b2325787bb[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Tue Feb 18 01:28:46 2014 +0900
+
+    Add .travis.yml
+
+[33mcommit 5087e94ad4aea15814bf17d1867c18040fea3372[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Tue Feb 11 23:34:39 2014 +0900
+
+    Make Instruction sealed abstract class
+
+[33mcommit 55d8f0c06f974cf73d321fdfd484a4da94ea13ba[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Tue Feb 11 23:28:47 2014 +0900
+
+    Some refactorings
+
+[33mcommit dbd4fca5238fdef60994ae04215dc1abf4cc9b23[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Tue Feb 11 23:18:45 2014 +0900
+
+    Make `Recognizer` trait abstract class
+
+[33mcommit 9e1b8f57f3efc91444437209049f7451aba0232f[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Tue Feb 11 23:17:01 2014 +0900
+
+    Rename `Parser` trait to `Recognizer`
+
+[33mcommit a79addcba756040b6bdc2d510a0c285384c04aac[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Mon Feb 10 01:12:12 2014 +0900
+
+    Replace List[T] with Vector[T] in some cases to tune up
+
+[33mcommit 857cc60e91d9f5d09df3d9488c0306815fa0471a[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Mon Feb 10 00:48:52 2014 +0900
+
+    Refactoring
+
+[33mcommit 9b0273e6936a9be934bed7a9c31dd95c474122f4[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Sat Feb 8 18:44:38 2014 +0900
+
+    More renaming
+
+[33mcommit de93798f50359bed395bc06183b9d236e326a045[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Sat Feb 8 18:37:38 2014 +0900
+
+    Refactor: renaming
+
+[33mcommit adbb41501098c264a025676f14cbd86abaf9ff56[m
+Merge: 726e9a8 523bfec
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Fri Feb 7 10:23:36 2014 +0900
+
+    Merge branch 'master' of github.com:kmizu/pegex
+
+[33mcommit 523bfec448b49a0f68b12e2ba2be6aed449eff49[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Fri Feb 7 10:22:50 2014 +0900
+
+    Update README.md to fix mistake.  Thanks @xuwei-k
+
+[33mcommit 726e9a8c6c704d12ff51a1d39dbcaef646429b24[m
+Merge: 599ed72 12e2bfe
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Fri Feb 7 03:09:22 2014 +0900
+
+    Merge branch 'master' of github.com:kmizu/pegex
+
+[33mcommit 12e2bfe9048fe22cd294565af6b179d6eada477f[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Fri Feb 7 03:08:59 2014 +0900
+
+    Update README.md
+
+[33mcommit 46d83927091b612c94556803f0c75b85ca8c4c7e[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Fri Feb 7 03:08:05 2014 +0900
+
+    Update README.md
+
+[33mcommit 810142c9d287759015451d463a5878c22001f415[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Fri Feb 7 03:07:31 2014 +0900
+
+    Update README.md
+
+[33mcommit d071a7e668d680d4ca55e46274b36ee529a4511e[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Fri Feb 7 03:05:14 2014 +0900
+
+    Update README.md again
+
+[33mcommit afe5de0443b31209f49a6b501aa76ae702adb90d[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Fri Feb 7 03:04:27 2014 +0900
+
+    Update README.md
+
+[33mcommit 599ed72989ef8263a6bc4c43a1c90d07aa7d817c[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Fri Feb 7 02:43:24 2014 +0900
+
+    Settings to use sbt-sonatype
+
+[33mcommit fe273f216ebeb32691573b00a9b5fa9a47b8bcbb[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Fri Feb 7 02:32:11 2014 +0900
+
+    Configure settings, fix package names, and so on.
+
+[33mcommit be2198b7e01e4211de0437034b79defa3c6e64c7[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Thu Dec 13 15:08:17 2012 +0900
+
+    Remove Build.scala.  Instead, use build.sbt
+
+[33mcommit c3dc3c35f95a9040f3ebc32024fee67b54d71bed[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Thu Dec 13 15:02:50 2012 +0900
+
+    Several changes
+
+[33mcommit 9c33d71d77432dfc4ffa94f615a8400b87d3ad76[m
+Merge: 7231513 eabbde8
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Wed Dec 12 22:00:23 2012 -0800
+
+    Merge pull request #2 from kmizu/fix/remove-extra-setting-files
+    
+    Remove extra setting files
+
+[33mcommit eabbde800656405adce0c73c5a25f4bc47eacb9e[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Thu Dec 13 14:59:58 2012 +0900
+
+    Remove extra setting files
+
+[33mcommit 72315135c199a50c63d926702c3ebabd97791fe8[m
+Merge: 5c5637a 8537824
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Wed Dec 12 21:56:35 2012 -0800
+
+    Merge pull request #1 from kmizu/fix/settings
+    
+    Fix various settings.
+
+[33mcommit 8537824ff77d02c469c860a8597c2fe990517cd5[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Thu Dec 13 14:54:08 2012 +0900
+
+    Fix various settings.  e.g. remove idea configuration files from repository
+
+[33mcommit 5c5637a3978776faea82f5d90f3ba6d8e3a6ac6b[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Thu Sep 20 01:02:25 2012 +0900
+
+    Change File Mode.
+
+[33mcommit 288179a4c6aaf562662877e516620e743081664c[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Mon Nov 21 22:51:58 2011 +0900
+
+    Add library setting .xml files.
+
+[33mcommit 8a6cfda37c85838a79359b31b06df683f6f464e0[m
+Author: kmizu <mizukota@gmail.com>
+Date:   Mon Nov 21 22:49:57 2011 +0900
+
+    Add .iml files.
+
+[33mcommit bfb1b6c1eef39f0f3ef74ca33c3f7b2398cd1457[m
+Author: kmizu <mizukota@gmail.com>
+Date:   Mon Nov 21 22:48:52 2011 +0900
+
+    Add IdeaProject.iml
+
+[33mcommit 9b1163c86d8cad6320616ceeeebf8a53199a0e64[m
+Author: kmizu <mizukota@gmail.com>
+Date:   Mon Nov 21 22:47:17 2011 +0900
+
+    Update plugins.sbt and idea setting files.
+
+[33mcommit 99d2d6bbd159374ae6fe79d8c0d8cbc183368775[m
+Author: kmizu <mizukota@gmail.com>
+Date:   Mon Nov 21 02:29:15 2011 +0900
+
+    Handle parallel test.
+
+[33mcommit b637defb2e59232bfe8acca11e64d93293e34f4b[m
+Author: kmizu <mizukota@gmail.com>
+Date:   Mon Nov 21 02:19:36 2011 +0900
+
+    Add dependency to Specs2.
+
+[33mcommit 75a2ff37dfd860416503e74bdd5dffe8b0de3154[m
+Author: kmizu <mizukota@gmail.com>
+Date:   Sun Nov 20 14:39:02 2011 +0900
+
+    Update dependent library settings.
+
+[33mcommit 4fe7ec2d5dd6526e7f95a2d701d2cdbd71ae327f[m
+Author: kmizu <mizukota@gmail.com>
+Date:   Sun Nov 20 14:25:07 2011 +0900
+
+    Accept sbt 0.11.
+
+[33mcommit 1f540a394718ed162da4f0efda9f67476ed640e4[m
+Author: kmizu <mizukota@gmail.com>
+Date:   Sat Sep 3 23:16:13 2011 +0900
+
+    Remove unneeded files.
+
+[33mcommit 681521c9fa11f507fcb6862c63f8f84b2d7ecf83[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Sat Sep 3 22:02:26 2011 +0900
+
+    Moved test directory for sbt.
+
+[33mcommit e34d026c9c43c81f1dfa57a40b51dd478c88cfeb[m
+Author: kmizu <mizukota@gmail.com>
+Date:   Sat Sep 3 21:58:07 2011 +0900
+
+    Add sbt configuration  file for sbt 0.10 seried.
+
+[33mcommit 59430aecc24a6cba0095b9caabad1e0ecd7cfe14[m
+Author: kmizu <mizukota@gmail.com>
+Date:   Sat Sep 3 21:56:33 2011 +0900
+
+    Move source directory for sbt.
+
+[33mcommit 54f95fb9afab4f6441d38a75b796ce5f736374b6[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Sat Sep 3 20:14:33 2011 +0900
+
+    Removed unneeded setting file workspace.xml, which is generated by aut
+    omatically.
+
+[33mcommit be05a4ff59e1e6907c4eba0614f35f3049a89ea8[m
+Author: kmizu <mizukota@gmail.com>
+Date:   Sat Sep 3 19:46:55 2011 +0900
+
+    Update project settings.
+
+[33mcommit 07d3af2c181a1d942e94fb98d72458912d495a1a[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Wed Aug 24 22:36:39 2011 +0900
+
+    Fix a little.
+
+[33mcommit 2f3a7fd11bc9c0405f7e59059f57745ca34bcaee[m
+Author: kmizu <mizukota@gmail.com>
+Date:   Tue Aug 16 17:36:26 2011 +0900
+
+    Some refactorings.
+
+[33mcommit 54a65c7dea0cd78f6226ec2bbb843f2edf602785[m
+Author: unknown <Mizushima@.(none)>
+Date:   Wed Nov 10 09:22:12 2010 +0900
+
+    Rename GreedyPegVirtualMachine to PegVirtualMachine.
+
+[33mcommit 699bdd4822b1942b950d4798bc986ab31f509955[m
+Author: kmizu <mizukota@gmail.com>
+Date:   Thu Oct 21 19:27:06 2010 +0900
+
+    Fix  behavior of REPL mode.
+
+[33mcommit 03dc192f771980b999a9970f529391b28603208e[m
+Author: kmizu <mizukota@gmail.com>
+Date:   Thu Oct 21 19:19:35 2010 +0900
+
+    Fix behavior of REPL mode.
+
+[33mcommit c9221e12caf5f5712ac3c1c58c6305a3c26f4219[m
+Author: kmizu <mizukota@gmail.com>
+Date:   Tue Oct 19 16:16:04 2010 +0900
+
+    Implement REPL mode.
+
+[33mcommit 98623f98a6415af1201f7cc8a8b70c597ced9d81[m
+Author: kmizu <mizukota@gmail.com>
+Date:   Tue Oct 19 16:05:54 2010 +0900
+
+    Remove PossessivePegInterpreter
+
+[33mcommit eabdfa583518335f393344960abe4c4cb9b325a1[m
+Author: kmizu <mizukota@gmail.com>
+Date:   Tue Oct 19 15:57:19 2010 +0900
+
+    Move test programs to src.test.
+
+[33mcommit 0ef9f84e37eab30019e3f9038bb451cd4a01bf6c[m
+Author: unknown <Mizushima@.(none)>
+Date:   Tue Sep 28 15:24:39 2010 +0900
+
+    Rename RegexLikeAstInterpreter to GreedyPegInterpreter.
+    Rename PegVm to GreedyPegVirtualMachine.
+    Rename PegInterpreter to PossessivePegInterpreter.
+
+[33mcommit 9d088ad65e9d6f8a48415b7fbfe49bdfcd873124[m
+Author: unknown <Mizushima@.(none)>
+Date:   Tue Sep 28 15:06:13 2010 +0900
+
+    Rename package from jp.gr.java_conf.mizu.pegex to org.onion_lang.pegex
+
+[33mcommit e727ff0fab8df5a45345ce6e64e838bded9c3f7b[m
+Author: kmizu <mizukota@gmail.com>
+Date:   Tue Sep 28 14:43:05 2010 +0900
+
+    Rename PegAstInterpreter to PegInterpreter
+
+[33mcommit a2a3541687e6529b64d10a93a2b1ea0c356dd18e[m
+Author: unknown <Mizushima@.(none)>
+Date:   Sun Sep 26 19:02:58 2010 +0900
+
+    Improve an error message of ParseException.
+
+[33mcommit 882a4b9f7768ae696a5e60918e5377e830a20da0[m
+Author: unknown <Mizushima@.(none)>
+Date:   Sun Sep 26 03:29:39 2010 +0900
+
+    Fix code.
+
+[33mcommit 452756ed3f03d007f9c5b264ec6f0685e7edc18e[m
+Author: unknown <Mizushima@.(none)>
+Date:   Sun Sep 26 03:26:54 2010 +0900
+
+    Change configuration.
+
+[33mcommit fc42cf75daa24fa385fab1f5f948257373c380ca[m
+Author: unknown <Mizushima@.(none)>
+Date:   Sun Sep 26 02:50:23 2010 +0900
+
+    Change configuration.
+
+[33mcommit 6a06d8745144bb730105b1fe89b396726c1b1104[m
+Author: kmizu <mizukota@gmail.com>
+Date:   Sun Sep 26 02:23:49 2010 +0900
+
+    Change configuration.
+
+[33mcommit b8402432d2ddf1849af8308b38b028c717e43213[m
+Author: kmizu <mizukota@gmail.com>
+Date:   Sun Sep 26 02:19:15 2010 +0900
+
+    Add example.
+
+[33mcommit b079d755adc36dbb0984b67e8f9ee8742aa4f153[m
+Author: unknown <Mizushima@.(none)>
+Date:   Sun Sep 26 01:52:06 2010 +0900
+
+    Rename parse to matches.
+    Rename parseWithGroup to parse.
+
+[33mcommit 723f6942314a047f373b129be5bf0307a7867b73[m
+Author: unknown <Mizushima@.(none)>
+Date:   Sun Sep 26 00:48:24 2010 +0900
+
+    Fix bug of PEG parser.
+
+[33mcommit 64c71446965a4394f370bfc2b872d314d7b8bc28[m
+Author: unknown <Mizushima@.(none)>
+Date:   Sun Sep 26 00:34:34 2010 +0900
+
+    Change configuration.
+
+[33mcommit d38dbcf945998c9ee44503b2aa816aaef7c9c30e[m
+Author: unknown <Mizushima@.(none)>
+Date:   Sun Sep 26 00:32:36 2010 +0900
+
+    Change configuration.
+
+[33mcommit 96da9b8e9cd2896a7b203bf76901361917538e75[m
+Author: unknown <Mizushima@.(none)>
+Date:   Sun Sep 26 00:26:54 2010 +0900
+
+    Change configurations.
+
+[33mcommit db4df8a2686d0fcec46fc889c57ce11773594767[m
+Author: unknown <Mizushima@.(none)>
+Date:   Sat Sep 25 23:59:07 2010 +0900
+
+    Some changes.
+
+[33mcommit 0772c4ee1a08e91dcac604ff37dd37ac53c5f6c5[m
+Author: unknown <Mizushima@.(none)>
+Date:   Sat Sep 25 23:56:37 2010 +0900
+
+    Fix spelling.
+
+[33mcommit ba5f16fe099e81f296d667343b55c940fab10c94[m
+Author: kmizu <mizukota@gmail.com>
+Date:   Sat Sep 25 23:21:00 2010 +0900
+
+    Add files for IntelliJ IDEA.
+    Fix README.
+
+[33mcommit 8b9aa59cee9cb090d600f4a076679486d3761f60[m
+Author: kmizu <mizukota@gmail.com>
+Date:   Sun Sep 12 16:03:02 2010 +0900
+
+    Add an alias type ==> for PartialFunction.
+    Add + method to Grammar class.
+
+[33mcommit 6ca125d94e9978e888026e2851ed81a273965312[m
+Author: kmizu <mizukota@gmail.com>
+Date:   Fri Aug 6 16:38:43 2010 +0900
+
+    Rename method LineCounter.eachFile to LineCounter.foreachFile
+
+[33mcommit 6c0c8632cb80c5d2df44fa9c9c64c08e10ccc8b3[m
+Author: kmizu <mizukota@gmail.com>
+Date:   Fri Aug 6 10:24:15 2010 +0900
+
+    Update scala and specs library version.
+
+[33mcommit f7c567add11ad9095e8ec89c02e1c551025791ad[m
+Author: Mizushima <mizukota@gmail.com>
+Date:   Fri Apr 30 15:24:31 2010 +0900
+
+    Add test for palindrome.
+
+[33mcommit 4a40018436e6cd6c28efc438bcf50a48f53b3feb[m
+Author: Mizushima <mizukota@gmail.com>
+Date:   Fri Apr 30 15:21:29 2010 +0900
+
+    Add test for palindrome.
+
+[33mcommit 6c6eef50620b1c54b8ea20c5ce98816361dc1456[m
+Author: Mizushima <mizukota@gmail.com>
+Date:   Tue Apr 27 19:50:07 2010 +0900
+
+    Fix mistake in README.
+    Add description to README.
+
+[33mcommit 22a7a974d258758ac2ea333627a8c3e559cc699d[m
+Author: Mizushima <mizukota@gmail.com>
+Date:   Tue Apr 27 19:25:15 2010 +0900
+
+    Refactor test code.
+
+[33mcommit 33ddcf085557857d720bacaa5960c13b8abf41a6[m
+Author: Mizushima <mizukota@gmail.com>
+Date:   Tue Apr 27 19:17:24 2010 +0900
+
+    Remove unneeded type declaration of variable(val/var).
+
+[33mcommit 074d8084088ddba9107342f66eeac4b4fd75e51d[m
+Author: Mizushima <mizukota@gmail.com>
+Date:   Tue Apr 27 17:08:12 2010 +0900
+
+    Fix description.
+
+[33mcommit 4a5ebb3f6b2ab0e26f6d686a5bb4481444a679aa[m
+Author: Mizushima <mizukota@gmail.com>
+Date:   Tue Apr 27 17:07:03 2010 +0900
+
+    Fix description.
+
+[33mcommit 71dd58c29b73ec522a66773256a11aa73a0b62a6[m
+Author: Mizushima <mizukota@gmail.com>
+Date:   Tue Apr 27 17:05:18 2010 +0900
+
+    Fix descriptions.
+
+[33mcommit 5655b2f87c80eb82cb635321e651a194bcff4805[m
+Author: Mizushima <mizukota@gmail.com>
+Date:   Tue Apr 27 16:34:28 2010 +0900
+
+    Fix description.
+
+[33mcommit 5ec290ea0b5e5fab4a6d28e02a8ffe4f3f32ef0f[m
+Author: Mizushima <mizukota@gmail.com>
+Date:   Tue Apr 27 16:32:18 2010 +0900
+
+    Fix description.
+
+[33mcommit 9b600c4732b06d66466ae1bdf65fdb41b3c43be6[m
+Author: Mizushima <mizukota@gmail.com>
+Date:   Tue Apr 27 16:30:36 2010 +0900
+
+    Add descriptions about  syntax of PEGEX.
+
+[33mcommit dd41a3d37660028284140a8905e39b0aefb7764e[m
+Author: Mizushima <mizukota@gmail.com>
+Date:   Tue Apr 27 15:35:18 2010 +0900
+
+    Add test for Map-like oprations in MatchResult.
+
+[33mcommit f1f78537e09b957688b53a3cdf1683eaf1ce604a[m
+Author: Mizushima <mizukota@gmail.com>
+Date:   Tue Apr 27 15:33:13 2010 +0900
+
+    Now MatchResult extends DefaultMap.  Then, users can use MathResult as if it is Map.
+
+[33mcommit 57b131c61b818bdc240cdd63c1b5239ff540c36a[m
+Author: Mizushima <mizukota@gmail.com>
+Date:   Tue Apr 27 14:56:59 2010 +0900
+
+    Simplfy test codes.
+
+[33mcommit 80fc0047b0e544621f97b7e40dbf057f5df9e814[m
+Author: Mizushima <mizukota@gmail.com>
+Date:   Tue Apr 27 14:47:19 2010 +0900
+
+    Add test.
+
+[33mcommit 99331c1b0bb1db9c3454fc776afc9ac7fcd48afe[m
+Author: Mizushima <mizukota@gmail.com>
+Date:   Tue Apr 27 14:37:20 2010 +0900
+
+    Some minor changes.
+
+[33mcommit 84a14126ba5038fc5f2eb430b2d980533a355fb8[m
+Merge: 606455e e770177
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Tue Apr 27 14:18:37 2010 +0900
+
+    Merge branch 'master' of git+ssh://github.com/kmizu/pegex
+
+[33mcommit 606455eccdd8f23d65b94c200775a7bdb49e8ce4[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Tue Apr 27 14:17:59 2010 +0900
+
+    Test.
+
+[33mcommit e770177624ba3cca4435513abd14ea0ef3f30150[m
+Author: Mizushima <mizukota@gmail.com>
+Date:   Mon Apr 26 18:42:01 2010 +0900
+
+    Add test for name:value pair.
+    Change build.xml to do test.
+    Fix bug in RegexLikeAstInterpreter.
+
+[33mcommit bbcbf7af419c7fbb336fd2ec1a15e33275b283f9[m
+Author: Mizushima <mizukota@gmail.com>
+Date:   Mon Apr 26 15:05:30 2010 +0900
+
+    Add explanations.
+
+[33mcommit 4a9c084d7b15b0cc48a32cabf54a49f176dca43c[m
+Author: Mizushima <mizukota@gmail.com>
+Date:   Mon Apr 26 14:56:28 2010 +0900
+
+    Scala compiler jar file.
+
+[33mcommit 8b7ca4359c5f53e9ff91168551e0cd58a8bc25c9[m
+Author: Mizushima <mizukota@gmail.com>
+Date:   Mon Apr 26 14:54:16 2010 +0900
+
+    Remove unneeded message.
+
+[33mcommit 75d1669b17b45d46632bfd56f8bc1007b505dccf[m
+Author: Mizushima <mizukota@gmail.com>
+Date:   Mon Apr 26 14:49:28 2010 +0900
+
+    Now "clean" removes build directory correctly.
+
+[33mcommit eb7cae418b8bd9849445e0b6ce90e82e98f86d8d[m
+Author: Mizushima <mizukota@gmail.com>
+Date:   Mon Apr 26 14:43:47 2010 +0900
+
+    Update files.
+
+[33mcommit 983da3368a60d045449def66e78ac4354e66cedc[m
+Author: Mizushima <mizukota@gmail.com>
+Date:   Mon Apr 26 14:09:12 2010 +0900
+
+    Remove lambda calculus pegex.
+
+[33mcommit 2722d7227318ae8e876eff41311924ff4ba31969[m
+Author: Mizushima <mizukota@gmail.com>
+Date:   Mon Apr 26 13:18:37 2010 +0900
+
+    Change encoding to UTF-8.
+    Update .classpath.
+
+[33mcommit 971d4d6572de1c2f2b10ab8ee9f21de462a31bd7[m
+Author: Mizushima <mizukota@gmail.com>
+Date:   Mon Apr 26 09:51:18 2010 +0900
+
+    Update scala-library.jar and scala-compiler.jar Scala 2.8.0.RC-1.
+    Update .classpath.
+    Add test pegex representing lambda calculus.
+
+[33mcommit 4c14e09fc0025819de98349f523e1c75a4f6f05e[m
+Author: Mizushima <mizukota@gmail.com>
+Date:   Sat Apr 24 20:09:51 2010 +0900
+
+    Fix bug in test.
+    Fix build.xml for compiling test codes.
+
+[33mcommit 1da86813f1706778efee318ea77a076d8d5929a6[m
+Author: Mizushima <mizukota@gmail.com>
+Date:   Sat Apr 24 19:42:47 2010 +0900
+
+    Change to use Specs.
+
+[33mcommit e178ed2d5997dc15147a7dc70f0c185f61d5b28c[m
+Author: Mizushima <mizukota@gmail.com>
+Date:   Sat Apr 24 19:11:38 2010 +0900
+
+    Rename TestPegexBasicUsage to PegexBasicSpec.
+
+[33mcommit 9f7d0ac446a85e5fc9df6d2f4269a7cc821565a7[m
+Author: Mizushima <mizukota@gmail.com>
+Date:   Sat Apr 24 19:03:31 2010 +0900
+
+    Add license file of Specs.
+
+[33mcommit 3edd3083bd5dc02d97388ff976680f264bca2d51[m
+Author: Mizushima <mizukota@gmail.com>
+Date:   Sat Apr 24 19:00:09 2010 +0900
+
+    Add specs, which is a testing framework for Scala, jar file.
+    Add configuration for using specs.
+
+[33mcommit fa9a46110759b3b5ca932c5d902e581ad37f7f74[m
+Author: Mizushima <mizukota@gmail.com>
+Date:   Wed Apr 21 20:40:58 2010 +0900
+
+    Fix typo.
+
+[33mcommit e6569d1008e9c994558ebe35c0de0e6d19b392e6[m
+Author: Mizushima <mizukota@gmail.com>
+Date:   Wed Apr 21 20:38:08 2010 +0900
+
+    Fix some bugs.
+
+[33mcommit b9a161658c4027bea8d540fd325535bc5eb0f7f4[m
+Author: Mizushima <mizukota@gmail.com>
+Date:   Wed Apr 21 20:33:04 2010 +0900
+
+    Add codes for testing backrefs.
+
+[33mcommit 9c167bfc3a1ae644343ec43296a2caa55a4cb942[m
+Author: Mizushima <mizukota@gmail.com>
+Date:   Wed Apr 21 20:28:17 2010 +0900
+
+    Rename bindingsForBackref to resultBindings.
+
+[33mcommit aa5618cf1db076b92cca2eabd2cffb8dd15aeb30[m
+Author: Mizushima <mizukota@gmail.com>
+Date:   Wed Apr 21 20:25:33 2010 +0900
+
+    Rename field "bindings" to "ruleBindings".
+
+[33mcommit 06bc1ad8ff6545ae448beb2020d3382d53e6d33e[m
+Author: Mizushima <mizukota@gmail.com>
+Date:   Wed Apr 21 20:22:33 2010 +0900
+
+    Add kindly messages.
+
+[33mcommit 2b16812f21ee68cc891a8d6d18b61e27bad14d8f[m
+Author: Mizushima <mizukota@gmail.com>
+Date:   Wed Apr 21 20:18:27 2010 +0900
+
+    Remove member "ref" from Ast.Ident.
+    Change codes with removal of "ref" member.
+
+[33mcommit beeeecacbf7a5a098f85843804d1a2415a25fa5c[m
+Author: Mizushima <mizukota@gmail.com>
+Date:   Wed Apr 21 19:50:43 2010 +0900
+
+    Remove warnings.
+    Add codes for processing Ast.Binder
+    Add new opcode Insns.OpSetResult and Insns.OP_SET_START.
+    Add codes for processing OpSetResult.
+    Change scala compiler settings to use -deprecation.
+
+[33mcommit 2d39e6ee18077986718a7f77d0d0efb6c6d4b9d9[m
+Author: Mizushima <mizukota@gmail.com>
+Date:   Wed Apr 21 19:36:35 2010 +0900
+
+    Resolve warnings.
+    Add codes for processing Ast.Binder.
+    Rename Insns.OP_SET and Insns.OpSet to Insns.OP_SET_RESULT and Insns.OpSetResult.
+
+[33mcommit 8c29d0d42531439fdff2c88a663f227c74b26cec[m
+Author: Mizushima <mizukota@gmail.com>
+Date:   Wed Apr 21 19:13:30 2010 +0900
+
+    Add case class Binder, which represents binding action.
+
+[33mcommit b426ed7bbfd15065c3d2a61adf25ca862184aa64[m
+Author: Mizushima <mizukota@gmail.com>
+Date:   Fri Apr 16 05:49:03 2010 +0900
+
+    Add an example which should be Some(...).
+
+[33mcommit 3ff799ae894daf5023d669bb5436ec1470e97dd6[m
+Author: Mizushima <mizukota@gmail.com>
+Date:   Fri Apr 16 05:46:47 2010 +0900
+
+    Add an example which should be None.
+
+[33mcommit 0ba5451b9fd4cca06e73f3a1ce55f10fa5ac8202[m
+Author: Mizushima <mizukota@gmail.com>
+Date:   Fri Apr 16 05:43:33 2010 +0900
+
+    Add method "e" of String, which creates an instance of Pegex.
+
+[33mcommit a09764641cada4f52d29043a7ef0ac7cd93c8498[m
+Author: Mizushima <Mizushima@Curry>
+Date:   Mon Apr 12 12:05:01 2010 +0900
+
+    Fix some descriptions.
+
+[33mcommit 1622afd3ad3c03b815fa0f6acd22e7beb7404151[m
+Author: Mizushima <Mizushima@Curry>
+Date:   Mon Apr 12 11:54:55 2010 +0900
+
+    Change file name of Readme for pretty-printing the document on GitHub web page.
+
+[33mcommit 9f8d560dcc0a7ed731e0047b7bea3fb3704c6310[m
+Author: Mizushima <Mizushima@Curry>
+Date:   Mon Apr 12 11:53:03 2010 +0900
+
+    Change to use markdown notation.
+
+[33mcommit f28e316e93bfc3af63a633ae8dd58f0ca12a9dae[m
+Author: Mizushima <Mizushima@192.168.11.11>
+Date:   Sun Mar 28 04:01:41 2010 +0900
+
+    A pegex file representing real number.
+
+[33mcommit 1a1d564ac59e808177815203432c25d3d4406092[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Sun Mar 28 03:44:15 2010 +0900
+
+    Eclipsify this project
+
+[33mcommit 996f7544c4fdaf8df0b7c0876f38bd1936a2cf05[m
+Author: Kota Mizushima <mizukota@gmail.com>
+Date:   Sat Mar 27 17:35:43 2010 +0900
+
+    first commit of pegex
