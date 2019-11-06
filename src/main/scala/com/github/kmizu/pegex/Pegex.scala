@@ -9,6 +9,9 @@ class Pegex(pattern: String) {
   def matches(input: String): Option[String] = {
     interpreter.matches(input)
   }
+  def hasMatchFor(input: String): Boolean = {
+    !matches(input).isEmpty
+  }
   def matchesWithGroup(input: String): MatchResult = {
     interpreter.parse(input)
   }
