@@ -4,9 +4,9 @@ package kmizu
 package pegex
 
 import Pegex._
-import org.scalatest.FeatureSpec
+import org.scalatest.featurespec.AnyFeatureSpec
 
-class PegexBasicSpec extends FeatureSpec {
+class PegexBasicSpec extends AnyFeatureSpec {
   feature("PEGEXs") {
     scenario("alphabet sequences") {
       val alphabets = """[a-zA-Z]*$;""".e
