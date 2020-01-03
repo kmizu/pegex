@@ -27,7 +27,7 @@ scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature", "-language:impli
 
 libraryDependencies ++= Seq(
   "org.scala-lang.modules" %% "scala-parser-combinators" % "1.1.2",
-  "junit" % "junit" % "4.12" % "test",
+  "junit" % "junit" % "4.13" % "test",
   "org.scalatest" %% "scalatest" % "3.1.0" % "test"
 )
 
