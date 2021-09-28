@@ -26,7 +26,7 @@ testOptions in Test += Tests.Argument("-u", "target/scalatest-reports")
 scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature", "-language:implicitConversions")
 
 libraryDependencies ++= Seq(
-  "org.scala-lang.modules" %% "scala-parser-combinators" % "1.1.2",
+  "org.scala-lang.modules" %% "scala-parser-combinators" % "2.1.0",
   "junit" % "junit" % "4.13" % "test",
   "org.scalatest" %% "scalatest" % "3.1.0" % "test"
 )
