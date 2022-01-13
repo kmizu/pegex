@@ -4,7 +4,7 @@ name := "pegex"
 
 def Scala211 = "2.11.12"
 def Scala212 = "2.12.8"
-def Scala213 = "2.13.0"
+def Scala213 = "2.13.8"
 
 scalaVersion := Scala213
 
