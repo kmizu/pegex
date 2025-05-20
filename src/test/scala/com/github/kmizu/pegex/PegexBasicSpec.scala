@@ -53,10 +53,10 @@ class PegexBasicSpec extends AnyFeatureSpec {
       val nv = peg"""(?<N>[a-zA-Z_][a-zA-Z0-9_]*):(?<V>[0-9]+)$$;"""
       val r1 = nv.matchesWithGroup("a:1")
       assert(r1.result === Some("a:1"))
-      assert(r1.group.get('N) === Some("a"))
-      assert(r1.group.get('V) === Some("1"))
-      assert(r1.group('N) === "a")
-      assert(r1.group('V) === "1")
+      assert(r1.group.get(Symbol("N")) === Some("a"))
+      assert(r1.group.get(Symbol("V")) === Some("1"))
+      assert(r1.group(Symbol("N")) === "a")
+      assert(r1.group(Symbol("V")) === "1")
     }
   }
 

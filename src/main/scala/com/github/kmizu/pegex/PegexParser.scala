@@ -26,7 +26,7 @@ object PegexParser {
   
   private object ParserCore extends Parsers {
     type Elem = Char
-    val StartRuleName: Symbol = 'S
+    val StartRuleName: Symbol = Symbol("S")
     private val any: Parser[Char] = elem(".", c => c != CharSequenceReader.EofCh)
     private def char(c: Char): Parser[Char] = c
     private def string(literal: String): Parser[String] =
