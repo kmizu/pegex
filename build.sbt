@@ -2,38 +2,27 @@ organization := "com.github.kmizu"
 
 name := "pegex"
 
-def Scala211 = "2.11.12"
-def Scala212 = "2.12.8"
-def Scala213 = "2.13.0"
+def Scala213 = "2.13.16"
 
-scalaVersion := Scala213
+scalaVersion := "3.3.6"
 
-crossScalaVersions := Seq(Scala211, Scala212, Scala213)
+crossScalaVersions := Seq(scalaVersion.value, Scala213)
 
 publishMavenStyle := true
 
 val scaladocBranch = settingKey[String]("branch name for scaladoc -doc-source-url")
 
-scaladocBranch := "master"
-
-scalacOptions in (Compile, doc) ++= { Seq(
-  "-sourcepath", baseDirectory.value.getAbsolutePath,
-  "-doc-source-url", s"https://github.com/kmizu/pegex/tree/${scaladocBranch.value}€{FILE_PATH}.scala"
-)}
-
-testOptions in Test += Tests.Argument("-u", "target/scalatest-reports")
-
 scalacOptions ++= Seq("-unchecked", "-deprecation", "-feature", "-language:implicitConversions")
 
 libraryDependencies ++= Seq(
-  "org.scala-lang.modules" %% "scala-parser-combinators" % "1.1.2",
-  "junit" % "junit" % "4.13" % "test",
-  "org.scalatest" %% "scalatest" % "3.1.0" % "test"
+  "org.scala-lang.modules" %% "scala-parser-combinators" % "2.4.0",
+  "junit" % "junit" % "4.13" % Test,
+  "org.scalatest" %% "scalatest" % "3.2.19" % Test
 )
 
-fork in Test := true
+Test / fork := true
 
-initialCommands in console += {
+console / initialCommands += {
   Iterator().map("import "+).mkString("\n")
 }
 
